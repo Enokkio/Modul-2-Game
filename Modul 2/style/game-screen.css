@@ -1,0 +1,86 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    position: relative;
+}
+#player{
+    background-color: black;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 50px;
+    left: 50px;
+    z-index: 3;
+}
+
+#canvas{
+
+    width: inherit;
+    height: inherit;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin: auto;
+    }
+
+    /* Box för att containa canvas */
+#canvas-wrap{
+
+        width: 700px;
+        height: 500px;
+        margin: auto;
+        position: relative;
+        display: flex;
+
+    
+    }
+
+.next-level{
+    background-color: black;
+    width: 50px;
+    height: 50px;
+    z-index: 2;
+    position:absolute; 
+    
+    display: flex;
+    visibility: visible;
+    left: 325px;
+    
+
+}
+
+.monster-event{
+
+    background-color:red;
+    width: 50px;
+    height: 50px;
+    z-index: 2;
+    position:absolute; 
+    top: 200px;
+    display: flex;
+    visibility: visible;
+    left: 325px;
+    
+
+
+}
+.story-event{
+
+    background-color:green;
+    width: 50px;
+    height: 50px;
+    z-index: 100;
+    position:absolute; 
+    top: 200px;
+    display: flex;
+    visibility: hidden;
+    left: 200px;
+
+
+}
+
+
+    

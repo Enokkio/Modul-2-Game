@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style/game-screen.css">
+    <link href="style/GenStyle.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/mainStyle.css">
+    <script
+    type="text/javascript"
+    src="//code.jquery.com/jquery-1.5.js"
+  ></script>
+</head>
+<body>
+    
+
+
+    <div id="canvas-wrap" class="top-[15%]">
+
+      <div class="absolute w-[100px] h-[100px] bg-pink-500 left-[-100px]"></div>
+      <div id="wall" class="bg-green-900 w-[900px] h-[700px] absolute m-auto flex -z-10 right-[-100px] top-[-100px]"></div>
+
+        <div id="player" style="left: 325px; top:400px;"></div>
+
+        <canvas id="canvas" class="">
+          
+           
+
+        </canvas>
+
+
+        <div class="next-level collisionDetect"></div>
+        <div id="monster-event" class="monster-event collisionDetect"></div>
+        <div class="story-event collisionDetect"></div>
+
+        <div id="window">
+
+            <div class="overflow-hidden bg-gray-500 border-8 border-gray-400 absolute  h-[165px] w-[700px]" style="text-align: center;">
+        
+        
+              <p id="turnCounter" class="turnCounter border-4"></p>
+              <div id="Cplayer" class=""></div>
+              <div id="enemy" class=""></div>
+        
+            </div>
+        
+            <div class="block max-w-sm overflow-hidden bg-gray-500 border-4 playerBorder absolute w-[350px] h-[142px] top-[165px]">
+              <ul class="stat-display" >
+                <li class="stat playerBorder" id="Name"></li>
+                <li class="stat playerBorder" id="Level"></li>
+                <li class="stat playerBorder" id="HP">HP</li>
+                <li class="stat playerBorder" id="STR">STR</li>
+                <li class="stat playerBorder" id="DEF">DEF</li>
+                <li class="stat playerBorder" id="SPD">SPD</li>
+              </ul>
+            </div>
+        
+            <div class="block max-w-sm overflow-hidden bg-gray-500 border-4 enemyBorder absolute w-[350px]  h-[142px] top-[165px] left-1/2">
+              <ul class="Estat-display">
+                <li class="stat enemyBorder" id="Name"></li>
+                <li class="stat enemyBorder" id="Level"></li>
+                <li class="stat enemyBorder" id="HP">HP: </li>
+                <li class="stat enemyBorder" id="STR">STR: </li>
+                <li class="stat enemyBorder" id="DEF">DEF: </li>
+                <li class="stat enemyBorder" id="SPD">SPD: </li>
+            </div>
+        
+            <div id="LogBox" class="block overflow-hidden bg-gray-500 border-8 border-gray-400 absolute top-[307px] h-[193px] w-[350px]">
+          
+            </div>
+        
+        
+            <div id="Actions" class="overflow-hidden bg-gray-500 border-8 border-gray-400 absolute top-[307px] h-[193px] w-[350px] left-1/2 flex justify-center">
+              <div class=" m-auto grid grid-cols-2 gap-2">
+        
+                <div id="Attack" class="block bg-pink-500 h-[75px] w-[150px] border-4 border-teal-500 hover:bg-pink-600 relative">
+                  <p class="buttonText">Attack</p>
+                </div>
+        
+                <div id="Heal" class="block bg-blue-500  border-4 border-teal-500 h-[75px] w-[150px] hover:bg-blue-600 relative">
+                  <p class="buttonText">Heal</p>
+                </div>
+        
+                <div id="Block" class="block bg-yellow-500  border-4 border-teal-500 h-[75px] w-[150px] hover:bg-yellow-600 relative">
+                  <p class="buttonText">Block</p>
+                </div>
+        
+                <div id="Items" class="block bg-green-500 border-4 border-teal-500 h-[75px] w-[150px] hover:bg-green-600 relative">
+                  <p class="buttonText">Items</p>
+                </div>
+        
+              </div>
+            </div>
+        
+          </div>
+
+          <div id="characterCreator" class="grid place-items-center z-10">
+            <div class="bg-gray-400 border-8 border-gray-300 w-[25vw] absolute  h-[60vh] rounded" style="left: 175px">
+        
+              <div class=" absolute w-[100px] h-[100px] bg-black mt-[10px] border-4 rounded border-gray-500 ml-[10px]"></div>
+        
+              <p class="stat border-gray-500 bg-slate-400 border-4 pl-[20px] pr-[20px] rounded w-fit mt-[25px] ml-[50%]">Name</p>
+              <input id="nameBox" type="text" class="mt-[10px] ml-[37%] w-[56%] border-4 border-gray-500  rounded bg-gray-300 select-text outline-none">
+        
+              <p id="ptsCounter" class="stat border-gray-500 bg-slate-400 border-4 pl-[20px] pr-[20px] rounded w-fit mt-[60px] ml-[10px]">Points Available: 3</p>
+        
+              <p id="HPs" class="stat border-gray-500 border-4 bg-slate-400 pl-[20px] pr-[20px] rounded min-w-[91px] max-w-[100px] w-fit absolute mt-[10px] ml-[10px]">HP: 5 </p>
+              <p id="HealthAdd" class="stat add-stats-buttons border-gray-500 border-4 bg-gray-300 w-[30px] rounded relative top-[10px] left-[110px] pl-[3px] h-[32px] hover:bg-gray-400">＋</p>
+              <p id="HealthSub" class="stat remove-stats-buttons border-gray-500 border-4 bg-gray-300 w-[30px] rounded relative bottom-[22px] left-[150px] pl-[7px] h-[32px] hover:bg-gray-400">-</p>
+        
+        
+              <p id="STRs" class="stat rounded border-gray-500 border-4 bg-slate-400 pl-[20px] pr-[20px] min-w-[91px] max-w-[100px] w-fit absolute ml-[10px] ">STR: 1</p>
+              <p id="StrengthAdd" class="stat add-stats-buttons rounded border-gray-500 border-4 bg-gray-300 w-[30px] relative top-[0] left-[110px] pl-[3px] h-[32px] hover:bg-gray-400">＋</p>
+              <p id="StrengthSub" class="stat remove-stats-buttons rounded border-gray-500 border-4 bg-gray-300 w-[30px] relative bottom-[32px] left-[150px] pl-[7px] h-[32px] hover:bg-gray-400">-</p>
+        
+        
+              <p id="DEFs" class="stat rounded border-gray-500 border-4 bg-slate-400 pl-[20px] pr-[20px] min-w-[91px] max-w-[100px] w-fit absolute ml-[10px]">DEF: 1</p>
+              <p id="DefenseAdd" class="add-stats-buttons stat rounded border-gray-500 border-4 bg-gray-300 w-[30px] relative bottom-[0] left-[110px] pl-[3px] h-[32px] hover:bg-gray-400">＋</p>
+              <p id="DefenseSub" class="stat remove-stats-buttons rounded border-gray-500 border-4 bg-gray-300 w-[30px] relative bottom-[32px] left-[150px] pl-[7px] h-[32px] hover:bg-gray-400">-</p>
+        
+              <p id="SPDs" class="stat rounded border-gray-500 border-4 bg-slate-400 pl-[20px] pr-[20px] min-w-[91px] max-w-[100px] w-fit absolute ml-[10px]">SPD: 1</p>
+              <p id="SpeedAdd" class="stat add-stats-buttons rounded border-gray-500 border-4 bg-gray-300 w-[30px] relative bottom-[0] left-[110px] pl-[3px] h-[32px] hover:bg-gray-400">＋</p>
+              <p id="SpeedSub" class="stat remove-stats-buttons rounded border-gray-500 border-4 bg-gray-300 w-[30px] relative bottom-[32px] left-[150px] pl-[7px] h-[32px] hover:bg-gray-400">-</p>
+        
+              <p id="startBtn" class="stat rounded border-gray-500 border-4 pl-[20px] pr-[20px] w-fit absolute mt-[-63px] ml-[70%] bg-gray-300 hover:bg-gray-400"> Start</p>
+        
+        
+        
+            </div>
+          </div>
+
+    </div>
+
+
+
+
+    <script type="module" src="/scripts/PlayerMovement.js"></script>
+
+    <script type="module" src="/scripts/map.js"></script>
+    <script type="module" src="/scripts/collision-detection.js"></script>
+    
+    <script type="module" src="Scripts/characterCreator.js"></script>
+
+    <script type="module" src="Scripts/PlayerCombat.js"></script>
+    <script type="module" src="Scripts/updateStats.js"></script>
+    <script type="module" src="Scripts/startCombat.js"></script>
+
+  
+    
+
+</body>
+</html>
