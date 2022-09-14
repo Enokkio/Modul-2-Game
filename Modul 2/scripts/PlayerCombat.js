@@ -114,7 +114,7 @@ attackButton.addEventListener('click', function handleClick() {
     if (playerTurn == true && enemy.HP != 0) {
         playerTurn = false;
         console.log('attack clicked ' + enemy.Name + " " + enemy.HP);
-        enemy.HP -= 1;
+        enemy.HP -= user.STR;
         logger("player", "attack", 1);
         updateStatsE();
         changeTurn();
