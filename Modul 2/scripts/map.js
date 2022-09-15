@@ -5,13 +5,25 @@ const forestmap1 = new Image();
 forestmap1.src = 'images/forest.png';
 const cavemap1 = new Image();
 cavemap1.src = 'images/pixelCave.png';
+//event define boxes
+const MonsterEvent = document.querySelector('.monster-event');
+const StoryEvent = document.querySelector('.story-event');
 //defining canvas in script to draw images on it as maps
 var canvas = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
 const player = document.getElementById("player");
 ctx.imageSmoothingEnabled = true;
+//function to randomize location
+function randomizeEventsPos() {
+    var storyTop = randomIntFromInterval(50, 500);
+    var storyleft = randomIntFromInterval(50, 700);
+    var monsterTop = randomIntFromInterval(50, 500);
+    var monsterleft = randomIntFromInterval(50, 700);
+    MonsterEvent.style.top = monsterTop + 'px';
+    MonsterEvent.style.left = monsterleft + 'px';
+    console.log(monsterTop);
+}
 //Define enemy box to restart
-const MonsterEvent = document.querySelector('.monster-event');
 //Drawing starterTown image
 window.onload = function () {
     ctx.drawImage(starterTownImg, 0, 0, starterTownImg.width, starterTownImg.height, // source rectangle
