@@ -1,6 +1,18 @@
+//check if clear condition är true
+let clearcondition = false;
+export function changeClearcondition() {
+    if (clearcondition == false) {
+        clearcondition = true;
+    }
+    else {
+        clearcondition = false;
+    }
+}
 //import map loading functions
 import { loadMapsStage1 } from './map.js';
+import { loadMapsStage2 } from './map.js';
 import { startCombat } from './startCombat.js';
+import { flags } from "./updateStats.js";
 const player = document.getElementById("player");
 var coliderOn = true;
 export function combatDone() {
@@ -24,7 +36,37 @@ function overlapDetect() {
             const playerYbot = playerCOORDS.bottom;
             //gör så att den checkar även för vilken class
             if (xleft - 45 <= playerXleft && xright + 45 >= playerXright && ybot + 45 >= playerYbot && ytop - 45 <= PlayerYtop && interactDivs[index].classList.contains("next-level")) { //makes bounding info as if it was a cube
-                loadMapsStage1(); //loadar en exported function från map.js vilket editas med map.ts    
+                if (flags.stageNr >= 0 && flags.stageNr < 6 && clearcondition == true) { //check for what stage
+                    loadMapsStage1(); //loadar en exported function från map.js vilket editas med map.ts    
+                    flags.stageNr++;
+                    changeClearcondition();
+                    console.log("forest");
+                }
+                else if (flags.stageNr >= 6 && flags.stageNr < 10 && clearcondition == true) {
+                    loadMapsStage2();
+                    flags.stageNr++;
+                    changeClearcondition();
+                    console.log("Cave");
+                }
+                else if (flags.stageNr >= 10 && flags.stageNr < 15 && clearcondition == true) {
+                    loadMapsStage1();
+                    flags.stageNr++;
+                    changeClearcondition();
+                }
+                else if (flags.stageNr >= 15 && flags.stageNr < 20 && clearcondition == true) {
+                    loadMapsStage1();
+                    flags.stageNr++;
+                    changeClearcondition();
+                }
+                else if (flags.stageNr >= 20 && flags.stageNr < 25 && clearcondition == true) {
+                    loadMapsStage1();
+                    flags.stageNr++;
+                    changeClearcondition();
+                }
+                else if (flags.stageNr == 25 && clearcondition == true) {
+                    loadMapsStage1();
+                    changeClearcondition();
+                }
             }
             if (xleft - 45 <= playerXleft && xright + 45 >= playerXright && ybot + 45 >= playerYbot && ytop - 45 <= PlayerYtop && interactDivs[index].classList.contains("monster-event")) { //makes bounding info as if it was a cube
                 startCombat();
