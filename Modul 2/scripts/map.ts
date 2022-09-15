@@ -12,6 +12,8 @@ var ctx = canvas.getContext("2d");
 const player = document.getElementById("player")
 ctx.imageSmoothingEnabled = true;
 
+//celvin e gay
+
 //Define enemy box to restart
 const MonsterEvent = document.querySelector('.monster-event') as HTMLElement;
 
