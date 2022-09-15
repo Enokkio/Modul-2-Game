@@ -1,4 +1,6 @@
 console.log("test");
+//clear condition, genom att döda ett mosnter clearar du en stage och kan gå till nästa
+import { changeClearcondition } from "./collision-detection.js";
 //Gets player action buttons
 const attackButton = document.getElementById('Attack');
 const blockButton = document.getElementById('Block');
@@ -121,6 +123,8 @@ attackButton.addEventListener('click', function handleClick() {
         setTimeout(enemyAction, 1500);
         if (enemy.HP <= 0) {
             console.log("Enemy died!");
+            changeClearcondition();
+            console.log(changeClearcondition);
             endCombat();
         }
     }
