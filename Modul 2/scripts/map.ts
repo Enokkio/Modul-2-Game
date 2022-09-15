@@ -12,6 +12,8 @@ var ctx = canvas.getContext("2d");
 const player = document.getElementById("player")
 ctx.imageSmoothingEnabled = true;
 
+//Define enemy box to restart
+const MonsterEvent = document.querySelector('.monster-event') as HTMLElement;
 
 //Drawing starterTown image
 window.onload = function() {
@@ -40,6 +42,11 @@ export function loadMapsStage1(){//Exporteras så den kan användas i collission
 //reset location of player
 player.style.top = 325 + 'px' ;
 player.style.left = 325 + 'px' ;
+let mosnterspawn = randomIntFromInterval(1,10);
+if (mosnterspawn > 2) {
+  MonsterEvent.style.display = "block";
+}
+
 
 
 //We need a while stageclear = true do this function
@@ -50,7 +57,7 @@ function randomIntFromInterval(min, max) { // min and max included
       }
 
 
-    switch(randomIntFromInterval(1, 2)){
+    switch(randomIntFromInterval(1, 1)){
 
         case 1://draws 1 possible map of forests map
         ctx.fillStyle = "white";

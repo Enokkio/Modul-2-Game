@@ -8,6 +8,8 @@ var canvas = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
 const player = document.getElementById("player");
 ctx.imageSmoothingEnabled = true;
+//Define enemy box to restart
+const MonsterEvent = document.querySelector('.monster-event');
 //Drawing starterTown image
 window.onload = function () {
     ctx.drawImage(starterTownImg, 0, 0, starterTownImg.width, starterTownImg.height, // source rectangle
@@ -22,13 +24,17 @@ export function loadMapsStage1() {
     //reset location of player
     player.style.top = 325 + 'px';
     player.style.left = 325 + 'px';
+    let mosnterspawn = randomIntFromInterval(1, 10);
+    if (mosnterspawn > 2) {
+        MonsterEvent.style.display = "block";
+    }
     //We need a while stageclear = true do this function
     //And we need to use player data to see which stage to load, so for example if stage is   0<stage<5 we use a function between stages 1-5 through a function
     //satte in random number generation funktionen sådana att den skulle komma med i exporten
     function randomIntFromInterval(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
-    switch (randomIntFromInterval(1, 2)) {
+    switch (randomIntFromInterval(1, 1)) {
         case 1: //draws 1 possible map of forests map
             ctx.fillStyle = "white";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
