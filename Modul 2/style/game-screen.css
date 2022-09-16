@@ -76,7 +76,7 @@ body{
     position:absolute; 
     top: 200px;
     display: flex;
-    visibility: hidden;
+    visibility: visible;
     left: 200px;
 
 

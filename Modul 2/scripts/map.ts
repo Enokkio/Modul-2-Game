@@ -10,9 +10,34 @@ const cavemap1 = new Image();
 cavemap1.src = 'images/pixelCave.png';
 
 //event define boxes
-const MonsterEvent = document.querySelector('.monster-event') as HTMLElement;
-const StoryEvent = document.querySelector('.story-event') as HTMLElement;
+var MonsterEvent = document.querySelector('.monster-event') as HTMLElement;
+var NextLevel = document.querySelector('.next-level') as HTMLElement;
+var StoryEvent = document.querySelector('.story-event') as HTMLElement;
 
+//define self collission
+function overlaps() {
+  var rect1 = NextLevel.getBoundingClientRect();
+  var rect2 = MonsterEvent.getBoundingClientRect();
+  var isInHoriztonalBounds =
+    rect1.x < rect2.x + rect2.width +100 && 100 +rect1.x + rect1.width > rect2.x;
+  var isInVerticalBounds =
+    rect1.y < rect2.y + rect2.height + 100 && rect1.y + rect1.height + 100 > rect2.y;
+  var isOverlapping = isInHoriztonalBounds && isInVerticalBounds;
+  var istrueoverlap = xleft -80 <= monsterXleft && xright +80 >= monsterXright && ybot +80>= monsterYbot && ytop-80 <= monsterYtop
+ var xleft = parseInt(StoryEvent.style.left);
+  var xright = parseInt(StoryEvent.style.right);
+  var ybot = parseInt(StoryEvent.style.bottom);
+  var ytop = parseInt(StoryEvent.style.top);
+
+  var monsterXleft = parseInt(MonsterEvent.style.left);
+  var monsterXright = parseInt(MonsterEvent.style.right);
+  var monsterYbot = parseInt(MonsterEvent.style.bottom);
+  var monsterYtop = parseInt(MonsterEvent.style.top);
+
+  return istrueoverlap;
+
+
+}
 
 
 import { changeClearcondition } from "./collision-detection.js";
@@ -24,20 +49,239 @@ var canvas : any = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
 const player = document.getElementById("player")
 ctx.imageSmoothingEnabled = true;
-
-//function to randomize location
-function randomizeEventsPos(){
+// function randompos() {
+//   var storyTop = randomIntFromInterval(100,300);
+//   var storyleft = randomIntFromInterval(0,500);
+//   var monsterTop = randomIntFromInterval(100,300);
+//   var monsterleft = randomIntFromInterval(0,500);
   
-  var storyTop = randomIntFromInterval(50,500);
-  var storyleft = randomIntFromInterval(50,700);
-  var monsterTop = randomIntFromInterval(50,500);
-  var monsterleft = randomIntFromInterval(50,700);
+  
+//   StoryEvent.style.left = storyleft + 'px';
+//   StoryEvent.style.top = storyTop + 'px';
+//   MonsterEvent.style.top = monsterTop + 'px';
+//   MonsterEvent.style.left = monsterleft + 'px';
+//   overlaps();
+//   if (overlaps() == true) {
+//     console.log("SHIT IS OVERLAPPING")
 
-  MonsterEvent.style.top = monsterTop + 'px';
-  MonsterEvent.style.left = monsterleft + 'px';
+//     randompos();
+//   }
+  
+// }
 
-console.log(monsterTop)
+
+// function randomizePos(currentElem:HTMLElement, avoidElem:HTMLElement) {
+//   currentElem.style.left = randomIntFromInterval(100,300)+"px";
+//   currentElem.style.top  = randomIntFromInterval(100,500)+"px";
+
+//   var overlap = 
+//   (
+//     parseInt(currentElem.style.left)    +'px'  <= avoidElem.style.left && parseInt(currentElem.style.right)    +'px'  >= avoidElem.style.right || 
+//     parseInt(currentElem.style.top)      +'px'  <= avoidElem.style.top && parseInt(currentElem.style.bottom)   +'px'  >= avoidElem.style.bottom)
+
+//   if (!overlap) {
+    
+//   }
+
+//   else {
+//     randomizePos(currentElem, avoidElem)
+//   }
+// }
+/*
+document.addEventListener("mousemove", function(e){
+  
+  MonsterEvent.style.left = e.clientX-290+"px";
+  MonsterEvent.style.top = e.clientY-170+"px";
+
+  console.log(  isColiding(MonsterEvent, StoryEvent)  );
+});
+*/
+console.log("Detta scriptet kör två gånger!!");
+moveEventRandomly(StoryEvent, document.getElementsByClassName("collisionDetect"));
+function moveEventRandomly(mainElem, avoidElems) {
+
+
+  for (let i = 0; i < avoidElems.length; i++) {
+
+
+    /*
+    if (mainElem != avoidElems[i]) {
+      let tried = 0
+      do {
+        mainElem.style.left = randomIntFromInterval(100,300)+"px";
+        mainElem.style.top  = randomIntFromInterval(100,500)+"px";  
+        tried++
+        if (tried > 10) {
+          console.log(!isColiding(mainElem, avoidElems[0]))
+          return;
+        }
+      } while (!isColiding(mainElem, avoidElems[0]));
+    }
+*/
+  }
 }
+
+function isColiding(elemOne, elemTwo) {
+  elemOne = elemOne.getBoundingClientRect();
+  elemTwo = elemTwo.getBoundingClientRect();
+
+  return !(
+    elemOne.top > elemTwo.bottom ||
+    elemOne.right < elemTwo.left ||
+    elemOne.bottom < elemTwo.top ||
+    elemOne.left > elemTwo.right
+  );
+
+}
+// randomizePos(StoryEvent, MonsterEvent);
+// randomizePos(MonsterEvent, StoryEvent);
+
+// //randomizeEventsPos();
+// //function to randomize location
+// function randomizeEventsPos(){
+  
+//   var storyTop = randomIntFromInterval(100,300);
+//   var storyleft = randomIntFromInterval(100,500);
+//   var monsterTop = randomIntFromInterval(100,300);
+//   var monsterleft = randomIntFromInterval(100,500);
+
+//   MonsterEvent.style.top = monsterTop + 'px';
+//   MonsterEvent.style.left = monsterleft + 'px';
+
+//   StoryEvent.style.top = storyTop + 'px';
+//   StoryEvent.style.left = storyleft + 'px';
+// //    const interactDivs = document.getElementsByClassName("collisionDetect")
+
+//   StoryEvent.getBoundingClientRect();
+//   MonsterEvent.getBoundingClientRect();
+//   NextLevel.getBoundingClientRect();
+
+
+  // var xleft = parseInt(StoryEvent.style.left);
+  // var xright = parseInt(StoryEvent.style.right);
+  // var ybot = parseInt(StoryEvent.style.bottom);
+  // var ytop = parseInt(StoryEvent.style.top);
+
+  // var monsterXleft = parseInt(MonsterEvent.style.left);
+  // var monsterXright = parseInt(MonsterEvent.style.right);
+  // var monsterYbot = parseInt(MonsterEvent.style.bottom);
+  // var monsterYtop = parseInt(MonsterEvent.style.top);
+
+
+// var overlap2 = (xleft -80 <= monsterXleft && xright +80 >= monsterXright && ybot +80>= monsterYbot && ytop-80 <= monsterYtop)
+
+// var overlap = (parseInt(StoryEvent.style.left) -100 +'px' <= MonsterEvent.style.left && 
+// parseInt(StoryEvent.style.right) + 100 +'px' >= MonsterEvent.style.right && 
+// parseInt(StoryEvent.style.top) -100 +'px'<= MonsterEvent.style.top && 
+// parseInt(StoryEvent.style.bottom) +100 +'px'  >= MonsterEvent.style.bottom)
+// if (overlap){
+//   //randomizeEventsPos();
+//   console.log("hello");
+// }
+  
+
+// }
+
+///////////////////////////////////
+
+// setInterval(semirandom, 500)
+// function semirandom() {
+//   let x = randomIntFromInterval(1,7)
+//   console.log("x is" + x)
+
+//   switch (x) {
+//       case 1:
+
+//       StoryEvent.style.left = 200 + 'px'
+//       StoryEvent.style.top = 300 + 'px'
+
+      
+//       break;
+
+//       case 2:
+
+//         StoryEvent.style.left = 380 + 'px'
+//         StoryEvent.style.top = 390 + 'px'
+      
+//       break;
+
+//       case 3:
+//         StoryEvent.style.left = 450 + 'px'
+//         StoryEvent.style.top = 275 + 'px'
+//       break;
+
+//       case 4:
+//         StoryEvent.style.left = 400 + 'px'
+//         StoryEvent.style.top = 150 + 'px'
+//       break;
+//       case 5:
+//         StoryEvent.style.left = 125 + 'px'
+//         StoryEvent.style.top = 250 + 'px'
+//       break;
+//       case 6:
+//         StoryEvent.style.left = 300 + 'px'
+//         StoryEvent.style.top = 250 + 'px'
+//       break;
+//       case 7:
+//         StoryEvent.style.left = 200 + 'px'
+//         StoryEvent.style.top = 300 + 'px'
+//       break;
+      
+  
+
+  
+    
+//   }
+//   let y = randomIntFromInterval(1,8)
+// console.log("y is " + y)
+//   switch (y) {
+//     case 1:
+
+//       MonsterEvent.style.left = 150 + 'px'
+//       MonsterEvent.style.top = 200 + 'px'
+
+      
+//       break;
+
+//       case 2:
+
+//         MonsterEvent.style.left = 405 + 'px'
+//         MonsterEvent.style.top = 305 + 'px'
+      
+//       break;
+
+//       case 3:
+//         MonsterEvent.style.left = 500 + 'px'
+//         MonsterEvent.style.top = 250 + 'px'
+//       break;
+
+//       case 4:
+//         MonsterEvent.style.left = 225 + 'px'
+//         MonsterEvent.style.top = 100 + 'px'
+//       break;
+//       case 5:
+//         MonsterEvent.style.left = 550 + 'px'
+//         MonsterEvent.style.top =  150+ 'px'
+//       break;
+//       case 6:
+//         MonsterEvent.style.left = 225 + 'px'
+//         MonsterEvent.style.top = 200 + 'px'
+//       break;
+//       case 7:
+//         MonsterEvent.style.left = 550 + 'px'
+//         MonsterEvent.style.top = 200 + 'px'
+//       break;
+//       case 8:
+//         MonsterEvent.style.left = 325 + 'px'
+//         MonsterEvent.style.top = 100 + 'px'
+//       break;
+
+
+
+
+
+// }}
+
 
 //Define enemy box to restart
 
@@ -62,11 +306,12 @@ function randomIntFromInterval(min, max) { // min and max included
   }
 
 
+
   export function loadMapsStage1(){//Exporteras så den kan användas i collission-detection.ts
     //reset location of player
     player.style.top = 325 + 'px' ;
     player.style.left = 325 + 'px' ;
-    
+
     MonsterEvent.style.display = "block";
     
     //We need a while stageclear = true do this function
