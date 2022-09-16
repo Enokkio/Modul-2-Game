@@ -6,23 +6,70 @@ forestmap1.src = 'images/forest.png';
 const cavemap1 = new Image();
 cavemap1.src = 'images/pixelCave.png';
 //event define boxes
-const MonsterEvent = document.querySelector('.monster-event');
-const StoryEvent = document.querySelector('.story-event');
+var MonsterEvent = document.querySelector('.monster-event');
+var NextLevel = document.querySelector('.next-level');
+var StoryEvent = document.querySelector('.story-event');
+//define self collission
+// function overlaps() {
+//   var rect1 = NextLevel.getBoundingClientRect();
+//   var rect2 = MonsterEvent.getBoundingClientRect();
+//   var isInHoriztonalBounds =
+//     rect1.x < rect2.x + rect2.width +100 && 100 +rect1.x + rect1.width > rect2.x;
+//   var isInVerticalBounds =
+//     rect1.y < rect2.y + rect2.height + 100 && rect1.y + rect1.height + 100 > rect2.y;
+//   var isOverlapping = isInHoriztonalBounds && isInVerticalBounds;
+//   var istrueoverlap = xleft -80 <= monsterXleft && xright +80 >= monsterXright && ybot +80>= monsterYbot && ytop-80 <= monsterYtop
+//  var xleft = parseInt(StoryEvent.style.left);
+//   var xright = parseInt(StoryEvent.style.right);
+//   var ybot = parseInt(StoryEvent.style.bottom);
+//   var ytop = parseInt(StoryEvent.style.top);
+//   var monsterXleft = parseInt(MonsterEvent.style.left);
+//   var monsterXright = parseInt(MonsterEvent.style.right);
+//   var monsterYbot = parseInt(MonsterEvent.style.bottom);
+//   var monsterYtop = parseInt(MonsterEvent.style.top);
+//   return istrueoverlap;
+// }
+//-----------------------------------------------------------CODE FOR SELFDETECTION BAD NAMING BE WARNED ASK ENOK FOR INFO----------------------------------------------------------------------------------------------------------------------
+//randompositionning
+function randompos() {
+    MonsterEvent.style.left = randomIntFromInterval(100, 600) + 'px';
+    MonsterEvent.style.top = randomIntFromInterval(75, 325) + 'px';
+    StoryEvent.style.left = randomIntFromInterval(100, 600) + 'px';
+    StoryEvent.style.top = randomIntFromInterval(75, 325) + 'px';
+}
+//self collision checker
+function overlapDetect() {
+    randompos;
+    let coliderOn = true;
+    if (coliderOn == true) {
+        const interactDivs = document.querySelector(".monster-event");
+        const interactDivs2 = document.querySelector(".story-event");
+        //console.log(interactDivs)
+        for (let index = 0; index < 2; index++) {
+            const eventbox = interactDivs.getBoundingClientRect(); //Get bounding info for boxes 
+            const eventbox2 = interactDivs2.getBoundingClientRect(); //Get bounding info for player
+            const xleft = eventbox.left;
+            const xright = eventbox.right;
+            const ytop = eventbox.top;
+            const ybot = eventbox.bottom;
+            const playerXleft = eventbox2.left;
+            const playerXright = eventbox2.right;
+            const PlayerYtop = eventbox2.top;
+            const playerYbot = eventbox2.bottom;
+            //gör så att den checkar även för vilken class
+            if (xleft - 45 <= playerXleft && xright + 45 >= playerXright && ybot + 45 >= playerYbot && ytop - 45 <= PlayerYtop) {
+                console.log("they are doing da thing");
+                randompos();
+                overlapDetect();
+            }
+        }
+    }
+}
 //defining canvas in script to draw images on it as maps
 var canvas = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
 const player = document.getElementById("player");
 ctx.imageSmoothingEnabled = true;
-//function to randomize location
-function randomizeEventsPos() {
-    var storyTop = randomIntFromInterval(50, 500);
-    var storyleft = randomIntFromInterval(50, 700);
-    var monsterTop = randomIntFromInterval(50, 500);
-    var monsterleft = randomIntFromInterval(50, 700);
-    MonsterEvent.style.top = monsterTop + 'px';
-    MonsterEvent.style.left = monsterleft + 'px';
-    console.log(monsterTop);
-}
 //Define enemy box to restart
 //Drawing starterTown image
 window.onload = function () {
@@ -38,6 +85,8 @@ export function loadMapsStage1() {
     //reset location of player
     player.style.top = 325 + 'px';
     player.style.left = 325 + 'px';
+    overlapDetect(); //to detect overlap between randoms pos
+    randompos(); //to randomize positions
     MonsterEvent.style.display = "block";
     //We need a while stageclear = true do this function
     //And we need to use player data to see which stage to load, so for example if stage is   0<stage<5 we use a function between stages 1-5 through a function
@@ -66,6 +115,8 @@ export function loadMapsStage2() {
     //reset location of player
     player.style.top = 325 + 'px';
     player.style.left = 325 + 'px';
+    overlapDetect(); //to detect overlap between randoms pos
+    randompos(); //to randomize positions
     MonsterEvent.style.display = "block";
     //We need a while stageclear = true do this function
     //And we need to use player data to see which stage to load, so for example if stage is   0<stage<5 we use a function between stages 1-5 through a function
