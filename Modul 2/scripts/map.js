@@ -70,24 +70,37 @@ document.addEventListener("mousemove", function(e){
 });
 */
 console.log("Detta scriptet kör två gånger!!");
-moveEventRandomly(StoryEvent, document.getElementsByClassName("collisionDetect"));
+moveEventRandomly(document.getElementsByClassName("collisionDetect")[1], document.getElementsByClassName("collisionDetect"));
+moveEventRandomly(MonsterEvent, document.getElementsByClassName("collisionDetect"));
 function moveEventRandomly(mainElem, avoidElems) {
-    for (let i = 0; i < avoidElems.length; i++) {
-        /*
-        if (mainElem != avoidElems[i]) {
-          let tried = 0
-          do {
-            mainElem.style.left = randomIntFromInterval(100,300)+"px";
-            mainElem.style.top  = randomIntFromInterval(100,500)+"px";
-            tried++
-            if (tried > 10) {
-              console.log(!isColiding(mainElem, avoidElems[0]))
-              return;
+    var collided = false;
+    do {
+        console.log("colide-------------------------------------------------------------d");
+        mainElem.style.left = randomIntFromInterval(325, 400) + "px";
+        mainElem.style.top = randomIntFromInterval(200, 400) + "px";
+        for (let i = 0; i < avoidElems.length; i++) {
+            if (isColiding(mainElem, avoidElems[i]) && avoidElems[i] != mainElem) {
+                collided = true;
+                console.log("COLLLL" + i);
             }
-          } while (!isColiding(mainElem, avoidElems[0]));
         }
-    */
+        console.log("col" + collided);
+    } while (collided);
+    console.log(avoidElems);
+    /*
+    if (mainElem != avoidElems[i]) {
+      let tried = 0
+      do {
+        mainElem.style.left = randomIntFromInterval(100,300)+"px";
+        mainElem.style.top  = randomIntFromInterval(100,500)+"px";
+        tried++
+        if (tried > 10) {
+          console.log(!isColiding(mainElem, avoidElems[0]))
+          return;
+        }
+      } while (!isColiding(mainElem, avoidElems[0]));
     }
+*/
 }
 function isColiding(elemOne, elemTwo) {
     elemOne = elemOne.getBoundingClientRect();
