@@ -30,6 +30,10 @@ body {
   display: none;
 }
 
+#lvlUpScreen{
+  display: none;
+}
+
 /* components */
 
 h1 {
