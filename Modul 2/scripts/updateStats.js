@@ -39,3 +39,6 @@ export function updateStats() {
         htmlElems[i].innerHTML = htmlElems[i].id + ": " + user[htmlElems[i].id];
     }
 }
+export function deleteJSON() {
+    localStorage.clear();
+}

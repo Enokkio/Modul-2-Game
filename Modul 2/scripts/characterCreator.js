@@ -1,5 +1,5 @@
 import { user } from './updateStats.js';
-let freestats = 3;
+let freestats = 40;
 var ptsCounter = document.getElementById('ptsCounter');
 var addstats = document.querySelectorAll('.add-stats-buttons');
 var substats = document.querySelectorAll('.remove-stats-buttons');

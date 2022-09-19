@@ -14,6 +14,7 @@ function loadPP() {
 //Import enemy generator to call it when combat starts
 import { createEnemy } from './enemyGen.js';
 import { combatDone } from './collision-detection.js';
+import { deleteJSON } from './updateStats.js';
 export function startCombat() {
     Incombat = true;
     savePP();
@@ -29,13 +30,8 @@ export function endCombat() {
     document.getElementById('monster-event').style.display = "none";
     combatScreen.style.display = "none";
 }
-/*
-setTimeout(function(){
-
-    document.getElementById('player').style.display = "initial";
-    combatScreen.style.display = "none";
-    loadPP();
-
-},5000)
-
-*/ 
+export function endGame() {
+    document.getElementById('window').style.display = "none";
+    document.getElementById('deathScreen').style.display = "initial";
+    deleteJSON();
+}
