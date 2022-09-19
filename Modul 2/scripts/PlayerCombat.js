@@ -13,6 +13,7 @@ var enemy = createEnemy();
 //Gets player (Needs to get saved stats instead of player framework, inte något du måste göra nu)
 import { user } from './updateStats.js';
 import { endCombat } from './startCombat.js';
+import { endGame } from './startCombat.js';
 //playerTurn visar om det är spelarens tur eller inte
 var playerTurn = null;
 // pBlock visar om spelaren har valt "Block", kommer vara true tills spelaren har blockerat en attack, måste sättas till "false" av fienden när fienden attackerar
@@ -201,6 +202,12 @@ function enemyAction() {
                 user.HP -= 1;
                 updateStats();
                 playerTurn = true;
+                if (user.HP <= 0) {
+                    console.log("User died!");
+                    changeClearcondition();
+                    console.log(changeClearcondition);
+                    endGame();
+                }
                 break;
             }
         case 4:

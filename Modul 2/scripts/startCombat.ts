@@ -19,6 +19,8 @@ function loadPP(){
 //Import enemy generator to call it when combat starts
 import { createEnemy } from './enemyGen.js';
 import { combatDone } from './collision-detection.js';
+import { deleteJSON } from './updateStats.js';
+
 
 
 
@@ -40,14 +42,13 @@ export function endCombat(){
 
 }
 
+export function endGame(){
+   
+    document.getElementById('window').style.display = "none";
+    document.getElementById('deathScreen').style.display = "initial";
+  deleteJSON();
 
-/*
-setTimeout(function(){
 
-    document.getElementById('player').style.display = "initial";
-    combatScreen.style.display = "none";
-    loadPP();
+}
 
-},5000)
 
-*/
