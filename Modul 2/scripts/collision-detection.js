@@ -9,6 +9,9 @@ export function changeClearcondition() {
         clearcondition = false;
     }
 }
+//importing music 
+import { pauseDefAudio } from './map.js';
+import { playBatAudio } from './map.js';
 //define monster event and etc
 //import map loading functions
 import { loadMapsStage1 } from './map.js';
@@ -82,6 +85,8 @@ function overlapDetect() {
                 startCombat();
                 console.log("oh no a monster appared");
                 coliderOn = false;
+                playBatAudio();
+                pauseDefAudio();
             }
         }
     }

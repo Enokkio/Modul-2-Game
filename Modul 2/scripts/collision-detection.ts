@@ -13,6 +13,13 @@ clearcondition = false;
 }
 
 }
+//importing music 
+
+import { pauseDefAudio } from './map.js';
+import { playBatAudio } from './map.js'
+import { playDefAudio } from "./map.js";
+import { pauseBatAudio } from './map.js'
+
 
 //define monster event and etc
 
@@ -74,7 +81,6 @@ function overlapDetect(){
                                                                                                                              //gör så att den checkar även för vilken class
     if (xleft -45 <= playerXleft && xright +45 >= playerXright && ybot +45>= playerYbot && ytop-45 <= PlayerYtop && interactDivs[index].classList.contains("next-level")) {//makes bounding info as if it was a cube
         
-             
 
      
         
@@ -124,6 +130,9 @@ function overlapDetect(){
         startCombat();
         console.log("oh no a monster appared");
         coliderOn = false;
+        playBatAudio();
+        pauseDefAudio();
+
     }
 }    
     }

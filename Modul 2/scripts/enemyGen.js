@@ -28,6 +28,7 @@ function genrateRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 import { flags } from './updateStats.js';
+//importing music
 export function createEnemy() {
     if (flags.stageNr == 5) {
         enemy.Name = "Forest Lord";

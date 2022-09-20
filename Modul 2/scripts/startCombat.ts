@@ -35,7 +35,8 @@ export function startCombat(){
     document.getElementById('player').style.display = "none";
     combatScreen.style.display = "initial";
 }   
-
+import { playDefAudio } from './map.js';
+import { pauseBatAudio } from './map.js';
 export function endCombat(){
     Incombat = true;
     loadPP();
@@ -43,6 +44,8 @@ export function endCombat(){
     document.getElementById('player').style.display = "initial";
     document.getElementById('monster-event').style.display = "none";
     combatScreen.style.display = "none";
+    playDefAudio();
+    pauseBatAudio();
 
 }
 

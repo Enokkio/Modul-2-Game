@@ -108,18 +108,45 @@ var ctx = canvas.getContext("2d");
 const player = document.getElementById("player")
 ctx.imageSmoothingEnabled = true;
 
-//Define enemy box to restart
+//---------------------------Define music
 
-//Drawing starterTown image
+let defaultAudio = <HTMLVideoElement> document.getElementById("audio1");
+let battleAudio = <HTMLVideoElement> document.getElementById("audio2");
+
+
+ export function playDefAudio(){
+  defaultAudio.loop  = true;
+
+  defaultAudio.play();
+  console.log("U SING ME")
+}
+
+export function pauseDefAudio(){
+  defaultAudio.pause();
+  console.log("U SING ME")
+}
+export function playBatAudio(){
+  battleAudio.loop = true;
+  battleAudio.play();
+  console.log("U SING ME")
+}
+
+export function pauseBatAudio(){
+  battleAudio.pause();
+  console.log("U SING ME")
+}
 window.onload = function() {
+  
+  playDefAudio();
 
     ctx.drawImage(
         starterTownImg, 0, 0, starterTownImg.width, starterTownImg.height,     // source rectangle
         0, 0, canvas.width, canvas.height
         );
+ 
+        
 
-    
-    
+
 }
 
 //function to load eventboxes
