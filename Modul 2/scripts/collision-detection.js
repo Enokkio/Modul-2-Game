@@ -22,7 +22,7 @@ var coliderOn = true;
 export function combatDone() {
     coliderOn = true;
 }
-setInterval(overlapDetect, 1000); //vi gör så att function för collission detectas vare 1sekund
+setInterval(overlapDetect, 500); //vi gör så att function för collission detectas vare 1sekund
 var StoryEvent = document.querySelector('.story-event');
 function overlapDetect() {
     if (coliderOn == true) {

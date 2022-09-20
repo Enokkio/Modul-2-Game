@@ -7,7 +7,8 @@ import { flags } from './updateStats.js';
 import { combatDone} from './collision-detection.js'
 import { changeClearcondition} from './collision-detection.js'
 
-
+//import updatedisplay to update stuff
+import {updateDisplay} from './lvlUp.js'
 function statyield1(stage) {
     let x = Math.random();//random integer från 0.55 to 1
     
@@ -33,6 +34,7 @@ function statyield1(stage) {
     saveJSON();
     var storydiv = <HTMLElement>document.querySelector('.storydiv');
     combatDone();
+    updateDisplay();
   storydiv.style.display = "none"
 
 
