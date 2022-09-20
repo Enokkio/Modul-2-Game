@@ -1,3 +1,5 @@
+import{user} from "./updateStats.js"
+
 class Enemy
 {
     Name: string;
@@ -40,6 +42,19 @@ import { flags } from './updateStats.js';
 
 export function createEnemy()
 {
+
+
+if (flags.stageNr == 5) {
+        enemy.Name = "Forest Lord";
+        enemy.MHP = Math.ceil(1.5* user.MHP);
+        enemy.CHP = Math.ceil(enemy.MHP);
+        enemy.STR = Math.ceil(1.3 * user.STR);
+        enemy.SPD = Math.ceil(0.5 * user.SPD + 5);
+
+        return enemy;
+}
+else{
+
     console.log("Creating enemy!");
     var enemyInd = genrateRandomNumber(0,2);
     enemy.Name = ForestMobs[enemyInd];
@@ -81,7 +96,12 @@ export function createEnemy()
     enemy.CHP = enemy.MHP;
     return enemy;
 
+
 }
+    
+    
+}
+
 
 
 
