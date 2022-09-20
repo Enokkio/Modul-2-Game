@@ -76,11 +76,52 @@ body{
     position:absolute; 
     top: 200px;
     display: flex;
-    visibility: visible;
+    display: none;
     left: 200px;
 
 
 }
 
 
-    
+    /*STORY BOX*/
+    .storydiv{
+        width: 380px;
+        height: 340px;
+        background-color: lightblue;
+        margin: auto;
+        display: none;
+        padding: 20px;
+
+      }
+      
+      .storytext{
+        height: 220px;
+      }
+      
+      .story-content-text{
+      
+        text-align: center;
+        margin-top: 50px;
+        white-space: pre-line;
+      
+      }
+      
+      
+      
+      /* CSS */
+      .storyoption{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .buttons {
+      
+       
+        width: 100px;
+        height: 20px;
+      
+        
+      
+      }
+      

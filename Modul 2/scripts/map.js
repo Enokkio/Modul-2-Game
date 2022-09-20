@@ -33,34 +33,41 @@ var StoryEvent = document.querySelector('.story-event');
 //randompositionning
 function randompos() {
     MonsterEvent.style.left = randomIntFromInterval(100, 600) + 'px';
-    MonsterEvent.style.top = randomIntFromInterval(75, 325) + 'px';
+    MonsterEvent.style.top = randomIntFromInterval(75, 300) + 'px';
     StoryEvent.style.left = randomIntFromInterval(100, 600) + 'px';
-    StoryEvent.style.top = randomIntFromInterval(75, 325) + 'px';
+    StoryEvent.style.top = randomIntFromInterval(75, 300) + 'px';
+    colideron = true;
 }
+let colideron = true;
+overlapDetectself();
 //self collision checker
-function overlapDetect() {
-    randompos;
-    let coliderOn = true;
-    if (coliderOn == true) {
-        const interactDivs = document.querySelector(".monster-event");
-        const interactDivs2 = document.querySelector(".story-event");
+function overlapDetectself() {
+    randompos();
+    if (colideron == true) {
+        let interactDivs = document.querySelector(".monster-event");
+        let interactDivs2 = document.querySelector(".story-event");
         //console.log(interactDivs)
-        for (let index = 0; index < 2; index++) {
-            const eventbox = interactDivs.getBoundingClientRect(); //Get bounding info for boxes 
-            const eventbox2 = interactDivs2.getBoundingClientRect(); //Get bounding info for player
-            const xleft = eventbox.left;
-            const xright = eventbox.right;
-            const ytop = eventbox.top;
+        for (let index = 0; index < 1; index++) {
+            let eventbox = interactDivs.getBoundingClientRect(); //Get bounding info for boxes 
+            let eventbox2 = interactDivs2.getBoundingClientRect(); //Get bounding info for player
+            let xleft = eventbox.left;
+            let xright = eventbox.right;
+            let ytop = eventbox.top;
             const ybot = eventbox.bottom;
-            const playerXleft = eventbox2.left;
-            const playerXright = eventbox2.right;
-            const PlayerYtop = eventbox2.top;
-            const playerYbot = eventbox2.bottom;
+            let playerXleft = eventbox2.left;
+            let playerXright = eventbox2.right;
+            let PlayerYtop = eventbox2.top;
+            let playerYbot = eventbox2.bottom;
             //gör så att den checkar även för vilken class
-            if (xleft - 45 <= playerXleft && xright + 45 >= playerXright && ybot + 45 >= playerYbot && ytop - 45 <= PlayerYtop) {
+            if (xleft - 45 <= playerXleft && xright + 45 >= playerXright && ybot + 45 >= playerYbot && ytop - 45 <= PlayerYtop && colideron == true) {
                 console.log("they are doing da thing");
                 randompos();
-                overlapDetect();
+            }
+            else {
+                console.log(colideron);
+                colideron = false;
+                console.log(colideron);
+                console.log("I am happening");
             }
         }
     }
@@ -76,7 +83,15 @@ window.onload = function () {
     ctx.drawImage(starterTownImg, 0, 0, starterTownImg.width, starterTownImg.height, // source rectangle
     0, 0, canvas.width, canvas.height);
 };
-//define player to reset position later
+//function to load eventboxes
+function loadboxes() {
+    StoryEvent.style.display = "block";
+    MonsterEvent.style.display = "block";
+}
+function uponloadOfStage() {
+    loadboxes();
+    overlapDetectself(); //to detect overlap between randoms pos
+}
 //Function for creating random numbers
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -85,9 +100,8 @@ export function loadMapsStage1() {
     //reset location of player
     player.style.top = 325 + 'px';
     player.style.left = 325 + 'px';
-    overlapDetect(); //to detect overlap between randoms pos
-    randompos(); //to randomize positions
-    MonsterEvent.style.display = "block";
+    colideron = true;
+    uponloadOfStage();
     //We need a while stageclear = true do this function
     //And we need to use player data to see which stage to load, so for example if stage is   0<stage<5 we use a function between stages 1-5 through a function
     //satte in random number generation funktionen sådana att den skulle komma med i exporten
@@ -115,8 +129,8 @@ export function loadMapsStage2() {
     //reset location of player
     player.style.top = 325 + 'px';
     player.style.left = 325 + 'px';
-    overlapDetect(); //to detect overlap between randoms pos
-    randompos(); //to randomize positions
+    uponloadOfStage();
+    StoryEvent.style.display = "block";
     MonsterEvent.style.display = "block";
     //We need a while stageclear = true do this function
     //And we need to use player data to see which stage to load, so for example if stage is   0<stage<5 we use a function between stages 1-5 through a function

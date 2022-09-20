@@ -1,5 +1,6 @@
 //check if clear condition är true
 let clearcondition = false;
+//imports for gaming
 export function changeClearcondition() {
     if (clearcondition == false) {
         clearcondition = true;
@@ -8,17 +9,21 @@ export function changeClearcondition() {
         clearcondition = false;
     }
 }
+//define monster event and etc
 //import map loading functions
 import { loadMapsStage1 } from './map.js';
 import { loadMapsStage2 } from './map.js';
 import { startCombat } from './startCombat.js';
 import { flags } from "./updateStats.js";
+//import story loading function
+import { Randomstory } from "./storiesloader.js";
 const player = document.getElementById("player");
 var coliderOn = true;
 export function combatDone() {
     coliderOn = true;
 }
-setInterval(overlapDetect, 100); //vi gör så att function för collission detectas vare 1sekund
+setInterval(overlapDetect, 1000); //vi gör så att function för collission detectas vare 1sekund
+var StoryEvent = document.querySelector('.story-event');
 function overlapDetect() {
     if (coliderOn == true) {
         const interactDivs = document.getElementsByClassName("collisionDetect");
@@ -34,6 +39,11 @@ function overlapDetect() {
             const playerXright = playerCOORDS.right;
             const PlayerYtop = playerCOORDS.top;
             const playerYbot = playerCOORDS.bottom;
+            if (xleft - 45 <= playerXleft && xright + 45 >= playerXright && ybot + 45 >= playerYbot && ytop - 45 <= PlayerYtop && interactDivs[index].classList.contains("story-event") && StoryEvent.style.display == "block") {
+                coliderOn = false;
+                Randomstory();
+                console.log("shello");
+            }
             //gör så att den checkar även för vilken class
             if (xleft - 45 <= playerXleft && xright + 45 >= playerXright && ybot + 45 >= playerYbot && ytop - 45 <= PlayerYtop && interactDivs[index].classList.contains("next-level")) { //makes bounding info as if it was a cube
                 if (flags.stageNr >= 0 && flags.stageNr < 6 && clearcondition == true) { //check for what stage

@@ -31,9 +31,25 @@
 
         </canvas>
 
+        
+<div class="storydiv" id="storydivs" >
+
+  <div class="storytext">
+    <p class="title story-content-text">I AM THE TITLE</p>
+    <p class="title story-content-text story-text-tag">I AM THE STORY</p>
+  </div>
+
+  <div class="storyoption">
+    <button id= "button1" class="buttons buttonYES">YES</button>
+    <button id= "button2" class="buttons buttonNO">NO</button>
+
+  </div>
+
+</div>
+
 
         <div class="next-level collisionDetect selfdetection"></div>
-        <div class="story-event collisionDetect selfdetection"></div>
+        <div id="story-event" class="story-event collisionDetect selfdetection" style="display:;"></div>
         <div id="monster-event" class="monster-event collisionDetect selfdetection"></div>
        
 
@@ -183,7 +199,8 @@
 
 
 
-    <!-- Scripts -->
+
+    <script type="module" src="scripts/storiesloader.js"></script>
 
     <script type="module" src="scripts/PlayerMovement.js"></script>
 

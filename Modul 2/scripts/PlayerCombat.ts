@@ -169,7 +169,6 @@ attackButton.addEventListener('click', function handleClick() {
         if (enemy.HP <= 0){
             console.log("Enemy died!");
             changeClearcondition();
-            console.log(changeClearcondition)
 
             endCombat();
             lvlUp();

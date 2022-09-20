@@ -18,6 +18,7 @@ export let user= {
 export let flags = {
 
     stageNr:1,
+    karma: 0,
     story1: false,
     story2: false,
     story3: false,
