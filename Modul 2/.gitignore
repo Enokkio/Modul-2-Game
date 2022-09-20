@@ -132,3 +132,4 @@ dist
 #Other
 package-lock.json
 package.json
+.vscode
