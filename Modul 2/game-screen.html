@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style/game-screen.css">
-    <link href="style/GenStyle.css" rel="stylesheet">
-    <link rel="stylesheet" href="style/mainStyle.css">
+    <link href="style/output.css" rel="stylesheet">
     <link rel="stylesheet" href="style/gen2Style.css">
+    <link rel="stylesheet" href="style/input.css">
+
     <script
     type="text/javascript"
     src="//code.jquery.com/jquery-1.5.js"
@@ -49,71 +50,70 @@
 
 
         <div class="next-level collisionDetect selfdetection"></div>
-        <div id="story-event" class="story-event collisionDetect selfdetection" style="display:;"></div>
+        <div id="story-event" class="story-event collisionDetect selfdetection"></div>
         <div id="monster-event" class="monster-event collisionDetect selfdetection"></div>
        
 
         <div id="window">
 
-            <div class="overflow-hidden bg-gray-500 border-8 border-gray-400 absolute  h-[165px] w-[700px]" style="text-align: center;">
-        
-        
-              <p id="turnCounter" class="turnCounter border-4"></p>
-              <div id="Cplayer" class=""></div>
-              <div id="enemy" class=""></div>
-        
-            </div>
-        
-            <div class="block max-w-sm overflow-hidden bg-gray-500 border-4 playerBorder absolute w-[350px] h-[142px] top-[165px]">
-              <ul class="stat-display" >
-                <li class="stat playerBorder" id="Name"></li>
-                <li class="stat playerBorder" id="Level"></li>
-                <li class="stat playerBorder" id="HP">HP</li>
-                <li class="stat playerBorder" id="STR">STR</li>
-                <li class="stat playerBorder" id="DEF">DEF</li>
-                <li class="stat playerBorder" id="SPD">SPD</li>
-              </ul>
-            </div>
-        
-            <div class="block max-w-sm overflow-hidden bg-gray-500 border-4 enemyBorder absolute w-[350px]  h-[142px] top-[165px] left-1/2">
-              <ul class="Estat-display">
-                <li class="stat enemyBorder" id="Name"></li>
-                <li class="stat enemyBorder" id="Level"></li>
-                <li class="stat enemyBorder" id="HP">HP: </li>
-                <li class="stat enemyBorder" id="STR">STR: </li>
-                <li class="stat enemyBorder" id="DEF">DEF: </li>
-                <li class="stat enemyBorder" id="SPD">SPD: </li>
-            </div>
-        
-            <div id="LogBox" class="block overflow-hidden bg-gray-500 border-8 border-gray-400 absolute top-[307px] h-[193px] w-[350px]">
-          
-            </div>
-        
-        
-            <div id="Actions" class="overflow-hidden bg-gray-500 border-8 border-gray-400 absolute top-[307px] h-[193px] w-[350px] left-1/2 flex justify-center">
-              <div class=" m-auto grid grid-cols-2 gap-2">
-        
-                <div id="Attack" class="block bg-pink-500 h-[75px] w-[150px] border-4 border-teal-500 hover:bg-pink-600 relative">
-                  <p class="buttonText">Attack</p>
-                </div>
-        
-                <div id="Heal" class="block bg-blue-500  border-4 border-teal-500 h-[75px] w-[150px] hover:bg-blue-600 relative">
-                  <p class="buttonText">Heal</p>
-                </div>
-        
-                <div id="Block" class="block bg-yellow-500  border-4 border-teal-500 h-[75px] w-[150px] hover:bg-yellow-600 relative">
-                  <p class="buttonText">Block</p>
-                </div>
-        
-                <div id="Items" class="block bg-green-500 border-4 border-teal-500 h-[75px] w-[150px] hover:bg-green-600 relative">
-                  <p class="buttonText">Items</p>
-                </div>
-        
-              </div>
-            </div>
+          <div class="overflow-hidden bg-gray-500 border-8 border-gray-400  h-[165px] w-[700px]" style="text-align: center;">
+      
+      
+            <p id="turnCounter" class="turnCounter border-4"></p>
+            <div id="Cplayer" class=""></div>
+            <div id="enemy" class=""></div>
+      
+          </div>
+      
+          <div class="block max-w-sm overflow-hidden bg-blue-400 border-4 playerBorder absolute w-[350px] h-[142px] top-[165px]">
+            <ul class="stat-display" >
+              <li class="stat playerBorder bg-blue-500" id="Name"></li>
+              <li class="stat playerBorder bg-blue-500" id="Level"></li>
+              <li class="stat playerBorder bg-blue-500" id="CHP">CHP</li>
+              <li class="stat playerBorder bg-blue-500" id="STR">STR</li>
+              <li class="stat playerBorder bg-blue-500" id="DEF">DEF</li>
+              <li class="stat playerBorder bg-blue-500" id="SPD">SPD</li>
+            </ul>
+          </div>
+      
+          <div class="block max-w-sm overflow-hidden bg-red-400 border-4 enemyBorder absolute w-[350px]  h-[142px] top-[165px] left-1/2">
+            <ul class="Estat-display">
+              <li class="stat enemyBorder bg-red-500" id="Name"></li>
+              <li class="stat enemyBorder bg-red-500" id="Level"></li>
+              <li class="stat enemyBorder bg-red-500" id="HP">HP: </li>
+              <li class="stat enemyBorder bg-red-500" id="STR">STR: </li>
+              <li class="stat enemyBorder bg-red-500" id="DEF">DEF: </li>
+              <li class="stat enemyBorder bg-red-500" id="SPD">SPD: </li>
+          </div>
+      
+          <div id="LogBox" class="block overflow-hidden bg-gray-500 border-8 border-gray-400 absolute top-[307px] h-[193px] w-[350px]">
         
           </div>
-
+      
+      
+          <div id="Actions" class="overflow-hidden bg-gray-500 border-8 border-gray-400 absolute top-[307px] h-[193px] w-[350px] left-1/2 flex justify-center">
+            <div class=" m-auto grid grid-cols-2 gap-2">
+      
+              <div id="Attack" class="block bg-damageYellow h-[75px] w-[150px] border-4 border-teal-500 hover:bg-yellow-400  relative">
+                <p class="buttonText">Attack</p>
+              </div>
+      
+              <div id="Heal" class="block bg-healthGreen  border-4 border-teal-500 h-[75px] w-[150px] hover:bg-green-500 relative">
+                <p class="buttonText">Heal</p>
+              </div>
+      
+              <div id="Block" class="block bg-blockBlue border-4 border-teal-500 h-[75px] w-[150px] hover:bg-blue-600 relative">
+                <p class="buttonText">Block</p>
+              </div>
+      
+              <div id="Items" class="block bg-itemsBrown border-4 border-teal-500 h-[75px] w-[150px] hover:bg-amber-400 relative">
+                <p class="buttonText">Items</p>
+              </div>
+      
+            </div>
+          </div>
+      
+        </div>
           <!-- charachtor creator -->
 
           <div id="characterCreator" class="grid place-items-center z-10">
@@ -179,23 +179,24 @@
         
               <p id="continueBtn" class="stat rounded border-gray-500 border-4 pl-[20px] pr-[20px] w-fit absolute mt-[-63px] ml-[70%] bg-gray-300 hover:bg-gray-400"> Continue</p>
         
-        
+            </div>
         
             </div>
 
             <!-- death screen -->
 
-          <div id="deathScreen" class="grid place-items-center z-10">
-            <div class="bg-gray-400 border-8 border-gray-300 w-[25vw] absolute  h-[60vh] rounded text-center" style="left: 175px">
-        
-              <h1 class=" text-red-600 text-5xl mb-[80px] font-serif select-none">YOU DEAD</h1>
-              <a id="restart"href="mainMeny.html" class=" text-2xl border-4 w-fit m-auto pl-[5px]  pr-[5px] hover:bg-gray-500 select-none">RESTART</a>
-              <iframe src="https://giphy.com/embed/ObXgWWGHzMlVe" width="400" height="250" frameBorder="0" class=" m-auto" allowFullScreen></iframe>
-        
+            <div id="deathScreen" class="grid place-items-center z-10">
+              <div class="bg-gray-400 border-8 border-gray-300 w-[25vw] absolute  h-[60vh] rounded text-center" style="left: 175px">
+          
+                <h1 class=" text-red-600 text-5xl mb-[80px] font-serif select-none">YOU DEAD</h1>
+                <a id="restart"href="mainMeny.html" class=" text-2xl border-4 w-fit m-auto pl-[5px]  pr-[5px] hover:bg-gray-500 select-none">RESTART</a>
+                <iframe src="https://giphy.com/embed/ObXgWWGHzMlVe" width="400" height="250" frameBorder="0" class=" m-auto" allowFullScreen></iframe>
+          
+              </div>
             </div>
-          </div>
 
     </div>
+
 
 
 

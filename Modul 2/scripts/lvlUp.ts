@@ -1,7 +1,7 @@
 import { user } from './updateStats.js';
 
 let freestats = 5;
-var minHP = user.HP;
+var minHP = user.MHP;
 var minDef = user.DEF;
 var minStr = user.STR;
 var minSpd = user.SPD;
@@ -22,7 +22,7 @@ export function updateDisplay(){
    Speed.innerHTML = ("SPD: ")+String(user.SPD);
    Defense.innerHTML = ("DEF: ")+String(user.DEF);
    Strength.innerHTML = ("STR: ")+String(user.STR);
-   Health.innerHTML = ("HP: ")+String(user.HP);
+   Health.innerHTML = ("HP: ")+String(user.MHP);
    ptsCounter.innerHTML = "Points Available: " + freestats;
 
 
@@ -87,11 +87,11 @@ addstats.forEach(function(addstats)
             case "HealthAdd2": {
                 if (freestats > 0) {
                     freestats--;
-                    user.HP += 1;
-                    console.log(user.HP);
+                    user.MHP += 1;
+                    console.log(user.MHP);
 
 
-                    Health.innerHTML = "HP: " + user.HP;
+                    Health.innerHTML = "HP: " + user.MHP;
                     ptsCounter.innerHTML = "Points Available: " + freestats;
                 }
                 break;
@@ -157,14 +157,14 @@ substats.forEach(function(substats)
             }
 
             case "HealthSub2": {
-                if (user.HP != minHP) {
+                if (user.MHP != minHP) {
                     freestats++;
-                    user.HP -= 1;
-                    console.log(user.HP);
+                    user.MHP -= 1;
+                    console.log(user.MHP);
 
                     let Health = <HTMLElement>document.querySelector('#HPs2');
 
-                    Health.innerHTML = "HP: " + user.HP;
+                    Health.innerHTML = "HP: " + user.MHP;
                     ptsCounter.innerHTML = "Points Available: " + freestats;
                 }
                 break;

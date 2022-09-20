@@ -38,7 +38,7 @@ function loadcommonstory() {
         HelpEnok: { title: "help Enok", storytext: `Help an Enok in need of code \n `,
             option1() {
                 updateData();
-                user.HP -= x;
+                user.MHP -= x;
                 flags.karma += y;
                 console.log(user);
                 console.log("you have clicked the yes button");
@@ -50,7 +50,7 @@ function loadcommonstory() {
         HelpCelvin: { title: "help celvin", storytext: `Help an Celvin in need of code \n `,
             option1() {
                 updateData();
-                user.HP += x;
+                user.MHP += x;
                 flags.karma += y;
                 console.log(user);
             },
@@ -61,7 +61,7 @@ function loadcommonstory() {
         StealFromOrphans: { title: "No Orphans alive", storytext: `Steal from some orphans \n `,
             option1() {
                 updateData();
-                user.HP += 10;
+                user.MHP += 10;
                 flags.karma -= 20;
                 console.log(user);
             },
@@ -97,7 +97,7 @@ function loadRareStories() {
         HelpJonte: { title: "help Enok", storytext: `Jonte is in need of code help him? \n `,
             option1() {
                 updateData();
-                user.HP += x;
+                user.MHP += x;
                 flags.karma += y;
                 console.log(user);
                 console.log("you have clicked the yes button");
@@ -134,7 +134,7 @@ function loadEpicStories() {
         HelpDan: { title: "help Dan", storytext: `Dan would like some help with code \n`,
             option1() {
                 updateData();
-                user.HP += x;
+                user.MHP += x;
                 flags.karma += y;
                 console.log(user);
                 console.log("you have clicked the yes button");
@@ -170,7 +170,7 @@ function loadMythicStories() {
     var mythicStories = {
         HelpFabian: { title: "help Fabian", storytext: `Suprisingly Fabian needs help with some code \n`,
             option1() {
-                user.HP += x;
+                user.MHP += x;
                 flags.karma += y;
                 console.log(user);
                 console.log("you have clicked the yes button");
