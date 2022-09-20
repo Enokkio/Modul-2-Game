@@ -17,9 +17,8 @@ import { endCombat } from './startCombat.js';
 var playerTurn = null;
 // pBlock visar om spelaren har valt "Block", kommer vara true tills spelaren har blockerat en attack, måste sättas till "false" av fienden när fienden attackerar
 var pBlock = false;
+var pBlockRounds = 0;
 // maxH är limiten av hur mycket spelaren kan heala, så om dom börjar fighten med 10hp så kan dom inte heala up till 20hp
-var maxH = user.HP;
-var maxHE = enemy.HP;
 // updateStats updaterar spelarens stats på skärmen, MÅSTE KALLAS VARJE GÅNG NÅGOT SOM T.EX HP ÄNDRAS!!
 import { updateStats } from './updateStats.js';
 // updateStatsE updaterar fiendens stats på skärmen, MÅSTE KALLAS VARJE GÅNG NÅGOT SOM T.EX HP ÄNDRAS!!
@@ -27,54 +26,59 @@ import { updateStatsE } from './enemyGen.js';
 // Sätter statsen i början av figthen
 updateStats();
 updateStatsE();
-/*
-function genrateRandomNumber(min, max)
-{
-
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-
+function changeTurn() {
+    if (playerTurn == true) {
+        playerTurn = false;
+        document.getElementById('turnCounter').innerText = enemy.Name + "s Turn";
+        document.getElementById('turnCounter').classList.remove('playerBorder');
+        document.getElementById('turnCounter').classList.add('enemyBorder');
+        updateStats();
+        updateStatsE();
+        setTimeout(enemyAction, 1500);
+    }
+    else if (playerTurn == false) {
+        playerTurn = true;
+        updateStats();
+        updateStatsE();
+        document.getElementById('turnCounter').innerText = user.Name + "s Turn";
+        document.getElementById('turnCounter').classList.remove('enemyBorder');
+        document.getElementById('turnCounter').classList.add('playerBorder');
+    }
 }
-*/
 // Kollar vem som har högst speed och bestämmer om det är spelarens tur eller inte
-function turnDecider() {
+export function turnDecider() {
     updateStats();
     updateStatsE();
     if (enemy.SPD > user.SPD) {
         playerTurn = false;
         document.getElementById('turnCounter').innerText = enemy.Name + "s Turn";
-        enemyAction();
+        document.getElementById('turnCounter').classList.remove('playerBorder');
+        document.getElementById('turnCounter').classList.add('enemyBorder');
+        setTimeout(enemyAction, 1500);
     }
     else if (enemy.SPD <= user.SPD) {
         playerTurn = true;
         document.getElementById('turnCounter').innerText = user.Name + "s Turn";
+        document.getElementById('turnCounter').classList.remove('enemyBorder');
+        document.getElementById('turnCounter').classList.add('playerBorder');
     }
 }
-turnDecider();
 function genrateRandomNumber(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-function changeTurn() {
-    if (playerTurn == null || playerTurn == true) {
-        playerTurn = false;
-        console.log(playerTurn);
-        document.getElementById('turnCounter').innerText = user.Name + "s Turn";
-    }
-    else {
-        playerTurn = true;
-        console.log(playerTurn);
-        document.getElementById('turnCounter').innerText = user.Name + "s Turn";
-    }
-}
 const arr = [];
 arr.push(2);
 arr.unshift(1);
+var box = document.getElementById('LogBox');
+const child = document.getElementById('log');
+export function emptyLogs() {
+    box.innerHTML = '';
+}
 function logger(who, action, amount) {
+    box = document.getElementById('LogBox');
     const el = document.createElement('p');
-    const box = document.getElementById('LogBox');
     var other;
     if (who == "enemy")
         other == user.Name;
@@ -84,23 +88,54 @@ function logger(who, action, amount) {
         other == "error";
     switch (action) {
         case "attack": {
-            if (who == "player" && pBlock) {
-                el.textContent = who + ' tried to hit ' + other + " but " + other + " blocked and only took " + amount + " DMG!";
+            if (who == "player" && eBlock) {
+                el.innerHTML = '<span class="blueText">' + user.Name + '</span>' + ' tried to ' + ' <span class="yellowText">hit </span>' + '<span class="redText">' + enemy.Name + '</span>' + " but " + '<span class="redText">' + enemy.Name + '</span>' + '<span class="bluerText"> blocked</span>' + ' and only took ' + '<span class="yellowText">' + amount + " DMG!</span>'";
+                el.classList.remove('enemyBorder');
+                el.classList.add('playerBorder');
             }
-            else if (who == "enemy" && eBlock) {
-                el.textContent = who + ' tried to hit ' + other + " but " + other + " blocked and only took " + amount + " DMG!";
+            else if (who == "enemy" && pBlock) {
+                el.innerHTML = '<span class="redText">' + enemy.Name + '</span>' + ' tried to ' + ' <span class="yellowText">hit </span>' + '<span class="blueText">' + user.Name + '</span>' + " but " + '<span class="blueText">' + user.Name + '</span>' + '<span class="bluerText"> blocked</span>' + ' and only took ' + '<span class="yellowText">' + amount + " DMG!</span>'";
+                el.classList.remove('playerBorder');
+                el.classList.add('enemyBorder');
             }
             else {
-                el.textContent = who + ' hit ' + other + " for " + amount + " DMG!";
+                if (who == "player") {
+                    el.innerHTML = '<span class="blueText">' + user.Name + '</span>' + ' <span class="yellowText">hit </span>' + '<span class="redText">' + enemy.Name + '</span>' + " for " + '<span class="yellowText">' + amount + " DMG!</span>'";
+                    el.classList.remove('enemyBorder');
+                    el.classList.add('playerBorder');
+                }
+                else if (who == "enemy") {
+                    el.innerHTML = '<span class="redText">' + enemy.Name + '</span>' + ' <span class="yellowText">hit </span>' + '<span class="blueText">' + user.Name + '</span>' + " for " + '<span class="yellowText">' + amount + " DMG!</span>'";
+                    el.classList.remove('playerBorder');
+                    el.classList.add('enemyBorder');
+                }
             }
             break;
         }
         case "block": {
-            el.textContent = who + ' used block!';
+            if (who == "player") {
+                el.innerHTML = '<span class="blueText">' + user.Name + '</span>' + ' used ' + '<span class="bluerText">block!</span>';
+                el.classList.remove('enemyBorder');
+                el.classList.add('playerBorder');
+            }
+            else if (who == "enemy") {
+                el.innerHTML = '<span class="redText">' + enemy.Name + '</span>' + ' used ' + '<span class="bluerText">block!</span>';
+                el.classList.remove('playerBorder');
+                el.classList.add('enemyBorder');
+            }
             break;
         }
         case "heal": {
-            el.textContent = who + ' healed themselves for ' + amount + " HP!";
+            if (who == "player") {
+                el.innerHTML = '<span class="blueText">' + user.Name + '</span>' + '<span class="greenText"> healed</span>' + ' for ' + '<span class="greenText">' + amount + " HP!</span>'";
+                el.classList.remove('enemyBorder');
+                el.classList.add('playerBorder');
+            }
+            else if (who == "enemy") {
+                el.innerHTML = '<span class="redText">' + enemy.Name + '</span>' + '<span class="greenText"> healed</span>' + '  for ' + '<span class="greenText">' + amount + " HP!</span>'";
+                el.classList.remove('playerBorder');
+                el.classList.add('enemyBorder');
+            }
             break;
         }
         default: {
@@ -113,62 +148,58 @@ function logger(who, action, amount) {
 }
 //Spelarens Attack function
 attackButton.addEventListener('click', function handleClick() {
-    if (playerTurn == true && enemy.HP != 0) {
-        playerTurn = false;
-        console.log('attack clicked ' + enemy.Name + " " + enemy.HP);
-        enemy.HP -= user.STR;
-        logger("player", "attack", 1);
-        updateStatsE();
-        changeTurn();
-        setTimeout(enemyAction, 1500);
-        if (enemy.HP <= 0) {
-            console.log("Enemy died!");
-            changeClearcondition();
-            console.log(changeClearcondition);
-            endCombat();
+    if (playerTurn == true && enemy.CHP != 0) {
+        var damageDone = Math.ceil(user.STR * (genrateRandomNumber(90, 110) / 100));
+        if (eBlockRounds > 0) {
+            damageDone = damageDone * (Math.ceil((50 + enemy.DEF - user.STR) / 100));
+            enemy.CHP = enemy.CHP - damageDone;
+            if (enemy.CHP <= 0) {
+                changeClearcondition();
+                endCombat();
+            }
+            logger("player", "attack", damageDone);
+            eBlockRounds--;
+            if (eBlockRounds == 0) {
+                eBlock = false;
+            }
         }
-    }
-    else if (playerTurn == false) {
-        console.log("Enemies Turn!");
-    }
-    else {
-        console.log("Enemy is dead!");
-        console.log(enemy.HP);
+        else {
+            enemy.CHP -= damageDone;
+            logger("player", "attack", damageDone);
+            if (enemy.CHP <= 0) {
+                changeClearcondition();
+                endCombat();
+            }
+        }
+        changeTurn();
     }
 });
 //Spelarens block function
 blockButton.addEventListener('click', function handleClick() {
     if (playerTurn == true && pBlock == false) {
-        playerTurn = false;
         pBlock = true;
+        pBlockRounds = 3;
         logger("player", "block", 1);
         changeTurn();
         console.log("You will block!");
-        setTimeout(enemyAction, 1500);
-    }
-    else if (playerTurn == false) {
-        console.log("Enemies Turn!");
-    }
-    else {
-        console.log("You are already blocking!");
     }
 });
 //Spelarens heal function
 healButton.addEventListener('click', function handleClick() {
-    if (playerTurn == true && user.HP != maxH) {
-        playerTurn = false;
-        console.log('heal clicked');
-        user.HP += 1;
-        logger("player", "heal", 1);
-        updateStats();
+    if (playerTurn == true && user.CHP != user.MHP) {
+        var healAmount = Math.ceil(user.MHP * (genrateRandomNumber(30, 90) / 100));
+        if ((user.CHP + healAmount) > user.MHP) {
+            var hpOverMax = (user.CHP + healAmount) - user.MHP;
+            user.CHP = user.MHP;
+            console.log('more than');
+            logger("player", "heal", (healAmount - hpOverMax));
+        }
+        else {
+            console.log('less than');
+            user.CHP = user.CHP + healAmount;
+            logger("player", "heal", healAmount);
+        }
         changeTurn();
-        setTimeout(enemyAction, 1500);
-    }
-    else if (playerTurn == false) {
-        console.log("Enemies Turn!");
-    }
-    else {
-        console.log("Your health is full!");
     }
 });
 //Spelarens Items function
@@ -177,53 +208,73 @@ itemsButton.addEventListener('click', function handleClick() {
         changeTurn();
         console.log('items clicked');
     }
-    else if (playerTurn == false) {
-        console.log("Enemies Turn!");
-    }
-    else {
-        console.log("Your health is full!");
-    }
 });
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+var eBlockRounds = 0;
 var eBlock = false;
 function enemyAction() {
     const rndInt = randomIntFromInterval(1, 6);
-    console.log(rndInt);
     switch (rndInt) {
         case 1:
         case 2:
         case 3:
             {
-                console.log("attack " + rndInt);
-                logger("enemy", "attack", 1);
-                user.HP -= 1;
-                updateStats();
-                playerTurn = true;
+                console.log('Enemy attacking');
+                var damageDone = Math.ceil(Math.ceil(enemy.STR * (genrateRandomNumber(90, 110) / 100)));
+                if (pBlockRounds > 0) {
+                    pBlockRounds--;
+                    if (pBlockRounds == 0) {
+                        pBlock = false;
+                    }
+                    damageDone = damageDone * (Math.ceil((50 + user.DEF - enemy.STR) / 100));
+                    user.CHP = user.CHP - damageDone;
+                }
+                else {
+                    user.CHP -= damageDone;
+                }
+                logger("enemy", "attack", damageDone);
+                changeTurn();
                 break;
             }
         case 4:
         case 5:
             {
-                console.log("Block " + rndInt);
                 if (eBlock) {
-                    console.log("tried to block");
                     enemyAction();
                 }
                 else {
                     eBlock = true;
-                    playerTurn = true;
-                    logger("enemy", "block", 1);
+                    eBlockRounds = 3;
+                    logger("enemy", "block", damageDone);
+                    changeTurn();
                 }
                 break;
             }
         case 6: {
-            console.log("Heal " + rndInt);
-            logger("enemy", "heal", 1);
-            enemy.HP += Math.floor(maxHE * genrateRandomNumber(0.1, 0.25));
-            updateStatsE();
-            playerTurn = true;
+            console.log('Enemy Healing');
+            if (enemy.CHP != enemy.MHP) {
+                var healAmount = Math.ceil(enemy.MHP * (genrateRandomNumber(30, 90) / 100));
+                console.log('First healAmount: ' + healAmount);
+                if ((enemy.CHP + healAmount) > enemy.MHP) {
+                    var hpOverMax = (enemy.CHP + healAmount) - enemy.MHP;
+                    console.log('First hpOverMax: ' + hpOverMax);
+                    enemy.CHP = enemy.MHP;
+                    console.log('First enemy.HP: ' + enemy.CHP);
+                    console.log('more than');
+                    logger("enemy", "heal", (healAmount - hpOverMax));
+                }
+                else {
+                    console.log('less than' + healAmount);
+                    enemy.CHP = enemy.CHP + healAmount;
+                    logger("enemy", "heal", healAmount);
+                }
+                changeTurn();
+            }
+            else {
+                enemyAction();
+            }
             break;
         }
     }

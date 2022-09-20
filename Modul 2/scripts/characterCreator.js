@@ -45,10 +45,10 @@ addstats.forEach(function (addstats) {
             case "HealthAdd": {
                 if (freestats > 0) {
                     freestats--;
-                    user.HP += 1;
-                    console.log(user.HP);
+                    user.MHP += 1;
+                    console.log(user.MHP);
                     let Health = document.querySelector('#HPs');
-                    Health.innerHTML = "HP: " + user.HP;
+                    Health.innerHTML = "HP: " + user.MHP;
                     ptsCounter.innerHTML = "Points Available: " + freestats;
                 }
                 break;
@@ -96,12 +96,12 @@ substats.forEach(function (substats) {
                 break;
             }
             case "HealthSub": {
-                if (user.HP != 5) {
+                if (user.MHP != 5) {
                     freestats++;
-                    user.HP -= 1;
-                    console.log(user.HP);
+                    user.MHP -= 1;
+                    console.log(user.MHP);
                     let Health = document.querySelector('#HPs');
-                    Health.innerHTML = "HP: " + user.HP;
+                    Health.innerHTML = "HP: " + user.MHP;
                     ptsCounter.innerHTML = "Points Available: " + freestats;
                 }
                 break;

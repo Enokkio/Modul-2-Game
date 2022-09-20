@@ -14,10 +14,13 @@ function loadPP() {
 //Import enemy generator to call it when combat starts
 import { createEnemy } from './enemyGen.js';
 import { combatDone } from './collision-detection.js';
+import { emptyLogs, turnDecider } from './PlayerCombat.js';
 export function startCombat() {
     Incombat = true;
     savePP();
     createEnemy();
+    emptyLogs();
+    turnDecider();
     document.getElementById('player').style.display = "none";
     combatScreen.style.display = "initial";
 }

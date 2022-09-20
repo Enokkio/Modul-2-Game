@@ -2,17 +2,19 @@ class Enemy
 {
     Name: string;
     Level: number;
-    HP: number;
+    MHP: number;
+    CHP: number;
     STR: number;
     DEF: number;
     SPD: number;
     XpRew: Number;
 
-    constructor(Name: string, Level: number, Health: number, Strength: number, Defense: number, Speed: number, XpRew: Number){
+    constructor(Name: string, Level: number, MaxHP: number, CurrentHealth: number, Strength: number, Defense: number, Speed: number, XpRew: Number){
         
         this.Name = Name;
         this.Level = Level;
-        this.HP = Health;
+        this.MHP = MaxHP;
+        this.CHP = CurrentHealth;
         this.STR = Strength;
         this.DEF = Defense;
         this.SPD = Speed;
@@ -22,7 +24,7 @@ class Enemy
 
   //Forest enemies
 
-  export var enemy = new Enemy("", 0, 0, 0, 0, 0, 0);
+  export var enemy = new Enemy("", 0, 0, 0, 0, 0, 0, 0);
   let ForestMobs: string[] = ["wolf", "forestGuy", "spider"];
 
 function genrateRandomNumber(min, max)
@@ -46,7 +48,7 @@ export function createEnemy()
     if(enemy.Level < 1)
         enemy.Level = 1;
 
-    enemy.HP = 5;
+    enemy.MHP = 5;
     enemy.STR = 1;
     enemy.DEF = 1;
     enemy.SPD = 1;
@@ -58,7 +60,7 @@ export function createEnemy()
         switch (statChosen) {
 
             case 1:{
-                enemy.HP += 5;
+                enemy.MHP += 5;
                 break;
             }
             case 2:{
@@ -76,7 +78,7 @@ export function createEnemy()
 
         }
     }
-    
+    enemy.CHP = enemy.MHP;
     return enemy;
 
 }
@@ -86,7 +88,12 @@ export function createEnemy()
 export function updateStatsE() {
     let htmlElems = document.getElementsByClassName("Estat-display")[0].children
     for (let i = 0; i < htmlElems.length; i++) {
-        htmlElems[i].innerHTML = htmlElems[i].id + ": "+ enemy[htmlElems[i].id];
+        if(i != 2){
+            htmlElems[i].innerHTML = htmlElems[i].id + ": " + enemy[htmlElems[i].id];
+            }
+            else{
+            htmlElems[i].innerHTML = "HP: " + enemy.MHP + '/' + enemy.CHP;
+            }
     }
     
 }

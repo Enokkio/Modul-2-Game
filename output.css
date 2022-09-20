@@ -17,8 +17,8 @@ body{
 
 #Cplayer{
   position:absolute;
-  top:17%;
-  left:17%;
+  top:9%;
+  left:13%;
   width:100px;
   height:100px;
   background-color:rgb(0, 225, 255);
@@ -31,7 +31,6 @@ body{
 #window{
   width: 700px;
   height: 500px;
-  background-color: violet;
   position: absolute;
   z-index: 2;
   display: none;
@@ -39,8 +38,8 @@ body{
 
 #enemy{
   position:absolute;
-  top:17%;
-  left:67%;
+  top:9%;
+  left:72%;
   width:100px;
   height:100px;
   background-color:rgb(255, 0, 0);
@@ -74,81 +73,81 @@ body{
 }
 
 #Name{
-  top: 5px;
-  left: 5px;
+  top: -5px;
+  left: -5px;
   position: absolute;
   text-align: center;
   padding-left: 4px;
   padding-right: 6px;
   border-width: 4px;
-  background-color: rgb(107, 114, 128);
+  font-size: 20px;
 }
 
 #Level{
-  left: 76%;
-  top: 5px;
+  left: 78%;
+  top: -5px;
   position: absolute;
   text-align: center;
   padding-left: 4px;
   padding-right: 6px;
+  width: 80px;
   border-width: 4px;
-  background-color: rgb(107, 114, 128);
 }
 
 #HP{
-  top: 60px;
-  left: 2.5px;
-  padding-top: 5%;
+  top: 29px;
+  left: -5px;
   width: 80px;
   text-align: center;
-  height: 70px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   border-width: 4px;
-  background-color: rgb(107, 114, 128);
   position: absolute;
   display: inline-block;
 }
 
 #STR{
-  top: 60px;
-  left: 87.5px;
-  padding-top: 5%;
-  width: 80px;
+  top: 105px;
+  left: 5px;
+  width: 100px;
   text-align: center;
-  height: 70px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   border-width: 4px;
-  background-color: rgb(107, 114, 128);
   position: absolute;
   display: inline-block;
 }
 
 #DEF{
-  top: 60px;
-  left: 172.5px;
-  padding-top: 5%;
-  width: 80px;
+  top: 105px;
+  left: 122.5px;
+  width: 100px;
   text-align: center;
-  height: 70px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   border-width: 4px;
-  background-color: rgb(107, 114, 128);
   position: absolute;
   display: inline-block;
 }
 
 #SPD{
-  top: 60px;
-  left: 257.5px;
-  padding-top: 5%;
-  width: 80px;
+  top: 105px;
+  left: 237.5px;
+  width: 100px;
   text-align: center;
-  height: 70px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   border-width: 4px;
-  background-color: rgb(107, 114, 128);
   position: absolute;
   display: inline-block;
 }
 
 .enemyBorder{
-  border-color: rgb(239, 68, 68 );
+  border-color: rgb(211, 13, 46);
 }
 
 .playerBorder{
@@ -159,11 +158,35 @@ body{
   border-color: rgb(156, 163, 175);
 }
 
+.redText{
+  color: rgb(211, 13, 46);
+  font-weight: bold;
+}
+
+.blueText{
+  color: rgb(45, 212, 191);
+  font-weight: bold;
+}
+
+.yellowText{
+  color: rgb(245, 155, 20);
+  font-weight: bold;
+}
+
+.bluerText{
+  color: rgb(48, 36, 219);
+  font-weight: bold;
+}
+
+.greenText{
+  color: rgb(6, 219, 6);
+  font-weight: bold;
+}
+
 .log{
   margin-left: 5px;
   margin-top: 5px;
   border-width: 4px;
-  border-color: rgb(156, 163, 175);
   position: relative;
   margin-right: 5px;
   padding-left: 5px;
@@ -178,7 +201,6 @@ body{
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  border-color: rgb(156, 163, 175);
 }
 
 /*
@@ -1009,19 +1031,44 @@ video {
   background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
 
+.bg-blue-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
+}
+
 .bg-blue-500{
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 
-.bg-yellow-500{
+.bg-red-400{
   --tw-bg-opacity: 1;
-  background-color: rgb(234 179 8 / var(--tw-bg-opacity));
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
 }
 
-.bg-green-500{
+.bg-red-500{
   --tw-bg-opacity: 1;
-  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+}
+
+.bg-damageYellow{
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 155 20 / var(--tw-bg-opacity));
+}
+
+.bg-healthGreen{
+  --tw-bg-opacity: 1;
+  background-color: rgb(6 219 6 / var(--tw-bg-opacity));
+}
+
+.bg-blockBlue{
+  --tw-bg-opacity: 1;
+  background-color: rgb(48 36 219 / var(--tw-bg-opacity));
+}
+
+.bg-itemsBrown{
+  --tw-bg-opacity: 1;
+  background-color: rgb(186 153 104 / var(--tw-bg-opacity));
 }
 
 .bg-gray-400{
@@ -1065,9 +1112,14 @@ video {
   outline-offset: 2px;
 }
 
-.hover\:bg-pink-600:hover{
+.hover\:bg-yellow-400:hover{
   --tw-bg-opacity: 1;
-  background-color: rgb(219 39 119 / var(--tw-bg-opacity));
+  background-color: rgb(250 204 21 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-green-500:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-blue-600:hover{
@@ -1075,14 +1127,9 @@ video {
   background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-yellow-600:hover{
+.hover\:bg-amber-400:hover{
   --tw-bg-opacity: 1;
-  background-color: rgb(202 138 4 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-green-600:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(22 163 74 / var(--tw-bg-opacity));
+  background-color: rgb(251 191 36 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-gray-400:hover{
