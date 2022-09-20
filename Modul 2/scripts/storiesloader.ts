@@ -59,7 +59,7 @@ function statyield1(stage) {
       HelpEnok: { title: "help Enok", storytext: `Help an Enok in need of code \n `,
           option1() {
                 updateData();
-              user.HP -= x;
+              user.MHP -= x;
               flags.karma += y;
               console.log(user);
               console.log("you have clicked the yes button");
@@ -72,7 +72,7 @@ function statyield1(stage) {
           option1() {
             updateData();
 
-              user.HP += x;
+              user.MHP += x;
               flags.karma += y;
               console.log(user);
           },
@@ -84,7 +84,7 @@ function statyield1(stage) {
           option1() {
             updateData();
 
-              user.HP += 10;
+              user.MHP += 10;
               flags.karma -= 20;
               console.log(user);
           },
@@ -131,7 +131,7 @@ function statyield1(stage) {
       HelpJonte: { title: "help Enok", storytext: `Jonte is in need of code help him? \n `,
           option1() {
             updateData();
-              user.HP += x;
+              user.MHP += x;
               flags.karma += y;
               console.log(user);
               console.log("you have clicked the yes button");
@@ -182,7 +182,7 @@ function statyield1(stage) {
           option1() {
             updateData();
 
-              user.HP += x;
+              user.MHP += x;
               flags.karma += y;
               console.log(user);
               console.log("you have clicked the yes button");
@@ -235,7 +235,7 @@ function statyield1(stage) {
       HelpFabian: { title: "help Fabian", storytext: `Suprisingly Fabian needs help with some code \n`,
           option1() {
               
-              user.HP += x;
+              user.MHP += x;
               flags.karma += y;
               console.log(user);
               console.log("you have clicked the yes button");

@@ -1,7 +1,8 @@
 export let user = {
     Name: "",
     Level: 1,
-    HP: 5,
+    MHP: 5,
+    CHP: 5,
     STR: 1,
     DEF: 1,
     SPD: 1,
@@ -37,7 +38,12 @@ updateStats();
 export function updateStats() {
     let htmlElems = document.getElementsByClassName("stat-display")[0].children;
     for (let i = 0; i < htmlElems.length; i++) {
-        htmlElems[i].innerHTML = htmlElems[i].id + ": " + user[htmlElems[i].id];
+        if (i != 2) {
+            htmlElems[i].innerHTML = htmlElems[i].id + ": " + user[htmlElems[i].id];
+        }
+        else {
+            htmlElems[i].innerHTML = "HP: " + user.MHP + '/' + user.CHP;
+        }
     }
 }
 export function deleteJSON() {

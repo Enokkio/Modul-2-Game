@@ -17,15 +17,11 @@ body{
 
 #Cplayer{
   position:absolute;
-  top:17%;
-  left:17%;
+  top:9%;
+  left:13%;
   width:100px;
   height:100px;
   background-color:rgb(0, 225, 255);
-  background-image: url("/images/ww.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-
 }
 
 #wall{
@@ -35,7 +31,6 @@ body{
 #window{
   width: 700px;
   height: 500px;
-  background-color: violet;
   position: absolute;
   z-index: 2;
   display: none;
@@ -43,14 +38,11 @@ body{
 
 #enemy{
   position:absolute;
-  top:17%;
-  left:67%;
+  top:9%;
+  left:72%;
   width:100px;
   height:100px;
   background-color:rgb(255, 0, 0);
-  background-image: url("/images/mike.png");
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .door{
@@ -66,14 +58,14 @@ body{
   text-align: center;
   font-size: 40px;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .stat{
   -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 #characterCreator{
@@ -88,62 +80,74 @@ body{
   padding-left: 4px;
   padding-right: 6px;
   border-width: 4px;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 #Level{
   left: 78%;
-  top: -4px;
+  top: -5px;
   position: absolute;
   text-align: center;
   padding-left: 4px;
   padding-right: 6px;
+  width: 80px;
   border-width: 4px;
-  width: 79px;
 }
 
 #HP{
-  margin-top: 36px;
-  margin-left: -5px;
+  top: 29px;
+  left: -5px;
   width: 80px;
   text-align: center;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   border-width: 4px;
   position: absolute;
   display: inline-block;
 }
 
 #STR{
-  margin-top: 106px;
+  top: 105px;
   left: 5px;
-  width: 105px;
+  width: 100px;
   text-align: center;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   border-width: 4px;
   position: absolute;
   display: inline-block;
 }
 
 #DEF{
-  margin-top: 106px;
-  left: 117.5px;
-  width: 110px;
+  top: 105px;
+  left: 122.5px;
+  width: 100px;
   text-align: center;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   border-width: 4px;
   position: absolute;
   display: inline-block;
 }
 
 #SPD{
-  margin-top: 106px;
-  left: 232.5px;
-  width: 105px;
+  top: 105px;
+  left: 237.5px;
+  width: 100px;
   text-align: center;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   border-width: 4px;
   position: absolute;
   display: inline-block;
 }
 
 .enemyBorder{
-  border-color: rgb(239, 68, 68 );
+  border-color: rgb(211, 13, 46);
 }
 
 .playerBorder{
@@ -154,11 +158,35 @@ body{
   border-color: rgb(156, 163, 175);
 }
 
+.redText{
+  color: rgb(211, 13, 46);
+  font-weight: bold;
+}
+
+.blueText{
+  color: rgb(45, 212, 191);
+  font-weight: bold;
+}
+
+.yellowText{
+  color: rgb(245, 155, 20);
+  font-weight: bold;
+}
+
+.bluerText{
+  color: rgb(48, 36, 219);
+  font-weight: bold;
+}
+
+.greenText{
+  color: rgb(6, 219, 6);
+  font-weight: bold;
+}
+
 .log{
   margin-left: 5px;
   margin-top: 5px;
   border-width: 4px;
-  border-color: rgb(156, 163, 175);
   position: relative;
   margin-right: 5px;
   padding-left: 5px;
@@ -726,4 +754,385 @@ video {
   --tw-backdrop-opacity:  ;
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
+}
+
+.absolute{
+  position: absolute;
+}
+
+.relative{
+  position: relative;
+}
+
+.top-\[15\%\]{
+  top: 15%;
+}
+
+.left-\[-100px\]{
+  left: -100px;
+}
+
+.right-\[-100px\]{
+  right: -100px;
+}
+
+.top-\[-100px\]{
+  top: -100px;
+}
+
+.top-\[165px\]{
+  top: 165px;
+}
+
+.left-1\/2{
+  left: 50%;
+}
+
+.top-\[307px\]{
+  top: 307px;
+}
+
+.top-\[10px\]{
+  top: 10px;
+}
+
+.left-\[110px\]{
+  left: 110px;
+}
+
+.bottom-\[22px\]{
+  bottom: 22px;
+}
+
+.left-\[150px\]{
+  left: 150px;
+}
+
+.top-\[0\]{
+  top: 0;
+}
+
+.bottom-\[32px\]{
+  bottom: 32px;
+}
+
+.bottom-\[0\]{
+  bottom: 0;
+}
+
+.-z-10{
+  z-index: -10;
+}
+
+.z-10{
+  z-index: 10;
+}
+
+.m-auto{
+  margin: auto;
+}
+
+.mt-\[10px\]{
+  margin-top: 10px;
+}
+
+.ml-\[10px\]{
+  margin-left: 10px;
+}
+
+.mt-\[25px\]{
+  margin-top: 25px;
+}
+
+.ml-\[50\%\]{
+  margin-left: 50%;
+}
+
+.ml-\[37\%\]{
+  margin-left: 37%;
+}
+
+.mt-\[60px\]{
+  margin-top: 60px;
+}
+
+.mt-\[-63px\]{
+  margin-top: -63px;
+}
+
+.ml-\[70\%\]{
+  margin-left: 70%;
+}
+
+.block{
+  display: block;
+}
+
+.flex{
+  display: flex;
+}
+
+.grid{
+  display: grid;
+}
+
+.h-\[100px\]{
+  height: 100px;
+}
+
+.h-\[700px\]{
+  height: 700px;
+}
+
+.h-\[165px\]{
+  height: 165px;
+}
+
+.h-\[142px\]{
+  height: 142px;
+}
+
+.h-\[193px\]{
+  height: 193px;
+}
+
+.h-\[75px\]{
+  height: 75px;
+}
+
+.h-\[60vh\]{
+  height: 60vh;
+}
+
+.h-\[32px\]{
+  height: 32px;
+}
+
+.w-\[100px\]{
+  width: 100px;
+}
+
+.w-\[900px\]{
+  width: 900px;
+}
+
+.w-\[700px\]{
+  width: 700px;
+}
+
+.w-\[350px\]{
+  width: 350px;
+}
+
+.w-\[150px\]{
+  width: 150px;
+}
+
+.w-\[25vw\]{
+  width: 25vw;
+}
+
+.w-fit{
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.w-\[56\%\]{
+  width: 56%;
+}
+
+.w-\[30px\]{
+  width: 30px;
+}
+
+.min-w-\[91px\]{
+  min-width: 91px;
+}
+
+.max-w-sm{
+  max-width: 24rem;
+}
+
+.max-w-\[100px\]{
+  max-width: 100px;
+}
+
+.select-text{
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+}
+
+.grid-cols-2{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.place-items-center{
+  place-items: center;
+}
+
+.justify-center{
+  justify-content: center;
+}
+
+.gap-2{
+  gap: 0.5rem;
+}
+
+.overflow-hidden{
+  overflow: hidden;
+}
+
+.rounded{
+  border-radius: 0.25rem;
+}
+
+.border-8{
+  border-width: 8px;
+}
+
+.border-4{
+  border-width: 4px;
+}
+
+.border-gray-400{
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
+}
+
+.border-teal-500{
+  --tw-border-opacity: 1;
+  border-color: rgb(20 184 166 / var(--tw-border-opacity));
+}
+
+.border-gray-300{
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
+.border-gray-500{
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity));
+}
+
+.bg-pink-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 72 153 / var(--tw-bg-opacity));
+}
+
+.bg-green-900{
+  --tw-bg-opacity: 1;
+  background-color: rgb(20 83 45 / var(--tw-bg-opacity));
+}
+
+.bg-gray-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
+
+.bg-blue-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
+}
+
+.bg-blue-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+}
+
+.bg-red-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
+
+.bg-red-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+}
+
+.bg-damageYellow{
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 155 20 / var(--tw-bg-opacity));
+}
+
+.bg-healthGreen{
+  --tw-bg-opacity: 1;
+  background-color: rgb(6 219 6 / var(--tw-bg-opacity));
+}
+
+.bg-blockBlue{
+  --tw-bg-opacity: 1;
+  background-color: rgb(48 36 219 / var(--tw-bg-opacity));
+}
+
+.bg-itemsBrown{
+  --tw-bg-opacity: 1;
+  background-color: rgb(186 153 104 / var(--tw-bg-opacity));
+}
+
+.bg-gray-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+
+.bg-black{
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.bg-slate-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
+}
+
+.bg-gray-300{
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+
+.pl-\[20px\]{
+  padding-left: 20px;
+}
+
+.pr-\[20px\]{
+  padding-right: 20px;
+}
+
+.pl-\[3px\]{
+  padding-left: 3px;
+}
+
+.pl-\[7px\]{
+  padding-left: 7px;
+}
+
+.outline-none{
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.hover\:bg-yellow-400:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(250 204 21 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-green-500:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-blue-600:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-amber-400:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(251 191 36 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-400:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }

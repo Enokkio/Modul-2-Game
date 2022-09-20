@@ -21,6 +21,7 @@ import { createEnemy } from './enemyGen.js';
 import { combatDone } from './collision-detection.js';
 import { deleteJSON } from './updateStats.js';
 import { updateDisplay } from './lvlUp.js';
+import { emptyLogs, turnDecider } from './PlayerCombat.js';
 
 
 
@@ -29,6 +30,8 @@ export function startCombat(){
     Incombat = true;
     savePP();
     createEnemy();
+    emptyLogs();
+    turnDecider();
     document.getElementById('player').style.display = "none";
     combatScreen.style.display = "initial";
 }   
