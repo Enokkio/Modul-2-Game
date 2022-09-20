@@ -15,6 +15,7 @@ function loadPP() {
 import { createEnemy } from './enemyGen.js';
 import { combatDone } from './collision-detection.js';
 import { deleteJSON } from './updateStats.js';
+import { updateDisplay } from './lvlUp.js';
 export function startCombat() {
     Incombat = true;
     savePP();
@@ -34,4 +35,8 @@ export function endGame() {
     document.getElementById('window').style.display = "none";
     document.getElementById('deathScreen').style.display = "initial";
     deleteJSON();
+}
+export function lvlUp() {
+    document.getElementById('lvlUpScreen').style.display = "initial";
+    updateDisplay();
 }

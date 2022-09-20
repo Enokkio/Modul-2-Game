@@ -20,6 +20,8 @@ var enemy = createEnemy();
 import { user } from './updateStats.js';
 import { endCombat } from './startCombat.js';
 import { endGame } from './startCombat.js';
+import { lvlUp } from './startCombat.js';
+
 
 
 
@@ -169,6 +171,7 @@ attackButton.addEventListener('click', function handleClick() {
             changeClearcondition();
 
             endCombat();
+            lvlUp();
         }
     }
     else if (playerTurn == false) {

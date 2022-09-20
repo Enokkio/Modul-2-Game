@@ -14,6 +14,7 @@ var enemy = createEnemy();
 import { user } from './updateStats.js';
 import { endCombat } from './startCombat.js';
 import { endGame } from './startCombat.js';
+import { lvlUp } from './startCombat.js';
 //playerTurn visar om det är spelarens tur eller inte
 var playerTurn = null;
 // pBlock visar om spelaren har valt "Block", kommer vara true tills spelaren har blockerat en attack, måste sättas till "false" av fienden när fienden attackerar
@@ -126,6 +127,7 @@ attackButton.addEventListener('click', function handleClick() {
             console.log("Enemy died!");
             changeClearcondition();
             endCombat();
+            lvlUp();
         }
     }
     else if (playerTurn == false) {

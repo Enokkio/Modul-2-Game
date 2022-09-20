@@ -147,6 +147,8 @@ substats.forEach(function(substats)
                 }
                 break;
             }
+
+            
         }
     }
 )}

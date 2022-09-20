@@ -20,6 +20,7 @@ function loadPP(){
 import { createEnemy } from './enemyGen.js';
 import { combatDone } from './collision-detection.js';
 import { deleteJSON } from './updateStats.js';
+import { updateDisplay } from './lvlUp.js';
 
 
 
@@ -49,6 +50,11 @@ export function endGame(){
   deleteJSON();
 
 
+}
+
+export function lvlUp(){
+  document.getElementById('lvlUpScreen').style.display = "initial";
+  updateDisplay();
 }
 
 
