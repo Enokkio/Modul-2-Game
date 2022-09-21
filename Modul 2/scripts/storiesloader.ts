@@ -19,6 +19,8 @@ function statyield1(stage) {
   
 //defines querythings
   let innterStoryText = document.querySelector(".story-text-tag");
+  let titleText = document.querySelector(".story-title-tag");
+
 
   
   
@@ -101,6 +103,7 @@ function statyield1(stage) {
   
     console.log("common story");
     let b = getRndInteger(0, allcommon.length);
+    titleText.innerHTML = allcommon[b].title;
     innterStoryText.innerHTML = allcommon[b].storytext;
     document.getElementById('button1').onclick = function(){
       console.log("hello")
@@ -150,6 +153,7 @@ function statyield1(stage) {
   
     console.log("rare story");
     let b = getRndInteger(0, allRares.length);
+    titleText.innerHTML = allRares[b].title;
     innterStoryText.innerHTML = allRares[b].storytext;
     document.getElementById('button1').onclick = function(){
       console.log("hello")
@@ -201,6 +205,7 @@ function statyield1(stage) {
   
     console.log("epic story");
     let b = getRndInteger(0, allEpics.length);
+    titleText.innerHTML = allEpics[b].title;
     innterStoryText.innerHTML = allEpics[b].storytext;
     document.getElementById('button1').onclick = function(){
       console.log("hello")
@@ -256,6 +261,7 @@ function statyield1(stage) {
     console.log("mythic story");
     let b = getRndInteger(0, allMythics.length);
     innterStoryText.innerHTML = allMythics[b].storytext;
+    titleText.innerHTML = allMythics[b].title;
 
     document.getElementById('button1').onclick = function(){
       console.log("hello")

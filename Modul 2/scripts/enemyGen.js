@@ -1,6 +1,7 @@
 import { user } from "./updateStats.js";
 class Enemy {
     Name;
+    Sprite;
     Level;
     MHP;
     CHP;
@@ -8,8 +9,9 @@ class Enemy {
     DEF;
     SPD;
     XpRew;
-    constructor(Name, Level, MaxHP, CurrentHealth, Strength, Defense, Speed, XpRew) {
+    constructor(Name, Sprite, Level, MaxHP, CurrentHealth, Strength, Defense, Speed, XpRew) {
         this.Name = Name;
+        this.Sprite = Sprite;
         this.Level = Level;
         this.MHP = MaxHP;
         this.CHP = CurrentHealth;
@@ -20,7 +22,7 @@ class Enemy {
     }
 }
 //Forest enemies
-export var enemy = new Enemy("", 0, 0, 0, 0, 0, 0, 0);
+export var enemy = new Enemy("", "", 0, 0, 0, 0, 0, 0, 0);
 let ForestMobs = ["wolf", "forestGuy", "spider"];
 function genrateRandomNumber(min, max) {
     min = Math.ceil(min);
