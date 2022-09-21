@@ -45,25 +45,7 @@ function loadcommonstory() {
     let x = statyield1(flags.stageNr);
     let y = statyield1(flags.stageNr);
     var commonstories = {
-        HelpEnok: { title: "Help Jon with moving snow", storytext: `Jon needs some help with moving snow, help him?\n`,
-            option1() {
-                buttonDisplaChange();
-                if (user.STR = 5 ** (flags.stageNr / (20) + 1)) {
-                    user.STR += Math.floor(x + 2);
-                    flags.karma += 10;
-                    // console.log(user);
-                    innterStoryText.innerHTML = `You gained ${x + 3} STR`;
-                }
-                else {
-                    innterStoryText.innerHTML = `You lacked the strength to help Jon`;
-                }
-                setTimeout(updateData, 3000);
-            },
-            option2() {
-                updateData();
-            }
-        },
-        HelpCelvin: { title: "Help an old man", storytext: `An old man is struggling with walking, help him?\n `,
+        helpoldman: { title: "Help an old man", storytext: `An old man is struggling with walking, help him?\n `,
             option1() {
                 buttonDisplaChange();
                 let z = Math.random() * 100;
@@ -74,14 +56,14 @@ function loadcommonstory() {
                     console.log(user);
                     innterStoryText.innerHTML = `The old man stabbed you, and you lost ${x + 5} HP`;
                     if (user.CHP <= 0) {
-                        setInterval(hideStorydiv, 3000);
+                        setTimeout(hideStorydiv, 3000);
                         endGame();
                     }
                 }
                 else if (z <= 100) {
                     innterStoryText.innerHTML = `The old man thanks you`;
                     flags.karma += 10;
-                    setInterval(updateData, 3000);
+                    setTimeout(updateData, 3000);
                 }
             },
             option2() {
@@ -114,7 +96,7 @@ function loadcommonstory() {
                     user.CHP -= x * 100;
                     flags.horridApple = true;
                     if (user.CHP <= 0) {
-                        setInterval(hideStorydiv, 3000);
+                        setTimeout(hideStorydiv, 3000);
                         endGame();
                     }
                 }
@@ -177,7 +159,7 @@ function loadRareStories() {
                         user.CHP -= Math.ceil(x);
                         flags.Foodpoisoning = true;
                         if (user.CHP <= 0) {
-                            setInterval(hideStorydiv, 3000);
+                            setTimeout(hideStorydiv, 3000);
                             endGame();
                         }
                     }
@@ -244,7 +226,7 @@ function loadEpicStories() {
                     innterStoryText.innerHTML = `You broke your arm when you fell while hunting the cow \n lost permanent 10% HP`;
                     user.MHP -= Math.ceil(user.MHP * 0.1);
                 }
-                setInterval(updateData, 3000);
+                setTimeout(updateData, 3000);
             },
             option2() {
                 updateData();
