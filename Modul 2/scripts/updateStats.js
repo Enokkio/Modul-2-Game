@@ -18,6 +18,8 @@ export let flags = {
     HolyWarrior: false,
     horridApple: false,
     deliciousApple: false,
+    Foodpoisoning: false,
+    ChickenEater: false,
 };
 export let sword = {
     Name: 'Sword',

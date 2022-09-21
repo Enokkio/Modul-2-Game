@@ -16,7 +16,7 @@ function statyield1(stage) {
     
     let y = Math.ceil((1.672 *flags.stageNr+ 0.4806)*x)
     console.log(x)
-    return y;
+    return Math.ceil(y);
   }
   
 //defines querythings
@@ -68,27 +68,8 @@ function buttonDisplaChange(){
     let x=statyield1(flags.stageNr)
     let y=statyield1(flags.stageNr)
     var commonstories = {
-      HelpEnok: { title: "Help Jon with moving snow", storytext: `Jon needs some help with moving snow, help him?\n`,
-          option1() {
-            buttonDisplaChange();
-            if (user.STR = 5**(flags.stageNr/(20)+1)){
-              user.STR += Math.floor(x +2);
-              flags.karma += 10;
-             // console.log(user);
-              innterStoryText.innerHTML = `You gained ${x+3} STR`        
-                }
-            else{
-              innterStoryText.innerHTML = `You lacked the strength to help Jon`        
 
-            }
-            setTimeout(updateData, 3000)
-
-          },
-          option2(){
-            updateData();
-          }
-         },
-      HelpCelvin: { title: "Help an old man", storytext: `An old man is struggling with walking, help him?\n `,
+      HelpOldman: { title: "Help an old man", storytext: `An old man is struggling with walking, help him?\n `,
           option1() {
       
             buttonDisplaChange();
@@ -135,7 +116,7 @@ function buttonDisplaChange(){
             updateData();
           }
         },
-          StrangeFood: { title: "A strange looking apple appeared", storytext: `Do you wish to consume it? \n `,
+          StrangeApple: { title: "A strange looking apple appeared", storytext: `Do you wish to consume it? \n `,
           option1() {
             buttonDisplaChange();
             let z = Math.random() *100;
