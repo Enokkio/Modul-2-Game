@@ -58,7 +58,7 @@
         <div id="monster-event" class="monster-event collisionDetect selfdetection"></div>
        
 
-        <div id="window">
+          <div id="window">
 
           <div class="overflow-hidden bg-gray-500 border-8 border-gray-400  h-[165px] w-[700px]" style="text-align: center;">
       
@@ -117,7 +117,8 @@
             </div>
           </div>
       
-        </div>
+          </div>
+
           <!-- charachtor creator -->
 
           <div id="characterCreator" class="grid place-items-center z-10">
@@ -187,9 +188,9 @@
         
             </div>
 
-            <!-- death screen -->
+          <!-- death screen -->
 
-            <div id="deathScreen" class="grid place-items-center z-10">
+          <div id="deathScreen" class="grid place-items-center z-10">
               <div class="bg-gray-400 border-8 border-gray-300 w-[25vw] absolute  h-[60vh] rounded text-center" style="left: 175px">
           
                 <h1 class=" text-red-600 text-5xl mb-[80px] font-serif select-none">YOU DEAD</h1>
@@ -197,7 +198,42 @@
                 <iframe src="https://giphy.com/embed/ObXgWWGHzMlVe" width="400" height="250" frameBorder="0" class=" m-auto" allowFullScreen></iframe>
           
               </div>
+          </div>
+
+          <!-- Gear screen -->
+          <div id="gearScreen" class="items-center justify-center text-center absolute hidden bg-gray-400 border-8 border-gray-300 w-[500px] left-[100px] top-[60px] h-[400px] rounded z-10">
+          
+            <div id=""class="bg-red-400 border-8 border-red-300 w-[100px] top-[100px] absolute h-[50px] rounded hover:border-red-500"><p class="mt-[3px]">Pass</p></div>
+            <div id="" class="bg-green-400 border-8 border-green-300 w-[100px] top-[40px] absolute h-[50px] rounded hover:border-green-500 h"><p class="mt-[3px]">Take</p></div>
+        
+            <div id="yourItem"class="bg-red-400 border-8 border-gray-300 w-[150px] absolute right-[5%] top-[5%] h-[150px] rounded">
+              <div id="passBtn" class="block overflow-hidden bg-red-400 border-4 absolute w-[150px] h-[142px] top-[165px] -left-2">
+                <ul class="newItemStats" >
+                  <li class="" id="Name">Name</li>
+                  <li class="" id="HP">HP:</li>
+                  <li class="" id="STR">STR:</li>
+                  <li class="" id="DEF">DEF:</li>
+                  <li class="" id="SPD">SPD:</li>
+                </ul>
+              </div>
             </div>
+
+            <div id="newItem" class="bg-blue-400 border-8 border-gray-300 w-[150px] absolute left-[5%] top-[5%] h-[150px] rounded">
+              <div id="takeBtn" class="block overflow-hidden bg-blue-400 border-4 absolute w-[150px] h-[142px] top-[165px] -left-2">
+                <ul class="yourItemStats">
+                  <li class="" id="Name">Name</li>
+                  <li class="" id="HP">HP:</li>
+                  <li class="" id="STR">STR:</li>
+                  <li class="" id="DEF">DEF:</li>
+                  <li class="" id="SPD">SPD:</li>
+                </ul>
+              </div>
+            </div>
+
+        
+        
+          </div>
+
 
     </div>
 

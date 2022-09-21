@@ -17,6 +17,7 @@ import { combatDone } from './collision-detection.js';
 import { deleteJSON } from './updateStats.js';
 import { updateDisplay } from './lvlUp.js';
 import { emptyLogs, turnDecider } from './PlayerCombat.js';
+import { itemDroped } from './itemGen.js';
 export function startCombat() {
     Incombat = true;
     savePP();
@@ -35,6 +36,7 @@ export function endCombat() {
     document.getElementById('player').style.display = "initial";
     document.getElementById('monster-event').style.display = "none";
     combatScreen.style.display = "none";
+    itemDroped();
     playDefAudio();
     pauseBatAudio();
 }

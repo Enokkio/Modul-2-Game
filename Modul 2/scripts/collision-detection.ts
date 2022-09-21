@@ -30,7 +30,7 @@ import { loadMapsStage1 } from './map.js';
 import { loadMapsStage2 } from './map.js';
 
 import { startCombat } from './startCombat.js';
-import { flags } from "./updateStats.js";
+import { flags, saveJSON } from "./updateStats.js";
 //import story loading function
 import { Randomstory} from "./storiesloader.js"
 import { getRndInteger } from './storiesloader.js'
@@ -87,12 +87,14 @@ function overlapDetect(){
         if ( flags.stageNr >= 0 && flags.stageNr <6 && clearcondition == true) {//check for what stage
             loadMapsStage1(); //loadar en exported function från map.js vilket editas med map.ts    
             flags.stageNr++;
+            saveJSON();
             changeClearcondition();
             console.log("forest")
         }   
        else if (flags.stageNr >= 6 && flags.stageNr <10  && clearcondition == true) {
         loadMapsStage2();
         flags.stageNr++;
+        saveJSON();
         changeClearcondition();
         console.log("Cave")
 

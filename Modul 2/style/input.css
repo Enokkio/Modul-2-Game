@@ -67,7 +67,7 @@ z-index: 2;
     display: none;
 }
 
-#Name{
+#stat-display #Name{
     top: -5px;
     left: -5px;
     position: absolute;
@@ -78,7 +78,7 @@ z-index: 2;
     font-size: 20px;
 }
 
-#Level{
+#stat-display #Level{
     left: 78%;
     top: -5px;
     position: absolute;
@@ -89,7 +89,7 @@ z-index: 2;
     border-width: 4px;
 }
 
-#CHP{
+#stat-display #CHP{
     top: 29px;
     left: -5px;
     width: 80px;
@@ -100,7 +100,7 @@ z-index: 2;
     display: inline-block;
 }
 
-#STR{
+#stat-display #STR{
     top: 105px;
     left: 5px;
     width: 100px;
@@ -111,7 +111,7 @@ z-index: 2;
     display: inline-block;
 }
 
-#DEF{
+#stat-display #DEF{
     top: 105px;
     left: 122.5px;
     width: 100px;
@@ -122,7 +122,7 @@ z-index: 2;
     display: inline-block;
 }
 
-#SPD{
+#stat-display #SPD{
     top: 105px;
     left: 237.5px;
     width: 100px;

@@ -1,8 +1,9 @@
-import { flags, saveJSON, sword, helmet, armor } from './updateStats.js';
+import { flags, sword, helmet, armor } from './updateStats.js';
 let userStage = flags.stageNr;
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+var whatItem = 0;
 let Gsword = {
     Name: 'Sword',
     HP: 0,
@@ -96,25 +97,35 @@ function createHelmet() {
     }
     console.log(Ghelmet);
 }
-export function createItem() {
-    var whatItem = randomIntFromInterval(1, 3);
+function createItem() {
+    whatItem = randomIntFromInterval(1, 3);
     switch (whatItem) {
         case 1:
             createSword();
+            break;
+        case 2:
+            createArmor();
+            break;
+        case 3:
+            createHelmet();
+            break;
+    }
+}
+export function updateItem() {
+    switch (whatItem) {
+        case 1:
             sword.HP = Gsword.HP;
             sword.STR = Gsword.STR;
             sword.DEF = Gsword.DEF;
             sword.SPD = Gsword.SPD;
             break;
         case 2:
-            createArmor();
             armor.HP = Garmor.HP;
             armor.STR = Garmor.STR;
             armor.DEF = Garmor.DEF;
             armor.SPD = Garmor.SPD;
             break;
         case 3:
-            createHelmet();
             helmet.HP = Ghelmet.HP;
             helmet.STR = Ghelmet.STR;
             helmet.DEF = Ghelmet.DEF;
@@ -122,5 +133,90 @@ export function createItem() {
             break;
     }
 }
-createItem();
-saveJSON();
+export function showYourItem() {
+    let htmlElems = document.getElementsByClassName("yourItemStats")[0].children;
+    if (whatItem == 1) {
+        for (let i = 0; i < htmlElems.length; i++) {
+            if (i != 0) {
+                htmlElems[i].innerHTML = htmlElems[i].id + ": " + sword[htmlElems[i].id];
+            }
+            else {
+                htmlElems[i].innerHTML = sword.Name;
+            }
+        }
+    }
+    if (whatItem == 2) {
+        for (let i = 0; i < htmlElems.length; i++) {
+            if (i != 0) {
+                htmlElems[i].innerHTML = htmlElems[i].id + ": " + armor[htmlElems[i].id];
+            }
+            else {
+                htmlElems[i].innerHTML = armor.Name;
+            }
+        }
+    }
+    if (whatItem == 3) {
+        for (let i = 0; i < htmlElems.length; i++) {
+            if (i != 0) {
+                htmlElems[i].innerHTML = htmlElems[i].id + ": " + helmet[htmlElems[i].id];
+            }
+            else {
+                htmlElems[i].innerHTML = helmet.Name;
+            }
+        }
+    }
+}
+export function showNewItem() {
+    let htmlElems2 = document.getElementsByClassName("newItemStats")[0].children;
+    if (whatItem == 1) {
+        for (let i = 0; i < htmlElems2.length; i++) {
+            if (i != 0) {
+                htmlElems2[i].innerHTML = htmlElems2[i].id + ": " + Gsword[htmlElems2[i].id];
+            }
+            else {
+                htmlElems2[i].innerHTML = Gsword.Name;
+            }
+        }
+    }
+    if (whatItem == 2) {
+        for (let i = 0; i < htmlElems2.length; i++) {
+            if (i != 0) {
+                htmlElems2[i].innerHTML = htmlElems2[i].id + ": " + Garmor[htmlElems2[i].id];
+            }
+            else {
+                htmlElems2[i].innerHTML = armor.Name;
+            }
+        }
+    }
+    if (whatItem == 3) {
+        for (let i = 0; i < htmlElems2.length; i++) {
+            if (i != 0) {
+                htmlElems2[i].innerHTML = htmlElems2[i].id + ": " + Ghelmet[htmlElems2[i].id];
+            }
+            else {
+                htmlElems2[i].innerHTML = Ghelmet.Name;
+            }
+        }
+    }
+}
+export function itemDroped() {
+    document.getElementById('gearScreen').style.display = "flex";
+    createItem();
+    showYourItem();
+    showNewItem();
+}
+var takeBtn = document.getElementById('takeBtn');
+takeBtn.addEventListener('click', function () {
+    updateItem();
+    document.getElementById('gearScreen').style.display = "none";
+    console.log(sword);
+    console.log(armor);
+    console.log(helmet);
+});
+var passBtn = document.getElementById('passBtn');
+passBtn.addEventListener('click', function () {
+    document.getElementById('gearScreen').style.display = "none";
+    console.log(sword);
+    console.log(armor);
+    console.log(helmet);
+});
