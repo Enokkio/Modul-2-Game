@@ -39,9 +39,11 @@ body{
     }
 
 .next-level{
-    background-color: black;
-    width: 50px;
-    height: 50px;
+  background-image: url(/images/warpG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+    width: 70px;
+    height: 70px;
     z-index: 2;
     position:absolute; 
     
@@ -50,6 +52,19 @@ body{
     left: 325px;
     
 
+}
+
+@-webkit-keyframes rotating {
+  from{
+      -webkit-transform: rotate(0deg);
+  }
+  to{
+      -webkit-transform: rotate(360deg);
+  }
+}
+
+#rotating {
+  -webkit-animation: rotating 6s linear infinite;
 }
 
 .monster-event{
@@ -90,12 +105,15 @@ body{
 
     /*STORY BOX*/
     .storydiv{
+      position: absolute;
         width: 380px;
         height: 340px;
         background-color: lightblue;
         margin: auto;
         display: none;
         padding: 20px;
+        z-index: 100;
+        user-select: none;
 
       }
       
