@@ -12,7 +12,7 @@ import { createEnemy } from './enemyGen.js';
 var enemy = createEnemy();
 //Gets player (Needs to get saved stats instead of player framework, inte något du måste göra nu)
 import { user } from './updateStats.js';
-import { endCombat } from './startCombat.js';
+import { endCombat, lvlUp } from './startCombat.js';
 import { endGame } from './startCombat.js';
 //playerTurn visar om det är spelarens tur eller inte
 var playerTurn = null;
@@ -48,6 +48,7 @@ function changeTurn() {
 }
 // Kollar vem som har högst speed och bestämmer om det är spelarens tur eller inte
 export function turnDecider() {
+    user.CHP = user.MHP;
     updateStats();
     updateStatsE();
     if (enemy.SPD > user.SPD) {
@@ -154,6 +155,7 @@ attackButton.addEventListener('click', function handleClick() {
             if (enemy.CHP <= 0) {
                 changeClearcondition();
                 endCombat();
+                lvlUp();
             }
             logger("player", "attack", damageDone);
             eBlockRounds--;
@@ -167,6 +169,7 @@ attackButton.addEventListener('click', function handleClick() {
             if (enemy.CHP <= 0) {
                 changeClearcondition();
                 endCombat();
+                lvlUp();
             }
         }
         changeTurn();

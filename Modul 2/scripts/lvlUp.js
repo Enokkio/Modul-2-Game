@@ -12,12 +12,14 @@ var ptsCounter = document.getElementById('ptsCounter2');
 var addstats = document.querySelectorAll('.add-stats-buttons');
 var substats = document.querySelectorAll('.remove-stats-buttons');
 export function updateDisplay() {
+    user.Level++;
     Speed.innerHTML = ("SPD: ") + String(user.SPD);
     Defense.innerHTML = ("DEF: ") + String(user.DEF);
     Strength.innerHTML = ("STR: ") + String(user.STR);
     Health.innerHTML = ("HP: ") + String(user.MHP);
     ptsCounter.innerHTML = "Points Available: " + freestats;
 }
+console.trace(updateDisplay);
 addstats.forEach(function (addstats) {
     addstats.addEventListener('click', function () {
         var id = addstats.getAttribute("id");

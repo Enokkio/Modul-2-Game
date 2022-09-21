@@ -4,8 +4,6 @@ import { user } from './updateStats.js';
 import { flags } from './updateStats.js';
 //import colidor 
 import { combatDone } from './collision-detection.js';
-//import updatedisplay to update stuff
-import { updateDisplay } from './lvlUp.js';
 function statyield1(stage) {
     let x = Math.random(); //random integer från 0.55 to 1
     let y = Math.ceil((1.672 * flags.stageNr + 0.4806) * x);
@@ -23,7 +21,6 @@ function updateData() {
     saveJSON();
     var storydiv = document.querySelector('.storydiv');
     combatDone();
-    updateDisplay();
     storydiv.style.display = "none";
 }
 //Needed empty function

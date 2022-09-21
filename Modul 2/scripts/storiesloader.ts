@@ -34,7 +34,6 @@ function statyield1(stage) {
     saveJSON();
     var storydiv = <HTMLElement>document.querySelector('.storydiv');
     combatDone();
-    updateDisplay();
   storydiv.style.display = "none"
 
 
