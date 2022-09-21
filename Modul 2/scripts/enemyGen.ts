@@ -2,7 +2,9 @@ import{user} from "./updateStats.js"
 
 class Enemy
 {
+
     Name: string;
+    Sprite:string;
     Level: number;
     MHP: number;
     CHP: number;
@@ -11,9 +13,10 @@ class Enemy
     SPD: number;
     XpRew: Number;
 
-    constructor(Name: string, Level: number, MaxHP: number, CurrentHealth: number, Strength: number, Defense: number, Speed: number, XpRew: Number){
+    constructor(Name: string, Sprite: string, Level: number, MaxHP: number, CurrentHealth: number, Strength: number, Defense: number, Speed: number, XpRew: Number){
         
         this.Name = Name;
+        this.Sprite = Sprite;
         this.Level = Level;
         this.MHP = MaxHP;
         this.CHP = CurrentHealth;
@@ -26,7 +29,7 @@ class Enemy
 
   //Forest enemies
 
-  export var enemy = new Enemy("", 0, 0, 0, 0, 0, 0, 0);
+  export var enemy = new Enemy("","", 0, 0, 0, 0, 0, 0, 0);
   let ForestMobs: string[] = ["wolf", "forestGuy", "spider"];
 
 function genrateRandomNumber(min, max)
