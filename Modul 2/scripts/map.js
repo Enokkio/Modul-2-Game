@@ -3,6 +3,9 @@ const starterTownImg = new Image();
 starterTownImg.src = 'images/Pallettown.png';
 const forestmap1 = new Image();
 forestmap1.src = 'images/forest.png';
+//define  
+var PlayerStage = document.querySelector('#canvas');
+const player = document.getElementById('player');
 const cavemap1 = new Image();
 cavemap1.src = 'images/pixelCave.png';
 //event define boxes
@@ -73,10 +76,6 @@ function overlapDetectself() {
     }
 }
 //defining canvas in script to draw images on it as maps
-var canvas = document.querySelector("canvas");
-var ctx = canvas.getContext("2d");
-const player = document.getElementById("player");
-ctx.imageSmoothingEnabled = true;
 //---------------------------Define music
 let defaultAudio = document.getElementById("audio1");
 let battleAudio = document.getElementById("audio2");
@@ -100,8 +99,7 @@ export function pauseBatAudio() {
 }
 window.onload = function () {
     playDefAudio();
-    ctx.drawImage(starterTownImg, 0, 0, starterTownImg.width, starterTownImg.height, // source rectangle
-    0, 0, canvas.width, canvas.height);
+    PlayerStage.style.backgroundImage = "url('images/forest.png')";
 };
 //function to load eventboxes
 function loadboxes() {
@@ -137,10 +135,7 @@ export function loadMapsStage1() {
     }
     switch (randomIntFromInterval(1, 1)) {
         case 1: //draws 1 possible map of forests map
-            ctx.fillStyle = "white";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(forestmap1, 0, 0, forestmap1.width, forestmap1.height, // source rectangle
-            0, 0, canvas.width, canvas.height);
+            PlayerStage.style.backgroundImage = "url('images/forest.png')";
             break;
         case 2:
             break;
@@ -166,10 +161,7 @@ export function loadMapsStage2() {
     }
     switch (randomIntFromInterval(1, 1)) {
         case 1: //draws 1 possible map of forests map
-            ctx.fillStyle = "white";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(cavemap1, 0, 0, cavemap1.width, cavemap1.height, // source rectangle
-            0, 0, canvas.width, canvas.height);
+            PlayerStage.style.backgroundImage = "url('images/pixelCave.png')";
             break;
         case 2:
             break;

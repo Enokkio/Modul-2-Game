@@ -67,6 +67,11 @@ body{
 
 
 }
+
+.enemy{
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .story-event{
 
     background-color:green;
