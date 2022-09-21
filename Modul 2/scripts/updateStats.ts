@@ -8,14 +8,6 @@ export let user= {
     SPD: 1,
 }
 
-    loadJSON()
-    //console.log(user);
-    var nameBox = document.getElementById('nameBox') as HTMLInputElement;
-    nameBox.value = user.Name;
-
-    
-
-
 export let flags = {
 
     stageNr:1,
@@ -27,14 +19,54 @@ export let flags = {
 
 }
 
+export let sword = { 
+    Name: 'Sword',
+    HP: 0,
+    STR: 0,
+    DEF: 0,
+    SPD: 0,
+};
+
+export let armor = { 
+    Name: 'Armor',
+    HP: 0,
+    STR: 0,
+    DEF: 0,
+    SPD: 0,
+};
+
+export let helmet = { 
+    Name: 'Helmet',
+    HP: 0,
+    STR: 0,
+    DEF: 0,
+    SPD: 0,
+};
+
+    loadJSON()
+    console.log(user);
+    console.log(flags);
+    console.log(sword);
+    console.log(armor);
+    console.log(helmet);
+
+    var nameBox = document.getElementById('nameBox') as HTMLInputElement;
+    nameBox.value = user.Name;
+
+    
+
+
+
+
 export function saveJSON() {
 
     localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("flags", JSON.stringify(flags));
+    localStorage.setItem("sword", JSON.stringify(sword));
+    localStorage.setItem("armor", JSON.stringify(armor));
+    localStorage.setItem("helmet", JSON.stringify(helmet));
     
 }
-
-import { cantMoveF } from './PlayerMovement.js';
-import { canMoveF } from './PlayerMovement.js';
 
 // To check if user exists
 export function loadJSON() {
@@ -47,7 +79,11 @@ export function loadJSON() {
     else{
         
         user = JSON.parse(localStorage.getItem("user"));
-        localStorage.setItem("user", JSON.stringify(user));
+        flags = JSON.parse(localStorage.getItem("flags"));
+        sword = JSON.parse(localStorage.getItem("sword"));
+        armor = JSON.parse(localStorage.getItem("armor"));
+        helmet = JSON.parse(localStorage.getItem("helmet"));
+        saveJSON();
     }
 
     

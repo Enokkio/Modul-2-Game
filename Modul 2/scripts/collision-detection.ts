@@ -22,6 +22,7 @@ import { pauseBatAudio } from './map.js'
 
 
 //define monster event and etc
+var storybox = <HTMLElement>document.querySelector('.story-event');
 
 
 //import map loading functions
@@ -69,19 +70,18 @@ function overlapDetect(){
 
     if (xleft -45 <= playerXleft && xright +45 >= playerXright && ybot +45>= playerYbot && ytop-45 <= PlayerYtop && interactDivs[index].classList.contains("story-event") && StoryEvent.style.display == "block" ){
         coliderOn = false;
+
         Randomstory();
 
         console.log("shello")
-
-       
-
+        
 
 
     }
                                                                                                                              //gör så att den checkar även för vilken class
     if (xleft -45 <= playerXleft && xright +45 >= playerXright && ybot +45>= playerYbot && ytop-45 <= PlayerYtop && interactDivs[index].classList.contains("next-level")) {//makes bounding info as if it was a cube
         
-
+        
      
         
         if ( flags.stageNr >= 0 && flags.stageNr <6 && clearcondition == true) {//check for what stage

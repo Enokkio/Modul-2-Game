@@ -5,7 +5,9 @@ starterTownImg.src ='images/Pallettown.png'
 const forestmap1 = new Image();
 forestmap1.src = 'images/forest.png';
 
-
+//define  
+var PlayerStage = document.querySelector('#canvas') as HTMLElement;
+const player = document.getElementById('player')
 const cavemap1 = new Image();
 cavemap1.src = 'images/pixelCave.png';
 
@@ -103,10 +105,7 @@ import { changeClearcondition } from "./collision-detection.js";
  import { flags } from "./updateStats.js";
 
 //defining canvas in script to draw images on it as maps
-var canvas : any = document.querySelector("canvas");
-var ctx = canvas.getContext("2d");
-const player = document.getElementById("player")
-ctx.imageSmoothingEnabled = true;
+
 
 //---------------------------Define music
 
@@ -139,10 +138,8 @@ window.onload = function() {
   
   playDefAudio();
 
-    ctx.drawImage(
-        starterTownImg, 0, 0, starterTownImg.width, starterTownImg.height,     // source rectangle
-        0, 0, canvas.width, canvas.height
-        );
+  PlayerStage.style.backgroundImage = "url('images/forest.png')";
+
  
         
 
@@ -151,7 +148,15 @@ window.onload = function() {
 
 //function to load eventboxes
 function loadboxes(){
-  StoryEvent.style.display = "block";
+  let chance = Math.random() *100;
+  console.log(chance)
+  if (chance <= 20) {
+      StoryEvent.style.display = "none"
+      console.log("no story")
+  }
+  else(
+      StoryEvent.style.display = "block"
+  )  
   MonsterEvent.style.display = "block";
 
 }
@@ -175,12 +180,12 @@ function randomIntFromInterval(min, max) { // min and max included
     player.style.top = 325 + 'px' ;
     player.style.left = 325 + 'px' ;
     colideron = true;
-    
-
 uponloadOfStage();    
     //We need a while stageclear = true do this function
     //And we need to use player data to see which stage to load, so for example if stage is   0<stage<5 we use a function between stages 1-5 through a function
     //satte in random number generation funktionen sådana att den skulle komma med i exporten
+    
+
     function randomIntFromInterval(min, max) { // min and max included 
             return Math.floor(Math.random() * (max - min + 1) + min)
           }
@@ -189,12 +194,9 @@ uponloadOfStage();
         switch(randomIntFromInterval(1, 1)){
     
             case 1://draws 1 possible map of forests map
-            ctx.fillStyle = "white";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(
-                    forestmap1, 0, 0, forestmap1.width, forestmap1.height,     // source rectangle
-                    0, 0, canvas.width, canvas.height
-                    );
+
+            PlayerStage.style.backgroundImage = "url('images/forest.png')";
+
     
             break;
     
@@ -225,9 +227,8 @@ player.style.left = 325 + 'px' ;
 
 
 uponloadOfStage();    
-StoryEvent.style.display = "block";
+loadboxes();
 
-MonsterEvent.style.display = "block";
 
 //We need a while stageclear = true do this function
 //And we need to use player data to see which stage to load, so for example if stage is   0<stage<5 we use a function between stages 1-5 through a function
@@ -240,12 +241,7 @@ function randomIntFromInterval(min, max) { // min and max included
     switch(randomIntFromInterval(1, 1)){
 
         case 1://draws 1 possible map of forests map
-        ctx.fillStyle = "white";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(
-                cavemap1, 0, 0, cavemap1.width, cavemap1.height,     // source rectangle
-                0, 0, canvas.width, canvas.height
-                );
+        PlayerStage.style.backgroundImage = "url('images/pixelCave.png')";
 
         break;
 

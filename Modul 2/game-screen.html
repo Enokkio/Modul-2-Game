@@ -19,7 +19,7 @@
   <button id="musicButton">Music</button>
   <audio id="audio1"src="./scripts/Audio/defaultSound.mp3" ></audio>
   <audio id="audio2"src="./scripts/Audio/battleSound.mp3" ></audio>
-
+    
 
 
 
@@ -30,17 +30,17 @@
 
         <div id="player" style="left: 325px; top:400px;"></div>
 
-        <canvas id="canvas" class="">
           
-           
+           <div id="canvas">
+             
+           </div>
 
-        </canvas>
 
         
 <div class="storydiv" id="storydivs" >
 
   <div class="storytext">
-    <p class="title story-content-text">I AM THE TITLE</p>
+    <p class="title story-content-text story-title-tag">I AM THE TITLE</p>
     <p class="title story-content-text story-text-tag">I AM THE STORY</p>
   </div>
 
@@ -55,7 +55,7 @@
 
         <div class="next-level collisionDetect selfdetection"></div>
         <div id="story-event" class="story-event collisionDetect selfdetection"></div>
-        <div id="monster-event" class="monster-event collisionDetect selfdetection"></div>
+        <div id="monster-event"   class="monster-event collisionDetect selfdetection"></div>
        
 
         <div id="window">
@@ -65,7 +65,7 @@
       
             <p id="turnCounter" class="turnCounter border-4"></p>
             <div id="Cplayer" class=""></div>
-            <div id="enemy" class=""></div>
+            <div id="enemy"   class=""></div>
       
           </div>
       
@@ -212,14 +212,15 @@
     <script type="module" src="scripts/map.js"></script>
     <script type="module" src="scripts/collision-detection.js"></script>
     
-    <script type="module" src="Scripts/characterCreator.js"></script>
+    <script type="module" src="scripts/characterCreator.js"></script>
 
-    <script type="module" src="Scripts/PlayerCombat.js"></script>
-    <script type="module" src="Scripts/updateStats.js"></script>
-    <script type="module" src="Scripts/startCombat.js"></script>
-    <script type="module" src="Scripts/lvlUp.js"></script>
+    <script type="module" src="scripts/PlayerCombat.js"></script>
+    <script type="module" src="scripts/updateStats.js"></script>
+    <script type="module" src="scripts/startCombat.js"></script>
+    <script type="module" src="scripts/lvlUp.js"></script>
 
 
+    <script type="module" src="scripts/itemGen.js"></script>
   
     
 
