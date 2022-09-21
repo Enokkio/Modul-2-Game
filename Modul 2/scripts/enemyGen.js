@@ -1,6 +1,7 @@
 import { user } from "./updateStats.js";
 class Enemy {
     Name;
+    Sprite;
     Level;
     MHP;
     CHP;
@@ -8,8 +9,9 @@ class Enemy {
     DEF;
     SPD;
     XpRew;
-    constructor(Name, Level, MaxHP, CurrentHealth, Strength, Defense, Speed, XpRew) {
+    constructor(Name, Sprite, Level, MaxHP, CurrentHealth, Strength, Defense, Speed, XpRew) {
         this.Name = Name;
+        this.Sprite = Sprite;
         this.Level = Level;
         this.MHP = MaxHP;
         this.CHP = CurrentHealth;
@@ -20,8 +22,9 @@ class Enemy {
     }
 }
 //Forest enemies
-export var enemy = new Enemy("", 0, 0, 0, 0, 0, 0, 0);
+export var enemy = new Enemy("", "", 0, 0, 0, 0, 0, 0, 0);
 let ForestMobs = ["wolf", "forestGuy", "spider"];
+let MobSprites = ["/images/mike.png", "/images/mike.png", "/images/mike.png"];
 function genrateRandomNumber(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -38,10 +41,43 @@ export function createEnemy() {
         enemy.SPD = Math.ceil(0.5 * user.SPD + 5);
         return enemy;
     }
+    else if (flags.stageNr == 10) {
+        enemy.Name = "Vice cave Lord";
+        enemy.MHP = Math.ceil(1.5 * user.MHP);
+        enemy.CHP = Math.ceil(enemy.MHP);
+        enemy.STR = Math.ceil(0.9 * user.STR);
+        enemy.SPD = Math.ceil(0.5 * user.SPD + 5);
+        return enemy;
+    }
+    else if (flags.stageNr == 15) {
+        enemy.Name = "Cave Lord";
+        enemy.MHP = Math.ceil(1.5 * user.MHP);
+        enemy.CHP = Math.ceil(enemy.MHP);
+        enemy.STR = Math.ceil(1.3 * user.STR);
+        enemy.SPD = Math.ceil(0.5 * user.SPD + 5);
+        return enemy;
+    }
+    else if (flags.stageNr == 20) {
+        enemy.Name = "Forest Lord";
+        enemy.MHP = Math.ceil(1.5 * user.MHP);
+        enemy.CHP = Math.ceil(enemy.MHP);
+        enemy.STR = Math.ceil(1.3 * user.STR);
+        enemy.SPD = Math.ceil(0.5 * user.SPD + 5);
+        return enemy;
+    }
+    else if (flags.stageNr == 25) {
+        enemy.Name = "Forest Lord";
+        enemy.MHP = Math.ceil(1.5 * user.MHP);
+        enemy.CHP = Math.ceil(enemy.MHP);
+        enemy.STR = Math.ceil(1.3 * user.STR);
+        enemy.SPD = Math.ceil(0.5 * user.SPD + 5);
+        return enemy;
+    }
     else {
         //console.log("Creating enemy!");
         var enemyInd = genrateRandomNumber(0, 2);
         enemy.Name = ForestMobs[enemyInd];
+        enemy.Sprite = MobSprites[enemyInd];
         enemy.Level = genrateRandomNumber(flags.stageNr - 1, flags.stageNr + 1);
         if (enemy.Level < 1)
             enemy.Level = 1;
@@ -74,6 +110,8 @@ export function createEnemy() {
         return enemy;
     }
 }
+console.log(enemy.Sprite);
+console.log("test");
 export function updateStatsE() {
     let htmlElems = document.getElementsByClassName("Estat-display")[0].children;
     for (let i = 0; i < htmlElems.length; i++) {
@@ -84,4 +122,6 @@ export function updateStatsE() {
             htmlElems[i].innerHTML = "HP: " + enemy.CHP + '/' + enemy.MHP;
         }
     }
+    document.getElementById('monster-event').style.backgroundImage = `url(${enemy.Sprite})`;
+    document.getElementById('enemy').style.backgroundImage = `url(${enemy.Sprite})`;
 }
