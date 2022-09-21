@@ -83,58 +83,8 @@ function overlapDetect(){
         
         
      
-        
-        if ( flags.stageNr >= 0 && flags.stageNr <6 && clearcondition == true) {//check for what stage
-            loadMapsStage1(); //loadar en exported function från map.js vilket editas med map.ts    
-            flags.stageNr++;
-            saveJSON();
-            changeClearcondition();
-            console.log("forest")
-        }   
-       else if (flags.stageNr >= 6 && flags.stageNr <10  && clearcondition == true) {
-        loadMapsStage2();
-        flags.stageNr++;
-        changeClearcondition();
-        saveJSON();
-
-        console.log("Cave")
-
-
-
-       }
-       else if (flags.stageNr >= 10 && flags.stageNr <15  && clearcondition == true) {
-        loadMapsStage1();
-        flags.stageNr++;
-        changeClearcondition();
-        saveJSON();
-
-
-
-       }
-       else if (flags.stageNr >= 15 && flags.stageNr <20  && clearcondition == true) {
-        loadMapsStage1();
-        flags.stageNr++;
-        changeClearcondition();
-        saveJSON();
-
-
-
-       }
-       else if (flags.stageNr >= 20 && flags.stageNr <25 && clearcondition == true) {
-        loadMapsStage1();
-        flags.stageNr++;
-        changeClearcondition();
-        saveJSON();
-
-
-
-       }
-       else if (flags.stageNr == 25  && clearcondition == true) {
-        loadMapsStage1();
-        changeClearcondition();
-        saveJSON();
-
-       }
+        loadStageBasedOnStageNR();
+       
     }
     if (xleft -45 <= playerXleft && xright +45 >= playerXright && ybot +45>= playerYbot && ytop-45 <= PlayerYtop && interactDivs[index].classList.contains("monster-event")) {//makes bounding info as if it was a cube
         startCombat();
@@ -146,4 +96,60 @@ function overlapDetect(){
     }
 }    
     }
+}
+
+
+export function loadStageBasedOnStageNR(){
+    if ( flags.stageNr >= 0 && flags.stageNr <6 && clearcondition == true) {//check for what stage
+        loadMapsStage1(); //loadar en exported function från map.js vilket editas med map.ts    
+        flags.stageNr++;
+        saveJSON();
+        changeClearcondition();
+        console.log("forest")
+    }   
+   else if (flags.stageNr >= 6 && flags.stageNr <10  && clearcondition == true) {
+    loadMapsStage2();
+    flags.stageNr++;
+    changeClearcondition();
+    saveJSON();
+
+    console.log("Cave")
+
+
+
+   }
+   else if (flags.stageNr >= 10 && flags.stageNr <15  && clearcondition == true) {
+    loadMapsStage1();
+    flags.stageNr++;
+    changeClearcondition();
+    saveJSON();
+
+
+
+   }
+   else if (flags.stageNr >= 15 && flags.stageNr <20  && clearcondition == true) {
+    loadMapsStage1();
+    flags.stageNr++;
+    changeClearcondition();
+    saveJSON();
+
+
+
+   }
+   else if (flags.stageNr >= 20 && flags.stageNr <25 && clearcondition == true) {
+    loadMapsStage1();
+    flags.stageNr++;
+    changeClearcondition();
+    saveJSON();
+
+
+
+   }
+   else if (flags.stageNr == 25  && clearcondition == true) {
+    loadMapsStage1();
+    changeClearcondition();
+    saveJSON();
+
+   }
+
 }
