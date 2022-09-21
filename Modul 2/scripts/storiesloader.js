@@ -42,11 +42,11 @@ function loadcommonstory() {
     var commonstories = {
         HelpEnok: { title: "Help Jonte with some snow shoveling", storytext: `Jonte has been struggeling to get ride of the snow infron of his house for the past hour, help him out? \n`,
             option1() {
-                updateData();
                 user.STR += x + 2;
                 flags.karma += 1;
                 console.log(user);
                 console.log("you have clicked the yes button");
+                updateData();
             },
             option2() {
                 updateData();
@@ -74,11 +74,11 @@ function loadcommonstory() {
         },
         StealFromOrphans: { title: "No Orphans alive", storytext: `Steal from some orphans \n `,
             option1() {
-                updateData();
                 user.MHP += 10;
                 flags.karma -= 20;
                 console.log(user);
                 button1.style.display = "none";
+                updateData();
             },
             option2() {
                 updateData();
@@ -113,11 +113,11 @@ function loadRareStories() {
     var rareStories = {
         HelpJonte: { title: "help Jonte", storytext: `Jonte is in need of code help him? \n `,
             option1() {
-                updateData();
                 user.MHP += x;
                 flags.karma += y;
                 console.log(user);
                 console.log("you have clicked the yes button");
+                updateData();
             },
             option2() {
                 updateData();
@@ -152,11 +152,11 @@ function loadEpicStories() {
     var epicStories = {
         HelpDan: { title: "help Dan", storytext: `Dan would like some help with code \n`,
             option1() {
-                updateData();
                 user.MHP += x;
                 flags.karma += y;
                 console.log(user);
                 console.log("you have clicked the yes button");
+                updateData();
             },
             option2() {
                 updateData();
