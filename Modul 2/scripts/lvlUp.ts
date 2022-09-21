@@ -2,9 +2,9 @@ import { user } from './updateStats.js';
 
 let freestats = 5;
 var minHP = user.MHP;
-var minDef = user.DEF;
-var minStr = user.STR;
-var minSpd = user.SPD;
+    var minDef = user.DEF;
+    var minStr = user.STR;
+    var minSpd = user.SPD;
 let Speed = <HTMLElement>document.querySelector('#SPDs2');
 let Strength = <HTMLElement>document.querySelector('#STRs2');
 let Defense = <HTMLElement>document.querySelector('#DEFs2');
@@ -19,19 +19,18 @@ var substats = document.querySelectorAll('.remove-stats-buttons');
 
 export function updateDisplay(){
 
-
+    minHP = user.MHP;
+    minDef = user.DEF;
+    minStr = user.STR;
+    minSpd = user.SPD;
     user.Level++;
-   Speed.innerHTML = ("SPD: ")+String(user.SPD);
-   Defense.innerHTML = ("DEF: ")+String(user.DEF);
-   Strength.innerHTML = ("STR: ")+String(user.STR);
-   Health.innerHTML = ("HP: ")+String(user.MHP);
-   ptsCounter.innerHTML = "Points Available: " + freestats;
-
-
-
+    Speed.innerHTML = ("SPD: ") + String(user.SPD);
+    Defense.innerHTML = ("DEF: ") + String(user.DEF);
+    Strength.innerHTML = ("STR: ") + String(user.STR);
+    Health.innerHTML = ("HP: ") + String(user.MHP);
+    ptsCounter.innerHTML = "Points Available: " + freestats;
 
 }
-console.trace(updateDisplay);
 
 
 addstats.forEach(function(addstats)
@@ -48,7 +47,7 @@ addstats.forEach(function(addstats)
                 if (freestats > 0) {
                     freestats--;
                     user.SPD += 1;
-                    console.log(user.SPD);
+                    //console.log(user.SPD);
 
 
                     Speed.innerHTML = "SPD: " + user.SPD;
@@ -64,7 +63,7 @@ addstats.forEach(function(addstats)
                 if (freestats > 0) {
                     freestats--;
                     user.STR += 1;
-                    console.log(user.STR);
+                    //console.log(user.STR);
 
                     
                     Strength.innerHTML = "STR: " + user.STR;
@@ -77,7 +76,7 @@ addstats.forEach(function(addstats)
                 if (freestats > 0) {
                     freestats--;
                     user.DEF += 1;
-                    console.log(user.DEF);
+                    //console.log(user.DEF);
 
 
                     Defense.innerHTML = "DEF: " + user.DEF;
@@ -90,7 +89,7 @@ addstats.forEach(function(addstats)
                 if (freestats > 0) {
                     freestats--;
                     user.MHP += 1;
-                    console.log(user.MHP);
+                    //console.log(user.MHP);
 
 
                     Health.innerHTML = "HP: " + user.MHP;
@@ -117,7 +116,7 @@ substats.forEach(function(substats)
                 if (user.SPD != minSpd) {
                     freestats++;
                     user.SPD -= 1;
-                    console.log(user.SPD);
+                    //console.log(user.SPD);
 
                     let Speed = <HTMLElement>document.querySelector('#SPDs2');
 
@@ -134,7 +133,7 @@ substats.forEach(function(substats)
                 if (user.STR != minStr) {
                     freestats++;
                     user.STR -= 1;
-                    console.log(user.STR);
+                    //console.log(user.STR);
 
                     let Strength = <HTMLElement>document.querySelector('#STRs2');
 
@@ -148,7 +147,7 @@ substats.forEach(function(substats)
                 if (user.DEF != minDef) {
                     freestats++;
                     user.DEF -= 1;
-                    console.log(user.DEF);
+                    //console.log(user.DEF);
 
                     let Defense = <HTMLElement>document.querySelector('#DEFs2');
 
@@ -162,7 +161,7 @@ substats.forEach(function(substats)
                 if (user.MHP != minHP) {
                     freestats++;
                     user.MHP -= 1;
-                    console.log(user.MHP);
+                    //console.log(user.MHP);
 
                     let Health = <HTMLElement>document.querySelector('#HPs2');
 
@@ -187,10 +186,10 @@ continueBtn.addEventListener('click', function(){
 if(freestats == 0){
     saveJSON();
     loadJSON();
-    console.log(user);
+    //console.log(user);
     var ccScreen = document.getElementById('lvlUpScreen');
     ccScreen.style.display = "none";
-    console.log("CanMove from CharCreator");
+    //console.log("CanMove from CharCreator");
     freestats = 5;
 }
 else{

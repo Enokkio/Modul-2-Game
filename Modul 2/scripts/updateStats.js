@@ -42,7 +42,7 @@ export function updateStats() {
             htmlElems[i].innerHTML = htmlElems[i].id + ": " + user[htmlElems[i].id];
         }
         else {
-            htmlElems[i].innerHTML = "HP: " + user.MHP + '/' + user.CHP;
+            htmlElems[i].innerHTML = "HP: " + user.CHP + '/' + user.MHP;
         }
     }
 }

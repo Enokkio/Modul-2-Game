@@ -1,4 +1,3 @@
-console.log("test");
 //clear condition, genom att döda ett mosnter clearar du en stage och kan gå till nästa
 import { changeClearcondition } from "./collision-detection.js";
 //Gets player action buttons
@@ -150,7 +149,7 @@ attackButton.addEventListener('click', function handleClick() {
     if (playerTurn == true && enemy.CHP != 0) {
         var damageDone = Math.ceil(user.STR * (genrateRandomNumber(90, 110) / 100));
         if (eBlockRounds > 0) {
-            damageDone = damageDone * (Math.ceil((50 + enemy.DEF - user.STR) / 100));
+            damageDone = Math.ceil(damageDone * ((50 + enemy.DEF - user.STR) / 100));
             enemy.CHP = enemy.CHP - damageDone;
             if (enemy.CHP <= 0) {
                 changeClearcondition();
@@ -162,6 +161,7 @@ attackButton.addEventListener('click', function handleClick() {
             if (eBlockRounds == 0) {
                 eBlock = false;
             }
+            changeTurn();
         }
         else {
             enemy.CHP -= damageDone;
@@ -171,8 +171,10 @@ attackButton.addEventListener('click', function handleClick() {
                 endCombat();
                 lvlUp();
             }
+            else {
+                changeTurn();
+            }
         }
-        changeTurn();
     }
 });
 //Spelarens block function
@@ -182,7 +184,7 @@ blockButton.addEventListener('click', function handleClick() {
         pBlockRounds = 3;
         logger("player", "block", 1);
         changeTurn();
-        console.log("You will block!");
+        //console.log("You will block!");
     }
 });
 //Spelarens heal function
@@ -192,11 +194,11 @@ healButton.addEventListener('click', function handleClick() {
         if ((user.CHP + healAmount) > user.MHP) {
             var hpOverMax = (user.CHP + healAmount) - user.MHP;
             user.CHP = user.MHP;
-            console.log('more than');
+            //console.log('more than');
             logger("player", "heal", (healAmount - hpOverMax));
         }
         else {
-            console.log('less than');
+            //console.log('less than');
             user.CHP = user.CHP + healAmount;
             logger("player", "heal", healAmount);
         }
@@ -207,7 +209,7 @@ healButton.addEventListener('click', function handleClick() {
 itemsButton.addEventListener('click', function handleClick() {
     if (playerTurn == true) {
         changeTurn();
-        console.log('items clicked');
+        //console.log('items clicked');
     }
 });
 function randomIntFromInterval(min, max) {
@@ -222,14 +224,16 @@ function enemyAction() {
         case 2:
         case 3:
             {
-                console.log('Enemy attacking');
+                //console.log('Enemy attacking');
                 var damageDone = Math.ceil(Math.ceil(enemy.STR * (genrateRandomNumber(90, 110) / 100)));
                 if (pBlockRounds > 0) {
                     pBlockRounds--;
                     if (pBlockRounds == 0) {
                         pBlock = false;
                     }
-                    damageDone = damageDone * (Math.ceil((50 + user.DEF - enemy.STR) / 100));
+                    console.log(damageDone);
+                    damageDone = (damageDone * Math.ceil(((50 + user.DEF - enemy.STR) / 100)));
+                    console.log(damageDone);
                     user.CHP = user.CHP - damageDone;
                     if (user.CHP <= 0) {
                         changeClearcondition();
@@ -262,20 +266,14 @@ function enemyAction() {
                 break;
             }
         case 6: {
-            console.log('Enemy Healing');
             if (enemy.CHP != enemy.MHP) {
                 var healAmount = Math.ceil(enemy.MHP * (genrateRandomNumber(30, 90) / 100));
-                console.log('First healAmount: ' + healAmount);
                 if ((enemy.CHP + healAmount) > enemy.MHP) {
                     var hpOverMax = (enemy.CHP + healAmount) - enemy.MHP;
-                    console.log('First hpOverMax: ' + hpOverMax);
                     enemy.CHP = enemy.MHP;
-                    console.log('First enemy.HP: ' + enemy.CHP);
-                    console.log('more than');
                     logger("enemy", "heal", (healAmount - hpOverMax));
                 }
                 else {
-                    console.log('less than' + healAmount);
                     enemy.CHP = enemy.CHP + healAmount;
                     logger("enemy", "heal", healAmount);
                 }

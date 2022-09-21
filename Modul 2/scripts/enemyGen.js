@@ -39,7 +39,7 @@ export function createEnemy() {
         return enemy;
     }
     else {
-        console.log("Creating enemy!");
+        //console.log("Creating enemy!");
         var enemyInd = genrateRandomNumber(0, 2);
         enemy.Name = ForestMobs[enemyInd];
         enemy.Level = genrateRandomNumber(flags.stageNr - 1, flags.stageNr + 1);
@@ -81,7 +81,7 @@ export function updateStatsE() {
             htmlElems[i].innerHTML = htmlElems[i].id + ": " + enemy[htmlElems[i].id];
         }
         else {
-            htmlElems[i].innerHTML = "HP: " + enemy.MHP + '/' + enemy.CHP;
+            htmlElems[i].innerHTML = "HP: " + enemy.CHP + '/' + enemy.MHP;
         }
     }
 }

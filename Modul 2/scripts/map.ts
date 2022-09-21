@@ -83,16 +83,16 @@ for (let index = 0; index < 1; index++) {
                                                                                                                            //gör så att den checkar även för vilken class
   if (xleft -45 <= playerXleft && xright +45 >= playerXright && ybot +45>= playerYbot && ytop-45 <= PlayerYtop && colideron == true ) 
   {
-    console.log("they are doing da thing");
+    //console.log("they are doing da thing");
     randompos();
 
   }
   else{
-    console.log(colideron)
+    //console.log(colideron)
     colideron = false;
-    console.log(colideron)
+    //console.log(colideron)
 
-    console.log("I am happening")
+    //console.log("I am happening")
   }
 }}}
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -118,17 +118,17 @@ let battleAudio = <HTMLVideoElement> document.getElementById("audio2");
   defaultAudio.loop  = true;
 
   defaultAudio.play();
-  console.log("U SING ME")
+  //console.log("U SING ME")
 }
 
 export function pauseDefAudio(){
   defaultAudio.pause();
-  console.log("U SING ME")
+  //console.log("U SING ME")
 }
 export function playBatAudio(){
   battleAudio.loop = true;
   battleAudio.play();
-  console.log("U SING ME")
+  //console.log("U SING ME")
 }
 
 export function pauseBatAudio(){
