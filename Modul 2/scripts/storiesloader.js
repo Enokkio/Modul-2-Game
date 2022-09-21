@@ -24,20 +24,27 @@ function updateData() {
     combatDone();
     storydiv.style.display = "none";
 }
+function buttonDisplaChange() {
+    let button1 = document.querySelector(".buttonYES");
+    let button2 = document.querySelector(".buttonNO");
+    button1.style.visibility = "hidden";
+    button2.style.visibility = "hidden";
+}
 //Needed empty function
 //--------------------------------------------------------------------Functions for stories to med loaded into function random story. -----------------------------------------------------------
 //--------------------------------------------------------------------Loading of commons stories -----------------------------------------------------------
 function loadcommonstory() {
     let button1 = document.querySelector(".buttonYES");
+    let button2 = document.querySelector(".buttonNO");
     var allcommon = [];
     let x = statyield1(flags.stageNr);
     let y = statyield1(flags.stageNr);
     var commonstories = {
-        HelpEnok: { title: "help Enok", storytext: `Help an Enok in need of code \n `,
+        HelpEnok: { title: "Help Jonte with some snow shoveling", storytext: `Jonte has been struggeling to get ride of the snow infron of his house for the past hour, help him out? \n`,
             option1() {
                 updateData();
-                user.MHP -= x;
-                flags.karma += y;
+                user.STR += x + 2;
+                flags.karma += 1;
                 console.log(user);
                 console.log("you have clicked the yes button");
             },
@@ -45,12 +52,21 @@ function loadcommonstory() {
                 updateData();
             }
         },
-        HelpCelvin: { title: "help celvin", storytext: `Help an Celvin in need of code \n `,
+        HelpCelvin: { title: "Help an old man", storytext: `An old man is struggling with getting up, help him?\n `,
             option1() {
-                updateData();
-                user.MHP += x;
-                flags.karma += y;
-                console.log(user);
+                buttonDisplaChange();
+                let z = Math.random() * 100;
+                console.log(z);
+                if (z <= 30) {
+                    user.CHP -= (x + 5);
+                    flags.karma += 5;
+                    console.log(user);
+                    innterStoryText.innerHTML = "The old man stabbed you, and you lost some hp";
+                }
+                else if (z = 2) {
+                    innterStoryText.innerHTML = "The old man is grateful and thanks you";
+                }
+                setTimeout(updateData, 3000);
             },
             option2() {
                 updateData();
@@ -62,6 +78,7 @@ function loadcommonstory() {
                 user.MHP += 10;
                 flags.karma -= 20;
                 console.log(user);
+                button1.style.display = "none";
             },
             option2() {
                 updateData();
@@ -89,11 +106,12 @@ function loadcommonstory() {
 //--------------------------------------------------------------------Loading of rare stories -----------------------------------------------------------
 function loadRareStories() {
     let button1 = document.querySelector(".buttonYES");
+    let button2 = document.querySelector(".buttonNO");
     var allRares = [];
     let x = statyield1(flags.stageNr);
     let y = statyield1(flags.stageNr);
     var rareStories = {
-        HelpJonte: { title: "help Enok", storytext: `Jonte is in need of code help him? \n `,
+        HelpJonte: { title: "help Jonte", storytext: `Jonte is in need of code help him? \n `,
             option1() {
                 updateData();
                 user.MHP += x;
@@ -127,6 +145,7 @@ function loadRareStories() {
 //--------------------------------------------------------------------Loading of epic stories -----------------------------------------------------------
 function loadEpicStories() {
     let button1 = document.querySelector(".buttonYES");
+    let button2 = document.querySelector(".buttonNO");
     var allEpics = [];
     let x = statyield1(flags.stageNr);
     let y = statyield1(flags.stageNr);
@@ -165,6 +184,7 @@ function loadEpicStories() {
 //--------------------------------------------------------------------Loading of mythic stories -----------------------------------------------------------
 function loadMythicStories() {
     let button1 = document.querySelector(".buttonYES");
+    let button2 = document.querySelector(".buttonNO");
     var allMythics = [];
     let x = statyield1(flags.stageNr);
     let y = statyield1(flags.stageNr);
@@ -206,6 +226,12 @@ export function Randomstory() {
     storydiv.style.display = "block";
     var storybox = document.querySelector('.story-event');
     storybox.style.display = "none";
+    let button1 = document.querySelector(".buttonYES");
+    let button2 = document.querySelector(".buttonNO");
+    button1.style.visibility = "visible";
+    button2.style.visibility = "visible";
+    button1.style.display = "block";
+    button2.style.display = "block";
     let chance = Math.random() * 100;
     if (chance <= 65) {
         console.log("common");

@@ -105,7 +105,14 @@ window.onload = function () {
 };
 //function to load eventboxes
 function loadboxes() {
-    StoryEvent.style.display = "block";
+    let chance = Math.random() * 100;
+    console.log(chance);
+    if (chance <= 20) {
+        StoryEvent.style.display = "none";
+        console.log("no story");
+    }
+    else
+        (StoryEvent.style.display = "block");
     MonsterEvent.style.display = "block";
 }
 function uponloadOfStage() {
@@ -150,8 +157,7 @@ export function loadMapsStage2() {
     player.style.top = 325 + 'px';
     player.style.left = 325 + 'px';
     uponloadOfStage();
-    StoryEvent.style.display = "block";
-    MonsterEvent.style.display = "block";
+    loadboxes();
     //We need a while stageclear = true do this function
     //And we need to use player data to see which stage to load, so for example if stage is   0<stage<5 we use a function between stages 1-5 through a function
     //satte in random number generation funktionen sådana att den skulle komma med i exporten
