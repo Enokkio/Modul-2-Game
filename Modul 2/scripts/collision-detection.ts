@@ -100,7 +100,7 @@ function overlapDetect(){
 
 
 export function loadStageBasedOnStageNR(){
-    if ( flags.stageNr >= 0 && flags.stageNr <6 && clearcondition == true) {//check for what stage
+    if ( flags.stageNr >= 0 && flags.stageNr <= 5 && clearcondition == true) {//check for what stage
         loadMapsStage1(); //loadar en exported function från map.js vilket editas med map.ts    
         flags.stageNr++;
         saveJSON();

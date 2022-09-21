@@ -5,9 +5,8 @@ import { flags } from './updateStats.js';
 //import colidor 
 import { combatDone } from './collision-detection.js';
 import { endGame } from './startCombat.js';
-import { loadStageBasedOnStageNR } from './collision-detection.js';
 function statyield1(stage) {
-    let x = Math.random(); //random integer från 0.55 to 1
+    let x = Math.random() + 0.3; //random integer från 0.3 to 1
     let y = Math.ceil((1.672 * flags.stageNr + 0.4806) * x);
     console.log(x);
     return y;
@@ -18,13 +17,17 @@ let titleText = document.querySelector(".story-title-tag");
 export function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
+function hideStorydiv() {
+    var storydiv = document.querySelector('.storydiv');
+    storydiv.style.display = "none";
+}
 //function to update data
 //---------------------------------------Function with loading stories and etc. -----------------------------------------------------------
 function updateData() {
     saveJSON();
-    var storydiv = document.querySelector('.storydiv');
     combatDone();
-    storydiv.style.display = "none";
+    hideStorydiv();
+    console.log("Im updating at the wrong time");
 }
 function buttonDisplaChange() {
     let button1 = document.querySelector(".buttonYES");
@@ -46,10 +49,10 @@ function loadcommonstory() {
             option1() {
                 buttonDisplaChange();
                 if (user.STR = 5 ** (flags.stageNr / (20) + 1)) {
-                    user.STR += x + 2;
-                    flags.karma += 1;
+                    user.STR += Math.floor(x + 2);
+                    flags.karma += 10;
                     // console.log(user);
-                    innterStoryText.innerHTML = `You gained ${x + 2} STR`;
+                    innterStoryText.innerHTML = `You gained ${x + 3} STR`;
                 }
                 else {
                     innterStoryText.innerHTML = `You lacked the strength to help Jon`;
@@ -70,15 +73,16 @@ function loadcommonstory() {
                     flags.karma += 10;
                     console.log(user);
                     innterStoryText.innerHTML = `The old man stabbed you, and you lost ${x + 5} HP`;
-                    if (user.CHP < 0) {
+                    if (user.CHP <= 0) {
+                        setInterval(hideStorydiv, 3000);
                         endGame();
                     }
                 }
                 else if (z <= 100) {
                     innterStoryText.innerHTML = `The old man thanks you`;
                     flags.karma += 10;
+                    setInterval(updateData, 3000);
                 }
-                setTimeout(updateData, 3000);
             },
             option2() {
                 updateData();
@@ -90,6 +94,30 @@ function loadcommonstory() {
                 flags.karma -= 20;
                 console.log(user);
                 updateData();
+            },
+            option2() {
+                updateData();
+            }
+        },
+        StrangeFood: { title: "A strange looking apple appeared", storytext: `Do you wish to consume it? \n `,
+            option1() {
+                buttonDisplaChange();
+                let z = Math.random() * 100;
+                if (z <= 10) {
+                    innterStoryText.innerHTML = `the apple was quite delicious \n Healed for ${x}`;
+                    user.CHP += x;
+                    flags.deliciousApple = true;
+                    setTimeout(updateData, 3000);
+                }
+                else {
+                    innterStoryText.innerHTML = `That was a horrid tasting apple \n Lost ${x} HP`;
+                    user.CHP -= x * 100;
+                    flags.horridApple = true;
+                    if (user.CHP <= 0) {
+                        setInterval(hideStorydiv, 3000);
+                        endGame();
+                    }
+                }
             },
             option2() {
                 updateData();
@@ -122,19 +150,43 @@ function loadRareStories() {
     let x = statyield1(flags.stageNr);
     let y = statyield1(flags.stageNr);
     var rareStories = {
-        HelpJonte: { title: "help Jonte", storytext: `Jonte is in need of code help him? \n `,
+        HelpJonte: { title: "", storytext: `Jonte is in need of code help him? \n `,
             option1() {
                 buttonDisplaChange();
-                user.MHP += x;
-                flags.karma += y;
+                user.MHP += Math.ceil(x);
+                flags.karma += Math.ceil(y);
                 console.log(user);
                 console.log("you have clicked the yes button");
                 updateData();
             },
             option2() {
                 updateData();
-            }
-        },
+            },
+            RawChicken: { title: "Someones favorite food", storytext: `Upon your journey you get offered some raw chicken, wanna try? \n `,
+                option1() {
+                    buttonDisplaChange();
+                    let z = Math.random() * 100;
+                    if (z <= 20) {
+                        innterStoryText.innerHTML = `Chicken = protenin, Protein = Strength \n Gained ${Math.ceil(x)}`;
+                        user.STR += Math.ceil(x);
+                        flags.ChickenEater = true;
+                        setTimeout(updateData, 3000);
+                    }
+                    else {
+                        innterStoryText.innerHTML = `Nex time someone offers you raw chicken you should question yourself if you eat it \n lost ${Math.ceil(x)}`;
+                        user.CHP -= Math.ceil(x);
+                        flags.Foodpoisoning = true;
+                        if (user.CHP <= 0) {
+                            setInterval(hideStorydiv, 3000);
+                            endGame();
+                        }
+                    }
+                },
+                option2() {
+                    updateData();
+                }
+            },
+        }
     };
     for (var key in rareStories) { //Each object in the object common stories is a key. So  We are telling it to att each key in commonstories to allcommon
         allRares.push(rareStories[key]);
@@ -162,17 +214,37 @@ function loadEpicStories() {
     let x = statyield1(flags.stageNr);
     let y = statyield1(flags.stageNr);
     var epicStories = {
-        HelpDan: { title: "Return to previous stage", storytext: `Finding a portal that leads to the previous stage, du you wish to enter?\n`,
+        FindingTreasure: { title: "The classic Treasure", storytext: `You've found a treasure chest, do you wish to open it?\n`,
             option1() {
-                buttonDisplaChange();
-                flags.stageNr -= 2;
-                if (flags.stageNr - 2 <= 0) {
-                    innterStoryText.innerHTML = `The previous stage doesnt exist`;
+                //Run Random item generation script
+                updateData();
+            },
+            option2() {
+                updateData();
+            }
+        },
+        WagyuCow: { title: "Delicious Meat", storytext: `You've stumbled upon a fat cow and feel quite hungry, wanna go for a hunt? \n`,
+            option1() {
+                let z = Math.random() * 100;
+                if (z <= 80) {
+                    let b = Math.random() * 100;
+                    innterStoryText.innerHTML = `You've succesfully hunted a cow \n`;
+                    if (b <= 95) {
+                        innterStoryText.innerHTML += ' and you cooked it succesfully \n healed for max HP';
+                        user.CHP = user.MHP;
+                    }
+                    else {
+                        innterStoryText.innerHTML += ' But you succesfully managed to burn the meat when cooking it';
+                    }
                 }
-                else {
-                    loadStageBasedOnStageNR();
+                else if (z <= 90) {
+                    innterStoryText.innerHTML = `Failed to capture a ccow i see\n`;
                 }
-                setTimeout(updateData, 2000);
+                else if (z <= 100) {
+                    innterStoryText.innerHTML = `You broke your arm when you fell while hunting the cow \n lost permanent 10% HP`;
+                    user.MHP -= Math.ceil(user.MHP * 0.1);
+                }
+                setInterval(updateData, 3000);
             },
             option2() {
                 updateData();
@@ -217,7 +289,7 @@ function loadMythicStories() {
                 }
                 else if (z <= 100) {
                     innterStoryText.innerHTML = "After an intense game you somehow come out on top \n You get a 15% STR increase ";
-                    user.STR = user.STR * 1.15;
+                    user.STR = Math.ceil(user.STR * 1.15);
                 }
                 setTimeout(updateData, 3000);
             },
@@ -233,7 +305,7 @@ function loadMythicStories() {
                 if (z <= 99.9) {
                     console.log(user);
                     innterStoryText.innerHTML = `Taking the deal with the devil doubled your strength in exchange for ${user.MHP * 0.9}`;
-                    user.MHP = Math.ceil(user.MHP * 0.9);
+                    user.MHP = Math.ceil(user.MHP * 0.1);
                     user.STR = Math.ceil(user.STR * 2);
                     flags.DevilsDeal = true;
                 }
@@ -265,6 +337,7 @@ function loadMythicStories() {
                     user.SPD = Math.ceil(user.SPD * 1.2);
                     user.DEF = Math.ceil(user.DEF * 1.2);
                     user.CHP = user.MHP;
+                    flags.HolyWarrior = true;
                 }
                 else if (flags.karma <= 0) {
                     innterStoryText.innerHTML = "The statue gives no reaction";
