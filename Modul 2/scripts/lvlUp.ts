@@ -18,6 +18,7 @@ var substats = document.querySelectorAll('.remove-stats-buttons');
 
 
 export function updateDisplay(){
+    loadJSON();
 
     minHP = user.MHP;
     minDef = user.DEF;

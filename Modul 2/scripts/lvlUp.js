@@ -12,6 +12,7 @@ var ptsCounter = document.getElementById('ptsCounter2');
 var addstats = document.querySelectorAll('.add-stats-buttons');
 var substats = document.querySelectorAll('.remove-stats-buttons');
 export function updateDisplay() {
+    loadJSON();
     minHP = user.MHP;
     minDef = user.DEF;
     minStr = user.STR;

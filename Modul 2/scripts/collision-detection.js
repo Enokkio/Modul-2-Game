@@ -13,6 +13,7 @@ export function changeClearcondition() {
 import { pauseDefAudio } from './map.js';
 import { playBatAudio } from './map.js';
 //define monster event and etc
+var storybox = document.querySelector('.story-event');
 //import map loading functions
 import { loadMapsStage1 } from './map.js';
 import { loadMapsStage2 } from './map.js';
