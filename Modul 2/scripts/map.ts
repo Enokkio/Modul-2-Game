@@ -46,11 +46,11 @@ var StoryEvent = document.querySelector('.story-event') as HTMLElement;
 //randompositionning
 function randompos(){
 MonsterEvent.style.left = randomIntFromInterval(100,600) + 'px';
-MonsterEvent.style.top = randomIntFromInterval(75,300) + 'px';
+MonsterEvent.style.top = randomIntFromInterval(50,275) + 'px';
 
 StoryEvent.style.left = randomIntFromInterval(100,600) + 'px';
 
-StoryEvent.style.top = randomIntFromInterval(75,300) + 'px';
+StoryEvent.style.top = randomIntFromInterval(50,275) + 'px';
 colideron = true;
 
 

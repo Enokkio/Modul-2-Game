@@ -14,6 +14,10 @@ export let flags = {
     story2: false,
     story3: false,
     story4: false,
+    DevilsDeal: false,
+    HolyWarrior: false,
+    horridApple: false,
+    deliciousApple: false,
 };
 export let sword = {
     Name: 'Sword',
