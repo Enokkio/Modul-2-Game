@@ -46,7 +46,6 @@ function genrateRandomNumber(min, max)
 
 import { flags } from './updateStats.js';
 
-//importing music
 
 
 export function createEnemy()

@@ -28,13 +28,15 @@ var storybox = <HTMLElement>document.querySelector('.story-event');
 //import map loading functions
 import { loadMapsStage1 } from './map.js';
 import { loadMapsStage2 } from './map.js';
+import { loadMapsStage3 } from './map.js';
 
-import { startCombat } from './startCombat.js';
+
+
+import {portalOff, startCombat } from './startCombat.js';
 import { flags, saveJSON } from "./updateStats.js";
 //import story loading function
 import { Randomstory} from "./storiesloader.js"
 import { getRndInteger } from './storiesloader.js'
-import { portalOff } from './startCombat.js'
 
 
 
@@ -125,7 +127,7 @@ function overlapDetect(){
 
    }
    else if (flags.stageNr >= 10 && flags.stageNr <15  && clearcondition == true) {
-    loadMapsStage1();
+    loadMapsStage3();
     flags.stageNr++;
     changeClearcondition();
     saveJSON();

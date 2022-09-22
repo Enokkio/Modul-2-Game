@@ -181,41 +181,19 @@ function randomIntFromInterval(min, max) { // min and max included
     player.style.top = 325 + 'px' ;
     player.style.left = 325 + 'px' ;
     colideron = true;
-uponloadOfStage();    
+uponloadOfStage(); 
+
     //We need a while stageclear = true do this function
     //And we need to use player data to see which stage to load, so for example if stage is   0<stage<5 we use a function between stages 1-5 through a function
     //satte in random number generation funktionen sådana att den skulle komma med i exporten
     
-
-    function randomIntFromInterval(min, max) { // min and max included 
-            return Math.floor(Math.random() * (max - min + 1) + min)
-          }
     
-    
-        switch(randomIntFromInterval(1, 1)){
-    
-            case 1://draws 1 possible map of forests map
-
             PlayerStage.style.backgroundImage = "url('images/caveFiller.png')";
+            wall.style.backgroundImage = "url('images/cave_background.png')";
 
     
-            break;
     
-    
-            case 2:
-            break;
-    
-            case 3:
-            break;
-    
-    
-            case 4:
-            break;
-    
-            case 5:
-            break;
-    
-       }
+       
     
        
     
@@ -228,40 +206,111 @@ player.style.left = 325 + 'px' ;
 
 
 uponloadOfStage();    
-loadboxes();
 
 
 //We need a while stageclear = true do this function
 //And we need to use player data to see which stage to load, so for example if stage is   0<stage<5 we use a function between stages 1-5 through a function
 //satte in random number generation funktionen sådana att den skulle komma med i exporten
-function randomIntFromInterval(min, max) { // min and max included 
-        return Math.floor(Math.random() * (max - min + 1) + min)
-      }
+
+        PlayerStage.style.backgroundImage = "url('images/innerCaveFiller.png')";
+        wall.style.backgroundImage = "url('images/innerCave_background.png')";
 
 
-    switch(randomIntFromInterval(1, 1)){
-
-        case 1://draws 1 possible map of forests map
-        PlayerStage.style.backgroundImage = "url('images/pixelCave.png')";
-
-        break;
-
-
-        case 2:
-        break;
-
-        case 3:
-        break;
-
-
-        case 4:
-        break;
-
-        case 5:
-        break;
-
-   }
+        
 
    
 
 }
+
+export function loadMapsStage3(){//Exporteras så den kan användas i collission-detection.ts
+  //reset location of player
+  player.style.top = 325 + 'px' ;
+  player.style.left = 325 + 'px' ;
+  
+  
+  uponloadOfStage();    
+  
+  
+  //We need a while stageclear = true do this function
+  //And we need to use player data to see which stage to load, so for example if stage is   0<stage<5 we use a function between stages 1-5 through a function
+  //satte in random number generation funktionen sådana att den skulle komma med i exporten
+  
+          PlayerStage.style.backgroundImage = "url('images/mike.png')";
+          wall.style.backgroundImage = "url('images/ww.png')";
+  
+  
+          
+  
+     
+  
+  }
+
+  export function loadMapsStage4(){//Exporteras så den kan användas i collission-detection.ts
+    //reset location of player
+    player.style.top = 325 + 'px' ;
+    player.style.left = 325 + 'px' ;
+    
+    
+    uponloadOfStage();    
+    
+    
+    //We need a while stageclear = true do this function
+    //And we need to use player data to see which stage to load, so for example if stage is   0<stage<5 we use a function between stages 1-5 through a function
+    //satte in random number generation funktionen sådana att den skulle komma med i exporten
+    
+            PlayerStage.style.backgroundImage = "url('images/mike.png')";
+            wall.style.backgroundImage = "url('images/ww.png')";
+    
+    
+            
+    
+       
+    
+    }
+
+    export function loadMapsStage5(){//Exporteras så den kan användas i collission-detection.ts
+      //reset location of player
+      player.style.top = 325 + 'px' ;
+      player.style.left = 325 + 'px' ;
+      
+      
+      uponloadOfStage();    
+      
+      
+      //We need a while stageclear = true do this function
+      //And we need to use player data to see which stage to load, so for example if stage is   0<stage<5 we use a function between stages 1-5 through a function
+      //satte in random number generation funktionen sådana att den skulle komma med i exporten
+      
+              PlayerStage.style.backgroundImage = "url('images/mike.png')";
+              wall.style.backgroundImage = "url('images/ww.png')";
+      
+      
+              
+      
+         
+      
+      }
+
+      export function loadMapsStage6(){//Exporteras så den kan användas i collission-detection.ts
+        //reset location of player
+        player.style.top = 325 + 'px' ;
+        player.style.left = 325 + 'px' ;
+        
+        
+        uponloadOfStage();    
+        
+        
+        //We need a while stageclear = true do this function
+        //And we need to use player data to see which stage to load, so for example if stage is   0<stage<5 we use a function between stages 1-5 through a function
+        //satte in random number generation funktionen sådana att den skulle komma med i exporten
+        
+                PlayerStage.style.backgroundImage = "url('images/mike.png')";
+                wall.style.backgroundImage = "url('images/ww.png')";
+        
+        
+                
+        
+           
+        
+        }
+  
