@@ -1,4 +1,4 @@
-import { flags, sword, helmet, armor } from './updateStats.js';
+import { flags, saveJSON, sword, helmet, armor } from './updateStats.js';
 let userStage = flags.stageNr;
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -212,6 +212,7 @@ takeBtn.addEventListener('click', function () {
     console.log(sword);
     console.log(armor);
     console.log(helmet);
+    saveJSON();
 });
 var passBtn = document.getElementById('passBtn');
 passBtn.addEventListener('click', function () {

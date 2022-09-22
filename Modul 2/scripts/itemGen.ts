@@ -250,6 +250,7 @@ document.getElementById('gearScreen').style.display = "none";
 console.log(sword);
 console.log(armor);
 console.log(helmet);
+saveJSON();
 
 
 
