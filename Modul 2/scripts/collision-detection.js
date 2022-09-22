@@ -17,7 +17,7 @@ var storybox = document.querySelector('.story-event');
 //import map loading functions
 import { loadMapsStage1 } from './map.js';
 import { loadMapsStage2 } from './map.js';
-import { startCombat } from './startCombat.js';
+import { portalOff, startCombat } from './startCombat.js';
 import { flags, saveJSON } from "./updateStats.js";
 //import story loading function
 import { Randomstory } from "./storiesloader.js";
@@ -50,7 +50,9 @@ function overlapDetect() {
             }
             //gör så att den checkar även för vilken class
             if (xleft - 45 <= playerXleft && xright + 45 >= playerXright && ybot + 45 >= playerYbot && ytop - 45 <= PlayerYtop && interactDivs[index].classList.contains("next-level")) { //makes bounding info as if it was a cube
+               
                 loadStageBasedOnStageNR();
+                portalOff();
             }
             if (xleft - 45 <= playerXleft && xright + 45 >= playerXright && ybot + 45 >= playerYbot && ytop - 45 <= PlayerYtop && interactDivs[index].classList.contains("monster-event")) { //makes bounding info as if it was a cube
                 startCombat();

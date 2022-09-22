@@ -20,6 +20,8 @@ var enemy = createEnemy();
 import { user } from './updateStats.js';
 import { endCombat, lvlUp } from './startCombat.js';
 import { endGame } from './startCombat.js';
+import { portal } from './startCombat.js';
+
 
 //playerTurn visar om det är spelarens tur eller inte
 var playerTurn = null;
@@ -190,6 +192,7 @@ attackButton.addEventListener('click', function handleClick() {
                 changeClearcondition();
                 endCombat();
                 lvlUp();
+                portal();
             }
             logger("player", "attack", damageDone);
             eBlockRounds--;
@@ -207,6 +210,8 @@ attackButton.addEventListener('click', function handleClick() {
                 changeClearcondition();
                 endCombat();
                 lvlUp();
+                portal();
+
             }else{
                 changeTurn();
             }

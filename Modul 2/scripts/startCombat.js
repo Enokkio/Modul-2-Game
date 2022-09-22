@@ -49,3 +49,9 @@ export function lvlUp() {
     document.getElementById('lvlUpScreen').style.display = "initial";
     updateDisplay();
 }
+export function portal() {
+    document.getElementById('rotating').style.display = "initial";
+}
+export function portalOff() {
+    document.getElementById('rotating').style.display = "none";
+}
