@@ -94,9 +94,9 @@ else if(flags.stageNr == 20) {
 }
 else if(flags.stageNr == 25) {
     enemy.Name = "Dungeon Lord";
-    enemy.MHP = Math.ceil(1.5* user.MHP);
+    enemy.MHP = Math.ceil(2.5* user.MHP);
     enemy.CHP = Math.ceil(enemy.MHP);
-    enemy.STR = Math.ceil(1.3 * user.STR);
+    enemy.STR = Math.ceil(1.1 * user.STR);
     enemy.DEF = Math.ceil(user.DEF*1.5);
     enemy.SPD = Math.ceil(user.SPD*0.9 + 40);
 
