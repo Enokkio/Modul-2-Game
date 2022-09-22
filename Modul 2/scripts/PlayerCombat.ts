@@ -577,7 +577,7 @@ let chance = Math.random()*100
              pBlock = false;
          }
          console.log(damageDone);
-         damageDone = (damageDone * Math.ceil(((50 + user.DEF - enemy.STR) / 100)));
+         damageDone = (damageDone * Math.ceil(((50 + enemy.DEF - user.STR) / 100)));
          console.log(damageDone);
          user.CHP = user.CHP - damageDone;
          if (user.CHP <= 0) {

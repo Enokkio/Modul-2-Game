@@ -52,6 +52,7 @@ function overlapDetect() {
             //gör så att den checkar även för vilken class
             if (xleft - 45 <= playerXleft && xright + 45 >= playerXright && ybot + 45 >= playerYbot && ytop - 45 <= PlayerYtop && interactDivs[index].classList.contains("next-level")) { //makes bounding info as if it was a cube
                 loadStageBasedOnStageNR();
+                portalOff();
             }
             if (xleft - 45 <= playerXleft && xright + 45 >= playerXright && ybot + 45 >= playerYbot && ytop - 45 <= PlayerYtop && interactDivs[index].classList.contains("monster-event")) { //makes bounding info as if it was a cube
                 startCombat();
