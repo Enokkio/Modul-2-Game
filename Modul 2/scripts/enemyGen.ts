@@ -115,10 +115,10 @@ else{
     if(enemy.Level < 1)
         enemy.Level = 1;
 
-    enemy.MHP = 5;
-    enemy.STR = 1;
-    enemy.DEF = 1;
-    enemy.SPD = 1;
+    enemy.MHP = Math.ceil(user.MHP * 0.5);
+    enemy.STR = Math.ceil(user.STR * 0.5);
+    enemy.DEF = Math.ceil(user.DEF * 0.5);
+    enemy.SPD = Math.ceil(user.SPD * 0.5);
 
     for(var i = enemy.Level * 3; i > 0; i--)
     {

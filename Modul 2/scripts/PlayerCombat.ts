@@ -236,14 +236,15 @@ attackButton.addEventListener('click', function handleClick() {
             if (enemy.CHP <= 0) {
                 changeClearcondition();
                 endCombat();
-                lvlUp();
+            }else{
+                changeTurn();
             }
             logger("player", "attack", damageDone);
             eBlockRounds--;
             if (eBlockRounds == 0) {
                 eBlock = false;
             }
-            changeTurn();
+            
             
             
         }
@@ -253,7 +254,6 @@ attackButton.addEventListener('click', function handleClick() {
             if (enemy.CHP <= 0) {
                 changeClearcondition();
                 endCombat();
-                lvlUp();
             }else{
                 changeTurn();
             }

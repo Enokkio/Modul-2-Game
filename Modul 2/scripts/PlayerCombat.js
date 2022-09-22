@@ -36,7 +36,7 @@ var MgHealing = new item("Magical healing scroll", 0, user.MHP);
 var WeakPot = new item("Weakening potion", 4, enemy.STR * 0.3);
 //Gets player (Needs to get saved stats instead of player framework, inte något du måste göra nu)
 import { user } from './updateStats.js';
-import { endCombat, lvlUp } from './startCombat.js';
+import { endCombat } from './startCombat.js';
 import { endGame } from './startCombat.js';
 //playerTurn visar om det är spelarens tur eller inte
 var playerTurn = null;
@@ -179,14 +179,15 @@ attackButton.addEventListener('click', function handleClick() {
             if (enemy.CHP <= 0) {
                 changeClearcondition();
                 endCombat();
-                lvlUp();
+            }
+            else {
+                changeTurn();
             }
             logger("player", "attack", damageDone);
             eBlockRounds--;
             if (eBlockRounds == 0) {
                 eBlock = false;
             }
-            changeTurn();
         }
         else {
             enemy.CHP -= damageDone;
@@ -194,7 +195,6 @@ attackButton.addEventListener('click', function handleClick() {
             if (enemy.CHP <= 0) {
                 changeClearcondition();
                 endCombat();
-                lvlUp();
             }
             else {
                 changeTurn();
