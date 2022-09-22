@@ -29,6 +29,9 @@ var storybox = <HTMLElement>document.querySelector('.story-event');
 import { loadMapsStage1 } from './map.js';
 import { loadMapsStage2 } from './map.js';
 import { loadMapsStage3 } from './map.js';
+import { loadMapsStage4 } from './map.js';
+import { loadMapsStage5 } from './map.js';
+
 
 
 
@@ -136,7 +139,7 @@ function overlapDetect(){
 
    }
    else if (flags.stageNr >= 15 && flags.stageNr <20  && clearcondition == true) {
-    loadMapsStage1();
+    loadMapsStage4();
     flags.stageNr++;
     changeClearcondition();
     saveJSON();
@@ -145,7 +148,7 @@ function overlapDetect(){
 
    }
    else if (flags.stageNr >= 20 && flags.stageNr <25 && clearcondition == true) {
-    loadMapsStage1();
+    loadMapsStage5();
     flags.stageNr++;
     changeClearcondition();
     saveJSON();
@@ -153,11 +156,6 @@ function overlapDetect(){
 
 
    }
-   else if (flags.stageNr == 25  && clearcondition == true) {
-    loadMapsStage1();
-    changeClearcondition();
-    saveJSON();
-
-   }
+   
 
 }
