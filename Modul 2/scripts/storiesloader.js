@@ -214,17 +214,21 @@ function loadEpicStories() {
                     if (b <= 95) {
                         innterStoryText.innerHTML += ' and you cooked it succesfully \n healed for max HP';
                         user.CHP = user.MHP;
+                        buttonDisplaChange();
                     }
                     else {
                         innterStoryText.innerHTML += ' But you succesfully managed to burn the meat when cooking it';
+                        buttonDisplaChange();
                     }
                 }
                 else if (z <= 90) {
                     innterStoryText.innerHTML = `Failed to capture a ccow i see\n`;
+                    buttonDisplaChange();
                 }
                 else if (z <= 100) {
                     innterStoryText.innerHTML = `You broke your arm when you fell while hunting the cow \n lost permanent 10% HP`;
                     user.MHP -= Math.ceil(user.MHP * 0.1);
+                    buttonDisplaChange();
                 }
                 setTimeout(updateData, 3000);
             },
