@@ -20,6 +20,8 @@ export let flags = {
     deliciousApple: false,
     Foodpoisoning: false,
     ChickenEater: false,
+    WonAgainsGiant: false,
+    LoseAgainstGiant: false,
 };
 export let items = {
     Item1: "Health Potion",
