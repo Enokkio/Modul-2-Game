@@ -5,6 +5,7 @@ const forestmap1 = new Image();
 forestmap1.src = 'images/forest.png';
 //define  
 var PlayerStage = document.querySelector('#canvas');
+var wall = document.querySelector('#wall');
 const player = document.getElementById('player');
 const cavemap1 = new Image();
 cavemap1.src = 'images/pixelCave.png';
@@ -135,7 +136,7 @@ export function loadMapsStage1() {
     }
     switch (randomIntFromInterval(1, 1)) {
         case 1: //draws 1 possible map of forests map
-            PlayerStage.style.backgroundImage = "url('images/forest.png')";
+            PlayerStage.style.backgroundImage = "url('images/caveFiller.png')";
             break;
         case 2:
             break;

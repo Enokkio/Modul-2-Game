@@ -7,6 +7,7 @@ forestmap1.src = 'images/forest.png';
 
 //define  
 var PlayerStage = document.querySelector('#canvas') as HTMLElement;
+var wall = document.querySelector('#wall') as HTMLElement;
 const player = document.getElementById('player')
 const cavemap1 = new Image();
 cavemap1.src = 'images/pixelCave.png';
@@ -195,7 +196,7 @@ uponloadOfStage();
     
             case 1://draws 1 possible map of forests map
 
-            PlayerStage.style.backgroundImage = "url('images/forest.png')";
+            PlayerStage.style.backgroundImage = "url('images/caveFiller.png')";
 
     
             break;
