@@ -67,7 +67,7 @@ z-index: 2;
     display: none;
 }
 
-#stat-display #Name{
+.stat-display #Name, .Estat-display #Name{
     top: -5px;
     left: -5px;
     position: absolute;
@@ -78,7 +78,7 @@ z-index: 2;
     font-size: 20px;
 }
 
-#stat-display #Level{
+.stat-display #Level, .Estat-display #Level{
     left: 78%;
     top: -5px;
     position: absolute;
@@ -89,7 +89,7 @@ z-index: 2;
     border-width: 4px;
 }
 
-#stat-display #CHP{
+.stat-display #CHP, .Estat-display #HP{
     top: 29px;
     left: -5px;
     width: 80px;
@@ -100,7 +100,7 @@ z-index: 2;
     display: inline-block;
 }
 
-#stat-display #STR{
+.stat-display #STR, .Estat-display #STR{
     top: 105px;
     left: 5px;
     width: 100px;
@@ -111,7 +111,7 @@ z-index: 2;
     display: inline-block;
 }
 
-#stat-display #DEF{
+.stat-display #DEF, .Estat-display #DEF{
     top: 105px;
     left: 122.5px;
     width: 100px;
@@ -122,7 +122,7 @@ z-index: 2;
     display: inline-block;
 }
 
-#stat-display #SPD{
+.stat-display #SPD, .Estat-display #SPD{
     top: 105px;
     left: 237.5px;
     width: 100px;
