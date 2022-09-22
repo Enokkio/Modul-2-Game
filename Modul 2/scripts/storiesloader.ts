@@ -7,7 +7,6 @@ import { flags } from './updateStats.js';
 import { combatDone} from './collision-detection.js'
 import { changeClearcondition} from './collision-detection.js'
 import { endGame } from './startCombat.js'
-import {loadStageBasedOnStageNR} from './collision-detection.js'
 
 //import updatedisplay to update stuff
 import {updateDisplay} from './lvlUp.js'
