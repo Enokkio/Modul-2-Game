@@ -113,3 +113,5 @@ export function updateStats() {
 export function deleteJSON(){
     localStorage.clear();
 }
+
+

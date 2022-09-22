@@ -36,8 +36,9 @@ var MgHealing = new item("Magical healing scroll", 0, user.MHP);
 var WeakPot = new item("Weakening potion", 4, enemy.STR * 0.3);
 //Gets player (Needs to get saved stats instead of player framework, inte något du måste göra nu)
 import { user } from './updateStats.js';
-import { endCombat } from './startCombat.js';
+import { endCombat, lvlUp } from './startCombat.js';
 import { endGame } from './startCombat.js';
+import { portal } from './startCombat.js';
 //playerTurn visar om det är spelarens tur eller inte
 var playerTurn = null;
 // pBlock visar om spelaren har valt "Block", kommer vara true tills spelaren har blockerat en attack, måste sättas till "false" av fienden när fienden attackerar
@@ -179,6 +180,8 @@ attackButton.addEventListener('click', function handleClick() {
             if (enemy.CHP <= 0) {
                 changeClearcondition();
                 endCombat();
+                lvlUp();
+                portal();
             }
             else {
                 changeTurn();
@@ -195,6 +198,8 @@ attackButton.addEventListener('click', function handleClick() {
             if (enemy.CHP <= 0) {
                 changeClearcondition();
                 endCombat();
+                lvlUp();
+                portal();
             }
             else {
                 changeTurn();
@@ -244,6 +249,7 @@ var eBlockRounds = 0;
 var eBlock = false;
 function enemyAction() {
     if (enemy.Name == "Forest Lord") {
+        console.log("forst lord AI");
         let chance = Math.random() * 100;
         if (chance <= 50) {
             var damageDone = Math.ceil(Math.ceil(enemy.STR * (genrateRandomNumber(90, 110) / 100)));
@@ -356,6 +362,182 @@ function enemyAction() {
             }
             else {
                 enemyAction();
+            }
+        }
+    }
+    else if (enemy.Name == "Minotaur") {
+        let chance = Math.random() * 100;
+        if (chance <= 70) {
+            var damageDone = Math.ceil(Math.ceil(enemy.STR * (genrateRandomNumber(90, 110) / 100)));
+            if (pBlockRounds > 0) {
+                pBlockRounds--;
+                if (pBlockRounds == 0) {
+                    pBlock = false;
+                }
+                console.log(damageDone);
+                damageDone = (damageDone * Math.ceil(((50 + user.DEF - enemy.STR) / 100)));
+                console.log(damageDone);
+                user.CHP = user.CHP - damageDone;
+                if (user.CHP <= 0) {
+                    changeClearcondition();
+                    endGame();
+                }
+            }
+            else {
+                user.CHP -= damageDone;
+                if (user.CHP <= 0) {
+                    changeClearcondition();
+                    endGame();
+                }
+            }
+            logger("enemy", "attack", damageDone);
+            changeTurn();
+        }
+        else if (chance <= 85) {
+            if (eBlock) {
+                enemyAction();
+            }
+            else {
+                eBlock = true;
+                eBlockRounds = 3;
+                logger("enemy", "block", damageDone);
+                changeTurn();
+            }
+        }
+        else {
+            if (enemy.CHP != enemy.MHP) {
+                var healAmount = Math.ceil(enemy.MHP * (genrateRandomNumber(30, 90) / 100));
+                if ((enemy.CHP + healAmount) > enemy.MHP) {
+                    var hpOverMax = (enemy.CHP + healAmount) - enemy.MHP;
+                    enemy.CHP = enemy.MHP;
+                    logger("enemy", "heal", (healAmount - hpOverMax));
+                }
+                else {
+                    enemy.CHP = enemy.CHP + healAmount;
+                    logger("enemy", "heal", healAmount);
+                }
+                changeTurn();
+            }
+            else {
+                enemyAction();
+            }
+        }
+    }
+    else if (enemy.Name == "Dragon Gate Keeper") {
+        if (enemy.CHP <= enemy.CHP * 0.2) {
+            let chance = Math.random() * 100;
+            if (chance <= 30) {
+                var damageDone = Math.ceil(Math.ceil(enemy.STR * (genrateRandomNumber(90, 110) / 100)));
+                if (pBlockRounds > 0) {
+                    pBlockRounds--;
+                    if (pBlockRounds == 0) {
+                        pBlock = false;
+                    }
+                    console.log(damageDone);
+                    damageDone = (damageDone * Math.ceil(((50 + user.DEF - enemy.STR) / 100)));
+                    console.log(damageDone);
+                    user.CHP = user.CHP - damageDone;
+                    if (user.CHP <= 0) {
+                        changeClearcondition();
+                        endGame();
+                    }
+                }
+                else {
+                    user.CHP -= damageDone;
+                    if (user.CHP <= 0) {
+                        changeClearcondition();
+                        endGame();
+                    }
+                }
+                logger("enemy", "attack", damageDone);
+                changeTurn();
+            }
+            else if (chance <= 70) {
+                if (eBlock) {
+                    enemyAction();
+                }
+                else {
+                    eBlock = true;
+                    eBlockRounds = 3;
+                    logger("enemy", "block", damageDone);
+                    changeTurn();
+                }
+            }
+            else {
+                if (enemy.CHP != enemy.MHP) {
+                    var healAmount = Math.ceil(enemy.MHP * (genrateRandomNumber(30, 90) / 100));
+                    if ((enemy.CHP + healAmount) > enemy.MHP) {
+                        var hpOverMax = (enemy.CHP + healAmount) - enemy.MHP;
+                        enemy.CHP = enemy.MHP;
+                        logger("enemy", "heal", (healAmount - hpOverMax));
+                    }
+                    else {
+                        enemy.CHP = enemy.CHP + healAmount;
+                        logger("enemy", "heal", healAmount);
+                    }
+                    changeTurn();
+                }
+                else {
+                    enemyAction();
+                }
+            }
+        }
+        else {
+            let chance = Math.random() * 100;
+            if (chance <= 70) {
+                var damageDone = Math.ceil(Math.ceil(enemy.STR * (genrateRandomNumber(90, 110) / 100)));
+                if (pBlockRounds > 0) {
+                    pBlockRounds--;
+                    if (pBlockRounds == 0) {
+                        pBlock = false;
+                    }
+                    console.log(damageDone);
+                    damageDone = (damageDone * Math.ceil(((50 + user.DEF - enemy.STR) / 100)));
+                    console.log(damageDone);
+                    user.CHP = user.CHP - damageDone;
+                    if (user.CHP <= 0) {
+                        changeClearcondition();
+                        endGame();
+                    }
+                }
+                else {
+                    user.CHP -= damageDone;
+                    if (user.CHP <= 0) {
+                        changeClearcondition();
+                        endGame();
+                    }
+                }
+                logger("enemy", "attack", damageDone);
+                changeTurn();
+            }
+            else if (chance <= 90) {
+                if (eBlock) {
+                    enemyAction();
+                }
+                else {
+                    eBlock = true;
+                    eBlockRounds = 3;
+                    logger("enemy", "block", damageDone);
+                    changeTurn();
+                }
+            }
+            else {
+                if (enemy.CHP != enemy.MHP) {
+                    var healAmount = Math.ceil(enemy.MHP * (genrateRandomNumber(30, 90) / 100));
+                    if ((enemy.CHP + healAmount) > enemy.MHP) {
+                        var hpOverMax = (enemy.CHP + healAmount) - enemy.MHP;
+                        enemy.CHP = enemy.MHP;
+                        logger("enemy", "heal", (healAmount - hpOverMax));
+                    }
+                    else {
+                        enemy.CHP = enemy.CHP + healAmount;
+                        logger("enemy", "heal", healAmount);
+                    }
+                    changeTurn();
+                }
+                else {
+                    enemyAction();
+                }
             }
         }
     }
