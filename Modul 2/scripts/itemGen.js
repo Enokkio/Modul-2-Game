@@ -1,4 +1,6 @@
-import { flags, saveJSON, sword, helmet, armor } from './updateStats.js';
+import { updateDisplay } from './lvlUp.js';
+import { lvlUp } from './startCombat.js';
+import { flags, saveJSON, sword, helmet, armor, loadJSON, user } from './updateStats.js';
 let userStage = flags.stageNr;
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -112,24 +114,59 @@ function createItem() {
     }
 }
 export function updateItem() {
+    console.log(whatItem);
     switch (whatItem) {
         case 1:
+            user.MHP -= sword.HP;
+            user.STR -= sword.STR;
+            user.DEF -= sword.DEF;
+            user.SPD -= sword.SPD;
             sword.HP = Gsword.HP;
             sword.STR = Gsword.STR;
             sword.DEF = Gsword.DEF;
             sword.SPD = Gsword.SPD;
+            user.MHP += sword.HP;
+            user.STR += sword.STR;
+            user.DEF += sword.DEF;
+            user.SPD += sword.SPD;
+            console.log(user);
+            saveJSON();
+            loadJSON();
+            updateDisplay();
             break;
         case 2:
+            user.MHP -= armor.HP;
+            user.STR -= armor.STR;
+            user.DEF -= armor.DEF;
+            user.SPD -= armor.SPD;
             armor.HP = Garmor.HP;
             armor.STR = Garmor.STR;
             armor.DEF = Garmor.DEF;
             armor.SPD = Garmor.SPD;
+            user.MHP += armor.HP;
+            user.STR += armor.STR;
+            user.DEF += armor.DEF;
+            user.SPD += armor.SPD;
+            saveJSON();
+            loadJSON();
+            updateDisplay();
             break;
         case 3:
+            user.MHP -= helmet.HP;
+            user.STR -= helmet.STR;
+            user.DEF -= helmet.DEF;
+            user.SPD -= helmet.SPD;
             helmet.HP = Ghelmet.HP;
             helmet.STR = Ghelmet.STR;
             helmet.DEF = Ghelmet.DEF;
             helmet.SPD = Ghelmet.SPD;
+            user.MHP += helmet.HP;
+            user.STR += helmet.STR;
+            user.DEF += helmet.DEF;
+            user.SPD += helmet.SPD;
+            saveJSON();
+            loadJSON();
+            updateDisplay();
             break;
     }
 }
@@ -200,19 +237,20 @@ export function showNewItem() {
     }
 }
 export function itemDroped() {
-    document.getElementById('gearScreen').style.display = "flex";
     createItem();
     showYourItem();
     showNewItem();
+    document.getElementById('gearScreen').style.display = "flex";
 }
 var takeBtn = document.getElementById('takeBtn');
 takeBtn.addEventListener('click', function () {
     updateItem();
     document.getElementById('gearScreen').style.display = "none";
+    saveJSON();
     console.log(sword);
     console.log(armor);
     console.log(helmet);
-    saveJSON();
+    lvlUp();
 });
 var passBtn = document.getElementById('passBtn');
 passBtn.addEventListener('click', function () {
@@ -220,4 +258,5 @@ passBtn.addEventListener('click', function () {
     console.log(sword);
     console.log(armor);
     console.log(helmet);
+    lvlUp();
 });

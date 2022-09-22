@@ -157,11 +157,11 @@
 
           <!-- lvl Up -->
 
-          <div id="lvlUpScreen" class="grid place-items-center z-10">
-            <div class="bg-gray-400 border-8 border-gray-300 w-[25vw] absolute  h-[60vh] rounded" style="left: 175px">
+          <div id="lvlUpScreen" class="grid place-items-center hidden z-10">
+            <div class="bg-gray-400 border-8 border-gray-300 w-[210px] absolute  h-[335px] rounded left-[260px] ">
         
         
-              <p id="ptsCounter2" class="stat border-gray-500 bg-slate-400 border-4 pl-[20px] pr-[20px] rounded w-fit mt-[60px] ml-[10px]">Points Available: 999</p>
+              <p id="ptsCounter2" class="stat border-gray-500 bg-slate-400 border-4 pl-[20px] pr-[17.5px] rounded w-fit mt-[10px] mx-[10px]">Points Available: 5</p>
         
               <p id="HPs2" class="stat border-gray-500 border-4 bg-slate-400 pl-[20px] pr-[20px] rounded min-w-[91px] max-w-[100px] w-fit absolute mt-[10px] ml-[10px]">HP: 5 </p>
               <p id="HealthAdd2" class="stat add-stats-buttons border-gray-500 border-4 bg-gray-300 w-[30px] rounded relative top-[10px] left-[110px] pl-[3px] h-[32px] hover:bg-gray-400">＋</p>
@@ -181,7 +181,7 @@
               <p id="SpeedAdd2" class="stat add-stats-buttons rounded border-gray-500 border-4 bg-gray-300 w-[30px] relative bottom-[0] left-[110px] pl-[3px] h-[32px] hover:bg-gray-400">＋</p>
               <p id="SpeedSub2" class="stat remove-stats-buttons rounded border-gray-500 border-4 bg-gray-300 w-[30px] relative bottom-[32px] left-[150px] pl-[7px] h-[32px] hover:bg-gray-400">-</p>
         
-              <p id="continueBtn" class="stat rounded border-gray-500 border-4 pl-[20px] pr-[20px] w-fit absolute mt-[-63px] ml-[70%] bg-gray-300 hover:bg-gray-400"> Continue</p>
+              <p id="continueBtn" class="stat rounded border-gray-500 border-4 pl-[20px] pr-[20px] w-fit absolute mt-[-22px] ml-[20%] bg-gray-300 hover:bg-gray-400"> Continue</p>
         
             </div>
         
@@ -189,24 +189,22 @@
 
           <!-- death screen -->
 
-          <div id="deathScreen" class="grid place-items-center z-10">
-              <div class="bg-gray-400 border-8 border-gray-300 w-[25vw] absolute  h-[60vh] rounded text-center" style="left: 175px">
+          <div id="deathScreen" class="z-10">
+              <div class="bg-gray-400 border-8 border-gray-300 w-[400px] absolute h-[400px] left-[150px] rounded text-center">
           
-                <h1 class=" text-red-600 text-5xl mb-[80px] font-serif select-none">YOU DEAD</h1>
+                <h1 class=" text-red-600 text-5xl mb-[80px] font-serif select-none">YOU DIED</h1>
                 <a id="restart"href="mainMeny.html" class=" text-2xl border-4 w-fit m-auto pl-[5px]  pr-[5px] hover:bg-gray-500 select-none">RESTART</a>
-                <iframe src="https://giphy.com/embed/ObXgWWGHzMlVe" width="400" height="250" frameBorder="0" class=" m-auto" allowFullScreen></iframe>
-          
               </div>
           </div>
 
           <!-- Gear screen -->
-          <div id="gearScreen" class="items-center justify-center text-center absolute hidden bg-gray-400 border-8 border-gray-300 w-[500px] left-[100px] top-[60px] h-[400px] rounded z-10">
+          <div id="gearScreen" class="items-center justify-center text-center hidden absolute bg-gray-400 border-8 border-gray-300 w-[500px] left-[100px] top-[60px] h-[400px] rounded z-10">
           
-            <div id="passBtn" class="bg-red-400 border-8 border-red-300 w-[100px] top-[100px] absolute h-[50px] rounded hover:border-red-500"><p class="mt-[3px]">Pass</p></div>
-            <div id="takeBtn" class="bg-green-400 border-8 border-green-300 w-[100px] top-[40px] absolute h-[50px] rounded hover:border-green-500 h"><p class="mt-[3px]">Take</p></div>
+            <div id="passBtn" class="bg-red-400 border-8 border-red-300 w-[100px] top-[200px] select-none absolute h-[50px] rounded hover:border-red-500"><p class="mt-[3px]">Pass</p></div>
+            <div id="takeBtn" class="bg-green-400 border-8 border-green-300 w-[100px] top-[100px] select-none absolute h-[50px] rounded hover:border-green-500 h"><p class="mt-[3px]">Take</p></div>
         
             <div id="yourItem"class="bg-red-400 border-8 border-gray-300 w-[150px] absolute right-[5%] top-[5%] h-[150px] rounded">
-              <div id="" class="block overflow-hidden bg-red-400 border-4 absolute w-[150px] h-[142px] top-[165px] -left-2">
+              <div id="" class="block overflow-hidden bg-red-400 border-8  border-gray-300 rounded absolute w-[150px] h-[142px] top-[165px] -left-2">
                 <ul class="newItemStats" >
                   <li class="" id="Name">Name</li>
                   <li class="" id="HP">HP:</li>
@@ -218,7 +216,7 @@
             </div>
 
             <div id="newItem" class="bg-blue-400 border-8 border-gray-300 w-[150px] absolute left-[5%] top-[5%] h-[150px] rounded">
-              <div id="" class="block overflow-hidden bg-blue-400 border-4 absolute w-[150px] h-[142px] top-[165px] -left-2">
+              <div id="" class="block overflow-hidden bg-blue-400 border-gray-300 border-8 rounded absolute w-[150px] h-[142px] top-[165px] -left-2">
                 <ul class="yourItemStats">
                   <li class="" id="Name">Name</li>
                   <li class="" id="HP">HP:</li>

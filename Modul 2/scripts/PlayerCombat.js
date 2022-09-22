@@ -183,12 +183,14 @@ attackButton.addEventListener('click', function handleClick() {
                 lvlUp();
                 portal();
             }
+            else {
+                changeTurn();
+            }
             logger("player", "attack", damageDone);
             eBlockRounds--;
             if (eBlockRounds == 0) {
                 eBlock = false;
             }
-            changeTurn();
         }
         else {
             enemy.CHP -= damageDone;

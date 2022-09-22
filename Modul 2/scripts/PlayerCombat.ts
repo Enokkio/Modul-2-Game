@@ -240,13 +240,16 @@ attackButton.addEventListener('click', function handleClick() {
                 endCombat();
                 lvlUp();
                 portal();
+            }else{
+                changeTurn();
+
             }
             logger("player", "attack", damageDone);
             eBlockRounds--;
             if (eBlockRounds == 0) {
                 eBlock = false;
             }
-            changeTurn();
+            
             
             
         }
