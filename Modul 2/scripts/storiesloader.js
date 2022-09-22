@@ -3,6 +3,7 @@ import { saveJSON } from "./updateStats.js";
 import { user } from './updateStats.js';
 import { flags } from './updateStats.js';
 //import colidor 
+import { itemDroped } from './itemGen.js';
 import { combatDone } from './collision-detection.js';
 import { endGame } from './startCombat.js';
 function statyield1(stage) {
@@ -52,7 +53,7 @@ function loadcommonstory() {
                 console.log(z);
                 if (z <= 20) {
                     user.CHP -= (x + 5);
-                    flags.karma += 10;
+                    flags.karma += 20;
                     console.log(user);
                     innterStoryText.innerHTML = `The old man stabbed you, and you lost ${x + 5} HP`;
                     if (user.CHP <= 0) {
@@ -73,7 +74,7 @@ function loadcommonstory() {
         StealFromOrphans: { title: "Unflattering thievery", storytext: `Steal food from some orphans \n `,
             option1() {
                 user.MHP += 10;
-                flags.karma -= 20;
+                flags.karma -= 30;
                 console.log(user);
                 updateData();
             },
@@ -81,7 +82,7 @@ function loadcommonstory() {
                 updateData();
             }
         },
-        StrangeFood: { title: "A strange looking apple appeared", storytext: `Do you wish to consume it? \n `,
+        StrangeFood: { title: "You've found a strange looking apple appeared", storytext: `Do you wish to consume it? \n `,
             option1() {
                 buttonDisplaChange();
                 let z = Math.random() * 100;
@@ -93,13 +94,120 @@ function loadcommonstory() {
                 }
                 else {
                     innterStoryText.innerHTML = `That was a horrid tasting apple \n Lost ${x} HP`;
-                    user.CHP -= x * 100;
+                    user.CHP -= Math.floor(x);
                     flags.horridApple = true;
                     if (user.CHP <= 0) {
                         setTimeout(hideStorydiv, 3000);
                         endGame();
                     }
                 }
+            },
+            option2() {
+                updateData();
+            }
+        },
+        Rats: { title: "Running rat", storytext: ` A rat appears and steals your hp, chase after it?\n `,
+            option1() {
+                buttonDisplaChange();
+                let z = Math.random() * 100;
+                if (z <= 70) {
+                    innterStoryText.innerHTML = `You've successfully captured the rat \n Gained: ${x} speed`;
+                    user.SPD += x;
+                    setTimeout(updateData, 3000);
+                    flags.karma += 20;
+                }
+                else {
+                    innterStoryText.innerHTML = `You failed to capture the rat \n Lost ${Math.ceil(user.MHP * 0.1)}  HP`;
+                    user.MHP -= Math.ceil(user.MHP * 0.1);
+                    flags.karma += 20;
+                    setTimeout(updateData, 3000);
+                }
+            },
+            option2() {
+                innterStoryText.innerHTML = `You didn't chase after it \n Lost ${Math.ceil(user.MHP * 0.1)}  HP`;
+                user.MHP -= Math.ceil(user.MHP * 0.1);
+                setTimeout(updateData, 3000);
+            }
+        },
+        lifeCrystal: { title: "Finding gems", storytext: `You found a red crystal on the floor, wanna pick it up?\n `,
+            option1() {
+                buttonDisplaChange();
+                innterStoryText.innerHTML = `As you pick up the crystal you feel a an increase in vitality HP \n +${Math.ceil(user.MHP / 10)} Hp`;
+                user.MHP += Math.ceil(user.MHP / 10);
+                user.CHP += Math.ceil(user.MHP / 10);
+                setTimeout(updateData, 3000);
+            },
+            option2() {
+                updateData();
+            }
+        },
+        Speed: { title: "Finding gems", storytext: `You found a shimmering blue crystal on the floor, wanna pick it up?\n `,
+            option1() {
+                buttonDisplaChange();
+                innterStoryText.innerHTML = `As you pick up the crystal you feel a an increase in speed \n +${Math.ceil(user.SPD / 10)} speed`;
+                user.SPD += Math.ceil(user.MHP / 10);
+                setTimeout(updateData, 3000);
+            },
+            option2() {
+                updateData();
+            }
+        },
+        defense: { title: "Finding gems", storytext: `You found a radiant grey crystal on the floor, wanna pick it up?\n `,
+            option1() {
+                buttonDisplaChange();
+                innterStoryText.innerHTML = `As you pick up the crystal you feel a an increase in defense \n +${Math.ceil(user.DEF / 10)} defense`;
+                user.DEF += Math.ceil(user.MHP / 10);
+                setTimeout(updateData, 3000);
+            },
+            option2() {
+                updateData();
+            }
+        },
+        darkRed: { title: "Finding gems", storytext: `You found a radiant Dark red crystal on the floor, wanna pick it up?\n `,
+            option1() {
+                buttonDisplaChange();
+                innterStoryText.innerHTML = `As you pick up the crystal you feel your wounds healing \n +${Math.ceil((user.MHP - user.CHP) / 2)} defense`;
+                user.CHP += Math.ceil((user.MHP - user.CHP) / 2);
+                setTimeout(updateData, 3000);
+            },
+            option2() {
+                updateData();
+            }
+        },
+        Foraging: { title: "Searching for things", storytext: `As you travel you get the idea to forage for something useful, are you gonna do it?\n `,
+            option1() {
+                buttonDisplaChange();
+                let z = getRndInteger(1, 6);
+                if (z == 1) {
+                    innterStoryText.innerHTML = `You've picked up some strange mushrooms and ate them \n gained ${Math.floor(x)} speed`;
+                    user.SPD += Math.floor(x);
+                }
+                else if (z == 2) {
+                    innterStoryText.innerHTML = `You stubbed your toe while foragin, and gave up on doing it -${Math.floor(x)} speed`;
+                    user.SPD -= Math.floor(x);
+                    if (user.SPD <= 5) {
+                        user.SPD = 6;
+                    }
+                }
+                else if (z == 3) {
+                    innterStoryText.innerHTML = `You somehow found fruits. + ${Math.floor(x)}hp`;
+                    user.CHP += Math.floor(x);
+                    if (user.CHP > user.MHP) {
+                        user.CHP = user.MHP;
+                    }
+                }
+                else if (z == 4) {
+                    innterStoryText.innerHTML = `You found a stone, it did nothing`;
+                }
+                else if (z == 5) {
+                    innterStoryText.innerHTML = `You helped some forest animals, good karma`;
+                    flags.karma += 20;
+                }
+                else if (z == 6) {
+                    innterStoryText.innerHTML = `You destroyed some ant nests, bad karma bro`;
+                    flags.karma -= 50;
+                }
+                setTimeout(updateData, 3000);
             },
             option2() {
                 updateData();
@@ -132,14 +240,14 @@ function loadRareStories() {
     let x = statyield1(flags.stageNr);
     let y = statyield1(flags.stageNr);
     var rareStories = {
-        HelpJonte: { title: "", storytext: `Jonte is in need of code help him? \n `,
+        Redmagician: { title: "The magician in red", storytext: `A magician offers you to convert 10% of your hp to STR in exchange for 10% of your HP \n `,
             option1() {
                 buttonDisplaChange();
-                user.MHP += Math.ceil(x);
-                flags.karma += Math.ceil(y);
-                console.log(user);
-                console.log("you have clicked the yes button");
-                updateData();
+                innterStoryText.innerHTML = `The Magician took ${Math.ceil(user.MHP * 0.2)} HP and you gained ${Math.ceil(user.MHP * 0.1)} strength`;
+                user.STR += Math.ceil(user.MHP * 0.1);
+                user.MHP -= Math.ceil(user.MHP * 0.2);
+                user.CHP -= Math.ceil(user.CHP * 0.2);
+                setTimeout(updateData, 3000);
             },
             option2() {
                 updateData();
@@ -155,7 +263,7 @@ function loadRareStories() {
                         setTimeout(updateData, 3000);
                     }
                     else {
-                        innterStoryText.innerHTML = `Nex time someone offers you raw chicken you should question yourself if you eat it \n lost ${Math.ceil(x)}`;
+                        innterStoryText.innerHTML = `Next time someone offers you raw chicken you should question yourself if you eat it \n lost ${Math.ceil(x)}`;
                         user.CHP -= Math.ceil(x);
                         flags.Foodpoisoning = true;
                         if (user.CHP <= 0) {
@@ -167,6 +275,53 @@ function loadRareStories() {
                 option2() {
                     updateData();
                 }
+            },
+            Thegiant: { title: "Sunil the giant", storytext: `Sunil the giant challanges you to an arm wresting match, do you accept his challange?\n `,
+                option1() {
+                    buttonDisplaChange();
+                    if (user.STR < 300) {
+                        innterStoryText.innerHTML = `Sunil easily destroyed you as if you were just an tiny insiginificant ant, He tells you to return when you're stronger`;
+                        flags.LoseAgainstGiant = true;
+                    }
+                    else {
+                        innterStoryText.innerHTML = `You defeated sunil in arm wrestling + \n He gives you an item from his collection`;
+                        itemDroped();
+                        flags.WonAgainsGiant = true;
+                    }
+                    setTimeout(updateData, 3000);
+                },
+                option2() {
+                    updateData();
+                },
+            },
+            blueMagician: { title: "The magician in blue", storytext: `A magician offers you to convert 10% of your STR to defense in exchange for 10% of your HP \n `,
+                option1() {
+                    buttonDisplaChange();
+                    innterStoryText.innerHTML = `The Magician took ${Math.ceil(user.MHP * 0.1)} HP and you gained ${Math.ceil(user.STR * 0.1)} defense, while your strength decreased by ${Math.ceil(user.STR * 0.1)}`;
+                    user.STR -= Math.ceil(user.STR * 0.1);
+                    user.DEF += Math.ceil(user.STR * 0.1);
+                    user.MHP -= Math.ceil(user.MHP * 0.1);
+                    user.CHP -= Math.ceil(user.CHP * 0.1);
+                    setTimeout(updateData, 3000);
+                },
+                option2() {
+                    updateData();
+                },
+            },
+            MagicianInRainbow: { title: "A color happy magician", storytext: `A magician offers you to convert 30% HP into 10% stat increanse in all other stats \n `,
+                option1() {
+                    buttonDisplaChange();
+                    innterStoryText.innerHTML = `The Magician took ${Math.floor(user.MHP * 0.3)} HP and you gained 10% in other stats`;
+                    user.STR += Math.ceil(user.STR * 0.1);
+                    user.DEF += Math.ceil(user.DEF * 0.1);
+                    user.SPD += Math.ceil(user.SPD * 0.1);
+                    user.MHP -= Math.ceil(user.MHP * 0.3);
+                    user.CHP -= Math.ceil(user.CHP * 0.3);
+                    setTimeout(updateData, 3000);
+                },
+                option2() {
+                    updateData();
+                },
             },
         }
     };
@@ -198,7 +353,7 @@ function loadEpicStories() {
     var epicStories = {
         FindingTreasure: { title: "The classic Treasure", storytext: `You've found a treasure chest, do you wish to open it?\n`,
             option1() {
-                //Run Random item generation script
+                itemDroped();
                 updateData();
             },
             option2() {
@@ -210,6 +365,7 @@ function loadEpicStories() {
                 let z = Math.random() * 100;
                 if (z <= 80) {
                     let b = Math.random() * 100;
+                    flags.karma -= 20;
                     innterStoryText.innerHTML = `You've succesfully hunted a cow \n`;
                     if (b <= 95) {
                         innterStoryText.innerHTML += ' and you cooked it succesfully \n healed for max HP';
@@ -217,7 +373,7 @@ function loadEpicStories() {
                         buttonDisplaChange();
                     }
                     else {
-                        innterStoryText.innerHTML += ' But you succesfully managed to burn the meat when cooking it';
+                        innterStoryText.innerHTML += 'But you succesfully managed to burn the meat when cooking it';
                         buttonDisplaChange();
                     }
                 }
@@ -233,6 +389,7 @@ function loadEpicStories() {
                 setTimeout(updateData, 3000);
             },
             option2() {
+                flags.karma += 20;
                 updateData();
             }
         },
@@ -330,7 +487,8 @@ function loadMythicStories() {
                 }
                 else if (flags.karma <= -100) {
                     innterStoryText.innerHTML = "The statue gives takes 20% HP for your bad karma ";
-                    user.MHP = user.MHP * 0.8;
+                    user.MHP = Math.floor(user.MHP * 0.8);
+                    user.CHP = Math.floor(user.CHP * 0.8);
                 }
                 setTimeout(updateData, 3000);
             },
