@@ -6,11 +6,13 @@ import { flags } from './updateStats.js';
 //import colidor 
 import { combatDone} from './collision-detection.js'
 import { changeClearcondition} from './collision-detection.js'
+import { endGame } from './startCombat.js'
+import {loadStageBasedOnStageNR} from './collision-detection.js'
 
 //import updatedisplay to update stuff
 import {updateDisplay} from './lvlUp.js'
 function statyield1(stage) {
-    let x = Math.random();//random integer från 0.55 to 1
+    let x = Math.random()+0.3;//random integer från 0.3 to 1
     
     let y = Math.ceil((1.672 *flags.stageNr+ 0.4806)*x)
     console.log(x)
@@ -29,16 +31,18 @@ function statyield1(stage) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
   
+function hideStorydiv(){
+  var storydiv = <HTMLElement>document.querySelector('.storydiv');
+  storydiv.style.display = "none"
 
+}
   //function to update data
   //---------------------------------------Function with loading stories and etc. -----------------------------------------------------------
   function updateData() {
     saveJSON();
-    var storydiv = <HTMLElement>document.querySelector('.storydiv');
     combatDone();
-  storydiv.style.display = "none"
-
-
+    hideStorydiv();
+console.log("Im updating at the wrong time")
 
 }
 function buttonDisplaChange(){
@@ -64,53 +68,79 @@ function buttonDisplaChange(){
     let x=statyield1(flags.stageNr)
     let y=statyield1(flags.stageNr)
     var commonstories = {
-      HelpEnok: { title: "Help Jonte with some snow shoveling", storytext: `Jonte has been struggeling to get ride of the snow infron of his house for the past hour, help him out? \n`,
-          option1() {
-                updateData();
-              user.STR += x +2;
-              flags.karma += 1;
-              console.log(user);
-              console.log("you have clicked the yes button");
-          },
-          option2(){
-            updateData();
-          }
-         },
-      HelpCelvin: { title: "Help an old man", storytext: `An old man is struggling with getting up, help him?\n `,
+      helpoldman: { title: "Help an old man", storytext: `An old man is struggling with walking, help him?\n `,
           option1() {
       
             buttonDisplaChange();
             let z = Math.random() *100;
             console.log(z)
 
-            if (z <=  30) {
+            if (z <=  20) {
               user.CHP -= (x+5);
-              flags.karma += 5;
+              flags.karma += 10;
               console.log(user);
               
-              innterStoryText.innerHTML = "The old man stabbed you, and you lost some hp";
+              innterStoryText.innerHTML = `The old man stabbed you, and you lost ${x+5} HP`;
+              if (user.CHP <=0) {
+  
+                setTimeout(hideStorydiv, 3000)
+                endGame();
+              }
             }
-            else if(z = 2){
-              innterStoryText.innerHTML = "The old man is grateful and thanks you";
-            }
-              
-
-
+            else if(z <=100){
+              innterStoryText.innerHTML = `The old man thanks you`;
+              flags.karma += 10;
               setTimeout(updateData, 3000)
+            }
+
+          
+              
           },
           option2(){
             updateData();
 
           }
          },
-      StealFromOrphans: { title: "No Orphans alive", storytext: `Steal from some orphans \n `,
+      StealFromOrphans: { title: "Unflattering thievery", storytext: `Steal food from some orphans \n `,
           option1() {
-            updateData();
 
               user.MHP += 10;
               flags.karma -= 20;
               console.log(user);
-              button1.style.display = "none";
+              updateData();
+
+              
+          },
+          option2(){
+            updateData();
+          }
+        },
+          StrangeFood: { title: "A strange looking apple appeared", storytext: `Do you wish to consume it? \n `,
+          option1() {
+            buttonDisplaChange();
+            let z = Math.random() *100;
+            if (z <= 10) {
+              innterStoryText.innerHTML = `the apple was quite delicious \n Healed for ${x}`;
+              user.CHP +=x;
+              flags.deliciousApple = true;
+              setTimeout(updateData, 3000)
+
+
+            }
+            else
+            {
+              innterStoryText.innerHTML = `That was a horrid tasting apple \n Lost ${x} HP`;
+
+              user.CHP -=x*100;
+              flags.horridApple = true;
+              if (user.CHP<=0) {
+                setTimeout(hideStorydiv,3000)
+                endGame();
+              }
+
+
+            }
+
               
           },
           option2(){
@@ -118,6 +148,7 @@ function buttonDisplaChange(){
           }
           
         },
+     
     };
     
     
@@ -156,20 +187,55 @@ function buttonDisplaChange(){
     let y=statyield1(flags.stageNr)
     var rareStories = {
 
-      HelpJonte: { title: "help Jonte", storytext: `Jonte is in need of code help him? \n `,
+      HelpJonte: { title: "", storytext: `Jonte is in need of code help him? \n `,
           option1() {
-            updateData();
-              user.MHP += x;
-              flags.karma += y;
+            buttonDisplaChange()
+              user.MHP += Math.ceil(x);
+              flags.karma += Math.ceil(y);
               console.log(user);
               console.log("you have clicked the yes button");
+              updateData();
+
+          },
+          option2(){
+            updateData();
+          },
+
+
+          RawChicken: { title: "Someones favorite food", storytext: `Upon your journey you get offered some raw chicken, wanna try? \n `,
+          option1() {
+            buttonDisplaChange();
+            let z = Math.random() *100;
+            if (z <= 20) {
+              innterStoryText.innerHTML = `Chicken = protenin, Protein = Strength \n Gained ${Math.ceil(x)}`;
+              user.STR+=Math.ceil(x);
+              flags.ChickenEater = true;
+
+              setTimeout(updateData, 3000)
+
+            }
+            else
+            {
+              innterStoryText.innerHTML = `Nex time someone offers you raw chicken you should question yourself if you eat it \n lost ${Math.ceil(x)}`;
+
+              user.CHP -=Math.ceil(x);
+              flags.Foodpoisoning = true;
+              if (user.CHP <=0) {
+                setTimeout(hideStorydiv,3000)
+                endGame();
+              }
+
+
+            }
+
+              
           },
           option2(){
             updateData();
           }
-         },
-      
-    };
+         },    
+    }
+  };
     
     
   
@@ -209,20 +275,50 @@ function buttonDisplaChange(){
     let y=statyield1(flags.stageNr)
     var epicStories = {
 
-      HelpDan: { title: "help Dan", storytext: `Dan would like some help with code \n`,
-          option1() {
-            updateData();
+         FindingTreasure: { title: "The classic Treasure", storytext: `You've found a treasure chest, do you wish to open it?\n`,
+         option1() {
 
-              user.MHP += x;
-              flags.karma += y;
-              console.log(user);
-              console.log("you have clicked the yes button");
-          },
-          option2(){
-            updateData();
-          }
+          //Run Random item generation script
+        updateData();           
+
          },
-      
+         option2(){
+           updateData();
+         }
+         },
+         WagyuCow: { title: "Delicious Meat", storytext: `You've stumbled upon a fat cow and feel quite hungry, wanna go for a hunt? \n`,
+         option1() {
+          let z = Math.random() *100;
+          if (z <= 80) {
+            let b =Math.random() *100;
+            innterStoryText.innerHTML = `You've succesfully hunted a cow \n`
+            if (b <= 95) {
+              innterStoryText.innerHTML += ' and you cooked it succesfully \n healed for max HP';
+              user.CHP = user.MHP;
+
+            }
+            else{
+              innterStoryText.innerHTML += ' But you succesfully managed to burn the meat when cooking it';
+            }
+          }
+          else if ( z <= 90)
+          {
+            innterStoryText.innerHTML = `Failed to capture a ccow i see\n`
+          }
+          else if ( z <= 100)
+          {
+            innterStoryText.innerHTML = `You broke your arm when you fell while hunting the cow \n lost permanent 10% HP`
+            user.MHP -= Math.ceil(user.MHP*0.1)
+          }
+          
+          setTimeout(updateData,3000)
+                   
+
+         },
+         option2(){
+           updateData();
+         }
+         },
     };
     
     
@@ -266,20 +362,111 @@ function buttonDisplaChange(){
     let y=statyield1(flags.stageNr)
     var mythicStories = {
 
-      HelpFabian: { title: "help Fabian", storytext: `Suprisingly Fabian needs help with some code \n`,
-          option1() {
-              
-              user.MHP += x;
-              flags.karma += y;
-              console.log(user);
-              console.log("you have clicked the yes button");
-              updateData();
-          },
-          option2(){
-            updateData();
-          }
-        },
+       CardGame: { title: "A Game Of Cards", storytext: `A groud of strangers appears in front of you and invites you to a game of cards. Do you wish to join them?  \n`,
+      option1() {
       
+        buttonDisplaChange();
+        let z = Math.random() *100;
+        console.log(z)
+
+        if (z <=  80) {
+          console.log(user);
+          
+          innterStoryText.innerHTML = `While you didn't win the game was quite relaxing \n You become fully healed ` ;
+          user.CHP = user.MHP;
+        }
+        else if(z <= 100){
+          innterStoryText.innerHTML = "After an intense game you somehow come out on top \n You get a 15% STR increase ";
+          user.STR = Math.ceil(user.STR*1.15)
+        }
+          
+
+
+          setTimeout(updateData, 3000)
+      },
+      option2(){
+        updateData();
+
+      }
+        }, 
+        DevilsDeal: { title: "A deal with the  Devil", storytext: `The Devil has watched your journey and offers you a deal, 90% of your HP in exchange for great power. Do you wish to take the deal?  \n`,
+        option1() {
+        
+          buttonDisplaChange();
+          let z = Math.random() *100;
+          console.log(z)
+  
+          if (z <=  99.9) {
+            console.log(user);
+            
+            innterStoryText.innerHTML = `Taking the deal with the devil doubled your strength in exchange for ${user.MHP*0.9}` ;
+            user.MHP = Math.ceil(user.MHP*0.1);
+            user.STR = Math.ceil(user.STR*2);
+            flags.DevilsDeal = true;
+          }
+          else if(z <= 100){
+            innterStoryText.innerHTML = "the Devil is engraged as the odds are with you, you tricked even the devil, getting you 50% strength at no cost.";
+            user.STR = Math.floor(user.STR*1.50)
+          }
+            
+  
+  
+            setTimeout(updateData, 3000)
+        },
+        option2(){
+          updateData();
+  
+        }
+      },
+      StatueOfDivnity: { title: "A statue of divinity", storytext: `You see a statue with divine radiance, do you wish to give your HP to it?\n`,
+        option1() {
+        
+          buttonDisplaChange();
+  
+  
+          if (flags.karma > 0) {
+            console.log(user);
+            
+            innterStoryText.innerHTML = `The statue blesses you with a minor increase in all stats,` ;
+            user.MHP = Math.ceil(user.MHP*1.1);
+            user.STR = Math.ceil(user.STR*1.1);
+            user.SPD = Math.ceil(user.SPD*1.1);
+            user.DEF = Math.ceil(user.DEF*1.1);
+            
+            
+          }
+          else if(flags.karma > 300){
+            innterStoryText.innerHTML = "The statue blesses your with a greater blessing due to your good karm, and you get fully healed";
+            user.MHP = Math.ceil(user.MHP*1.2);
+            user.STR = Math.ceil(user.STR*1.2);
+            user.SPD = Math.ceil(user.SPD*1.2);
+            user.DEF = Math.ceil(user.DEF*1.2);        
+            user.CHP = user.MHP;
+            flags.HolyWarrior = true;
+            }
+            else if (flags.karma<=0){
+
+              innterStoryText.innerHTML = "The statue gives no reaction";
+
+
+            }
+            else if (flags.karma<=-100){
+
+              innterStoryText.innerHTML = "The statue gives takes 20% HP for your bad karma ";
+              user.MHP = user.MHP*0.8;
+
+
+            }
+            
+  
+  
+            setTimeout(updateData, 3000)
+        },
+        option2(){
+          updateData();
+  
+        }
+      }
     };
     
     
@@ -311,14 +498,6 @@ function buttonDisplaChange(){
 
 
 
-
-
-
-
-
-
-
-
               
  //--------------------------------------------------------------------To load stories in collision detection -----------------------------------------------------------
  export function Randomstory() {
@@ -342,7 +521,7 @@ function buttonDisplaChange(){
    if (chance <=65) {
 
      console.log("common") 
-     loadcommonstory()
+     loadcommonstory();
      
  
    }

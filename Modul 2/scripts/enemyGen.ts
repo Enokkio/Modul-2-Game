@@ -30,7 +30,9 @@ class Enemy
   //Forest enemies
 
   export var enemy = new Enemy("","", 0, 0, 0, 0, 0, 0, 0);
-  let ForestMobs: string[] = ["wolf", "forestGuy", "spider"];
+  let ForestMobs: string[] = ["wolf", "forestGuy", "spider" ];
+  let MobSprites: string[] = ["/images/mike.png", "/images/mike.png", "/images/mike.png"];
+
 
 function genrateRandomNumber(min, max)
 {
@@ -60,11 +62,50 @@ if (flags.stageNr == 5) {
 
         return enemy;
 }
+else if(flags.stageNr == 10) {
+    enemy.Name = "Vice cave Lord";
+    enemy.MHP = Math.ceil(1.5* user.MHP);
+    enemy.CHP = Math.ceil(enemy.MHP);
+    enemy.STR = Math.ceil(0.9 * user.STR);
+    enemy.SPD = Math.ceil(0.5 * user.SPD + 5);
+
+    return enemy;
+}
+else if(flags.stageNr == 15) {
+    enemy.Name = "Cave Lord";
+    enemy.MHP = Math.ceil(1.5* user.MHP);
+    enemy.CHP = Math.ceil(enemy.MHP);
+    enemy.STR = Math.ceil(1.3 * user.STR);
+    enemy.SPD = Math.ceil(0.5 * user.SPD + 5);
+
+    return enemy;
+}
+else if(flags.stageNr == 20) {
+    enemy.Name = "Forest Lord";
+    enemy.MHP = Math.ceil(1.5* user.MHP);
+    enemy.CHP = Math.ceil(enemy.MHP);
+    enemy.STR = Math.ceil(1.3 * user.STR);
+    enemy.SPD = Math.ceil(0.5 * user.SPD + 5);
+
+    return enemy;
+}
+else if(flags.stageNr == 25) {
+    enemy.Name = "Forest Lord";
+    enemy.MHP = Math.ceil(1.5* user.MHP);
+    enemy.CHP = Math.ceil(enemy.MHP);
+    enemy.STR = Math.ceil(1.3 * user.STR);
+    enemy.SPD = Math.ceil(0.5 * user.SPD + 5);
+
+    return enemy;
+}
 else{
 
     //console.log("Creating enemy!");
     var enemyInd = genrateRandomNumber(0,2);
     enemy.Name = ForestMobs[enemyInd];
+    enemy.Sprite = MobSprites[enemyInd];
+    
+
 
     enemy.Level = genrateRandomNumber(flags.stageNr - 1, flags.stageNr + 1);
     if(enemy.Level < 1)
@@ -108,7 +149,8 @@ else{
     
     
 }
-
+console.log(enemy.Sprite);
+    console.log("test");
 
 
 
@@ -122,5 +164,8 @@ export function updateStatsE() {
             htmlElems[i].innerHTML = "HP: " + enemy.CHP + '/' + enemy.MHP;
             }
     }
+    document.getElementById('monster-event').style.backgroundImage = `url(${enemy.Sprite})`;
+    document.getElementById('enemy').style.backgroundImage = `url(${enemy.Sprite})`;
+
     
 }
