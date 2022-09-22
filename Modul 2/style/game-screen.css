@@ -50,6 +50,7 @@ body{
     display: flex;
     visibility: visible;
     left: 325px;
+    display: none;
     
 
 }
