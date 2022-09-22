@@ -34,6 +34,9 @@ import { flags, saveJSON } from "./updateStats.js";
 //import story loading function
 import { Randomstory} from "./storiesloader.js"
 import { getRndInteger } from './storiesloader.js'
+import { portalOff } from './startCombat.js'
+
+
 
 const player = document.getElementById("player");
  var coliderOn = true;
@@ -86,6 +89,7 @@ function overlapDetect(){
         
       
         loadStageBasedOnStageNR();
+        portalOff();
        
     }
     if (xleft -45 <= playerXleft && xright +45 >= playerXright && ybot +45>= playerYbot && ytop-45 <= PlayerYtop && interactDivs[index].classList.contains("monster-event")) {//makes bounding info as if it was a cube
