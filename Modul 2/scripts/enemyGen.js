@@ -42,35 +42,39 @@ export function createEnemy() {
         return enemy;
     }
     else if (flags.stageNr == 10) {
-        enemy.Name = "Vice cave Lord";
-        enemy.MHP = Math.ceil(1.5 * user.MHP);
+        enemy.Name = "Naga";
+        enemy.MHP = Math.ceil(1.1 * user.MHP);
         enemy.CHP = Math.ceil(enemy.MHP);
-        enemy.STR = Math.ceil(0.9 * user.STR);
-        enemy.SPD = Math.ceil(0.5 * user.SPD + 5);
+        enemy.STR = Math.ceil(0.9 * user.STR + 10);
+        enemy.DEF = Math.ceil(user.DEF * 0.8);
+        enemy.SPD = Math.ceil(user.SPD + 5);
         return enemy;
     }
     else if (flags.stageNr == 15) {
-        enemy.Name = "Cave Lord";
-        enemy.MHP = Math.ceil(1.5 * user.MHP);
+        enemy.Name = "Minotaur";
+        enemy.MHP = Math.ceil(1.3 * user.MHP);
         enemy.CHP = Math.ceil(enemy.MHP);
         enemy.STR = Math.ceil(1.3 * user.STR);
-        enemy.SPD = Math.ceil(0.5 * user.SPD + 5);
+        enemy.DEF = Math.ceil(user.DEF * 0.8 + 20);
+        enemy.SPD = Math.ceil(0.7 * user.SPD + 5);
         return enemy;
     }
     else if (flags.stageNr == 20) {
-        enemy.Name = "Forest Lord";
+        enemy.Name = "Dragon Gate Keeper";
         enemy.MHP = Math.ceil(1.5 * user.MHP);
         enemy.CHP = Math.ceil(enemy.MHP);
-        enemy.STR = Math.ceil(1.3 * user.STR);
-        enemy.SPD = Math.ceil(0.5 * user.SPD + 5);
+        enemy.STR = Math.ceil(1.2 * user.STR);
+        enemy.DEF = Math.ceil(user.DEF * 1.2);
+        enemy.SPD = Math.ceil(user.SPD * 1.05);
         return enemy;
     }
     else if (flags.stageNr == 25) {
-        enemy.Name = "Forest Lord";
+        enemy.Name = "Dungeon Lord";
         enemy.MHP = Math.ceil(1.5 * user.MHP);
         enemy.CHP = Math.ceil(enemy.MHP);
         enemy.STR = Math.ceil(1.3 * user.STR);
-        enemy.SPD = Math.ceil(0.5 * user.SPD + 5);
+        enemy.DEF = Math.ceil(user.DEF * 1.5);
+        enemy.SPD = Math.ceil(user.SPD * 0.9 + 40);
         return enemy;
     }
     else {
