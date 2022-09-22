@@ -717,6 +717,74 @@ video {
   left: 265px;
 }
 
+.left-\[280px\]{
+  left: 280px;
+}
+
+.left-\[145px\]{
+  left: 145px;
+}
+
+.top-\[50px\]{
+  top: 50px;
+}
+
+.top-\[75px\]{
+  top: 75px;
+}
+
+.left-\[10px\]{
+  left: 10px;
+}
+
+.top-\[95\%\]{
+  top: 95%;
+}
+
+.top-\[90\%\]{
+  top: 90%;
+}
+
+.top-\[80\%\]{
+  top: 80%;
+}
+
+.top-\[85\%\]{
+  top: 85%;
+}
+
+.top-\[82\%\]{
+  top: 82%;
+}
+
+.left-\[160px\]{
+  left: 160px;
+}
+
+.left-\[165px\]{
+  left: 165px;
+}
+
+.left-\[50px\]{
+  left: 50px;
+}
+
+.left-\[80px\]{
+  left: 80px;
+}
+
+.left-\[200px\]{
+  left: 200px;
+}
+
+.left-\[90px\]{
+  left: 90px;
+}
+
+.left-\[210px\]{
+  left: 210px;
+}
+
 .-z-10{
   z-index: -10;
 }
@@ -732,6 +800,11 @@ video {
 .mx-\[10px\]{
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.mx-\[20px\]{
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .mt-\[10px\]{
@@ -826,6 +899,42 @@ video {
   margin-right: 0px;
 }
 
+.ml-\[25\%\]{
+  margin-left: 25%;
+}
+
+.ml-\[30\%\]{
+  margin-left: 30%;
+}
+
+.ml-\[28\%\]{
+  margin-left: 28%;
+}
+
+.ml-\[10\%\]{
+  margin-left: 10%;
+}
+
+.ml-\[5px\]{
+  margin-left: 5px;
+}
+
+.ml-\[29\%\]{
+  margin-left: 29%;
+}
+
+.mt-\[-43px\]{
+  margin-top: -43px;
+}
+
+.mt-\[-03px\]{
+  margin-top: -03px;
+}
+
+.mt-\[-23px\]{
+  margin-top: -23px;
+}
+
 .block{
   display: block;
 }
@@ -910,6 +1019,14 @@ video {
   height: 345px;
 }
 
+.h-\[450px\]{
+  height: 450px;
+}
+
+.h-\[440px\]{
+  height: 440px;
+}
+
 .w-\[100px\]{
   width: 100px;
 }
@@ -966,6 +1083,26 @@ video {
 
 .w-\[210px\]{
   width: 210px;
+}
+
+.w-\[300px\]{
+  width: 300px;
+}
+
+.w-\[250px\]{
+  width: 250px;
+}
+
+.w-\[20px\]{
+  width: 20px;
+}
+
+.w-\[80\%\]{
+  width: 80%;
+}
+
+.w-\[220px\]{
+  width: 220px;
 }
 
 .min-w-\[91px\]{
@@ -1118,8 +1255,32 @@ video {
   background-color: rgb(74 222 128 / var(--tw-bg-opacity));
 }
 
+.object-cover{
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .p-\[15px\]{
   padding: 15px;
+}
+
+.p-\[10px\]{
+  padding: 10px;
+}
+
+.px-\[20px\]{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.px-\[10px\]{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.py-\[10px\]{
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .pl-\[20px\]{
@@ -1202,6 +1363,10 @@ video {
 .text-2xl{
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+.text-\[25\.5\%\]{
+  font-size: 25.5%;
 }
 
 .text-red-600{
